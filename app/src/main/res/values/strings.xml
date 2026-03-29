@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PartyHub</string>
+    <string name="hub_title">¿A qué jugamos hoy?</string>
+    <string name="hub_subtitle">Selecciona un juego para empezar la partida local</string>
+    
+    <string name="game_mind_title">The Mind</string>
+    <string name="game_mind_desc">Cooperativo (2-8 jugadores)\nOrdena las cartas del 1 al 100 sin hablar. ¿Lograréis sincronizar vuestras mentes?</string>
+    
+    <string name="game_as_title">El As</string>
+    <string name="game_as_desc">Competitivo (3-8 jugadores)\nIntercambia cartas a ciegas. Sobrevive con solo 3 vidas en este juego de engaño.</string>
 </resources>
