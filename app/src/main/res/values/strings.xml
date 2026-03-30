@@ -9,4 +9,13 @@
     
     <string name="game_as_title">El As</string>
     <string name="game_as_desc">Competitivo (3-8 jugadores)\nIntercambia cartas a ciegas. Sobrevive con solo 3 vidas en este juego de engaño.</string>
+
+    <!-- The Mind Config -->
+    <string name="mind_config_title">Preparar Misión</string>
+    <string name="mind_config_players">Número de jugadores:</string>
+    <string name="mind_config_difficulty">Nivel de dificultad:</string>
+    <string name="mind_difficulty_easy">Fácil (Vida extra)</string>
+    <string name="mind_difficulty_normal">Normal (Estándar)</string>
+    <string name="mind_difficulty_hard">Difícil (Menos vidas)</string>
+    <string name="mind_start_button">Empezar misión</string>
 </resources>

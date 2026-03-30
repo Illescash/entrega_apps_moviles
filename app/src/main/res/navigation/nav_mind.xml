@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_mind"
+    app:startDestination="@id/mindConfigFragment">
+
+    <fragment
+        android:id="@+id/mindConfigFragment"
+        android:name="com.partyhub.feature.themind.MindConfigFragment"
+        android:label="MindConfigFragment"
+        tools:layout="@layout/fragment_mind_config">
+        <action
+            android:id="@+id/action_mindConfigFragment_to_mindGameFragment"
+            app:destination="@id/mindGameFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mindGameFragment"
+        android:name="com.partyhub.feature.themind.MindGameFragment"
+        android:label="MindGameFragment"
+        tools:layout="@layout/fragment_mind_game">
+        <argument
+            android:name="numPlayers"
+            app:argType="integer" />
+        <argument
+            android:name="difficulty"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_mindGameFragment_to_mindResultFragment"
+            app:destination="@id/mindResultFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mindResultFragment"
+        android:name="com.partyhub.feature.themind.MindResultFragment"
+        android:label="MindResultFragment"
+        tools:layout="@layout/fragment_mind_result" />
+</navigation>
