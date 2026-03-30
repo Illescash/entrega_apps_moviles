@@ -19,6 +19,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".feature.themind.TheMindActivity" />
+        <activity android:name=".feature.elas.ElAsActivity" />
+
     </application>
 
 </manifest>

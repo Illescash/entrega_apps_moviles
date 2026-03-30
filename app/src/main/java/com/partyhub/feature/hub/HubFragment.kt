@@ -1,15 +1,17 @@
 package com.partyhub.feature.hub
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.partyhub.databinding.FragmentHubBinding
+import com.partyhub.feature.elas.ElAsActivity
+import com.partyhub.feature.themind.TheMindActivity
 
 class HubFragment : Fragment() {
 
-    // ViewBinding como exige CLAUDE.md
     private var _binding: FragmentHubBinding? = null
     private val binding get() = _binding!!
 
@@ -24,22 +26,20 @@ class HubFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
-        // Listeners para iniciar los juegos.
-        // La navegación (Intents) es el contenido del SIGUIENTE commit,
-        // por lo que ahora mismo los dejamos preparados y vacíos.
-        
+
         binding.btnTheMind.setOnClickListener {
-            // TODO: feat(hub): añadir navegación Hub→Juegos con Intent explícito (siguiente commit por Diego)
+            val intent = Intent(requireContext(), TheMindActivity::class.java)
+            startActivity(intent)
         }
 
         binding.btnElAs.setOnClickListener {
-            // TODO: feat(hub): añadir navegación Hub→Juegos con Intent explícito (siguiente commit por Diego)
+            val intent = Intent(requireContext(), ElAsActivity::class.java)
+            startActivity(intent)
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null // Limpieza para evitar memory leaks (requisito CLAUDE.md)
+        _binding = null
     }
 }
