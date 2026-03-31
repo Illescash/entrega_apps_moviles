@@ -18,4 +18,12 @@
     <string name="mind_difficulty_normal">Normal (Estándar)</string>
     <string name="mind_difficulty_hard">Difícil (Menos vidas)</string>
     <string name="mind_start_button">Empezar misión</string>
+    <!-- The Mind Game -->
+    <string name="mind_label_level">Misión %d</string>
+    <string name="mind_label_lives">Vidas restantes: %d</string>
+    <string name="mind_label_player_hand">%s: Tu mano</string>
+    <string name="mind_btn_play_card">Jugar Carta (%d)</string>
+    <string name="mind_status_revealing">Nivel finalizado. ¡Comprobando desajustes!</string>
+    <string name="mind_btn_next">Siguiente Nivel</string>
+    <string name="mind_btn_resolve">Resolver Vidas</string>
 </resources>
