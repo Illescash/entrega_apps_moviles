@@ -65,7 +65,10 @@ class MindGameFragment : Fragment() {
             // Navegación a resultados si el juego termina
             if (state.status == MindStatus.GAME_OVER || state.status == MindStatus.VICTORY) {
                 val action = MindGameFragmentDirections
-                    .actionMindGameFragmentToMindResultFragment() // Se añadirán argumentos después
+                    .actionMindGameFragmentToMindResultFragment(
+                        levelReached = state.level,
+                        isVictory = state.status == MindStatus.VICTORY
+                    )
                 findNavController().navigate(action)
             }
 

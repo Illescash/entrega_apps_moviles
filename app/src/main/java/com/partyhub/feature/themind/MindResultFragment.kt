@@ -5,7 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
+import com.partyhub.R
 import com.partyhub.databinding.FragmentMindResultBinding
 
 class MindResultFragment : Fragment() {
@@ -13,18 +14,33 @@ class MindResultFragment : Fragment() {
     private var _binding: FragmentMindResultBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MindViewModel by lazy {
-        ViewModelProvider(this).get(MindViewModel::class.java)
-    }
+    private val args: MindResultFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMindResultBinding.inflate(inflater, container, false)
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Mostrar el estado de victoria o derrota
+        binding.tvResultStatus.text = if (args.isVictory) {
+            getString(R.string.mind_result_victory)
+        } else {
+            getString(R.string.mind_result_game_over)
+        }
+
+        // Mostrar nivel alcanzado
+        binding.tvLevelReached.text = getString(R.string.mind_result_level, args.levelReached)
+
+        // Botón volver al Hub (termina la actividad para volver al HubActivity)
+        binding.btnBackToHub.setOnClickListener {
+            activity?.finish()
+        }
     }
 
     override fun onDestroyView() {

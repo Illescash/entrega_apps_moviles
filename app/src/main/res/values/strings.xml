@@ -26,4 +26,11 @@
     <string name="mind_status_revealing">Nivel finalizado. ¡Comprobando desajustes!</string>
     <string name="mind_btn_next">Siguiente Nivel</string>
     <string name="mind_btn_resolve">Resolver Vidas</string>
+
+    <!-- The Mind Results -->
+    <string name="mind_result_victory">¡VICTORIA!</string>
+    <string name="mind_result_game_over">DERROTA</string>
+    <string name="mind_result_level">Habéis llegado al nivel %d</string>
+    <string name="mind_btn_back_hub">Volver al Hub</string>
+    <string name="mind_share_text">¡Hemos llegado al nivel %1$d en The Mind de PartyHub! 🧠🎮</string>
 </resources>

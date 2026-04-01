@@ -35,5 +35,12 @@
         android:id="@+id/mindResultFragment"
         android:name="com.partyhub.feature.themind.MindResultFragment"
         android:label="MindResultFragment"
-        tools:layout="@layout/fragment_mind_result" />
+        tools:layout="@layout/fragment_mind_result">
+        <argument
+            android:name="levelReached"
+            app:argType="integer" />
+        <argument
+            android:name="isVictory"
+            app:argType="boolean" />
+    </fragment>
 </navigation>

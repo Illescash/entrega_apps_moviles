@@ -1,27 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <data>
-        <variable
-            name="viewModel"
-            type="com.partyhub.feature.themind.MindViewModel" />
-    </data>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black">
+        android:background="#121212"
+        android:padding="24dp">
 
         <TextView
+            android:id="@+id/tvResultStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="The Mind: Result View (Stub)"
+            android:textColor="@color/white"
+            android:textSize="42sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tvLevelReached"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="¡VICTORIA!" />
+
+        <TextView
+            android:id="@+id/tvLevelReached"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="#AAAAAA"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnBackToHub"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvResultStatus"
+            tools:text="Habéis llegado al nivel 12" />
+
+        <Button
+            android:id="@+id/btnBackToHub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:backgroundTint="#3D5AFE"
+            android:text="@string/mind_btn_back_hub"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/tvLevelReached" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
