@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_as"
+    app:startDestination="@id/asConfigFragment">
+
+    <fragment
+        android:id="@+id/asConfigFragment"
+        android:name="com.partyhub.feature.elas.AsConfigFragment"
+        android:label="AsConfigFragment"
+        tools:layout="@layout/fragment_as_config">
+        <action
+            android:id="@+id/action_asConfigFragment_to_asGameFragment"
+            app:destination="@id/asGameFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/asGameFragment"
+        android:name="com.partyhub.feature.elas.AsGameFragment"
+        android:label="AsGameFragment"
+        tools:layout="@layout/fragment_as_game">
+        <argument
+            android:name="numPlayers"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_asGameFragment_to_asResultFragment"
+            app:destination="@id/asResultFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/asResultFragment"
+        android:name="com.partyhub.feature.elas.AsResultFragment"
+        android:label="AsResultFragment"
+        tools:layout="@layout/fragment_as_result" />
+</navigation>

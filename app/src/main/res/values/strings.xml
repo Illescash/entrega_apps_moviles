@@ -33,4 +33,10 @@
     <string name="mind_result_level">Habéis llegado al nivel %d</string>
     <string name="mind_btn_back_hub">Volver al Hub</string>
     <string name="mind_share_text">¡Hemos llegado al nivel %1$d en The Mind de PartyHub! 🧠🎮</string>
+
+    <!-- El As Config -->
+    <string name="as_config_title">El As - Ajustes</string>
+    <string name="as_label_next_player">Siguiente Turno: %s</string>
+    <string name="as_btn_swap">Intercambiar Carta</string>
+    <string name="as_btn_stay">Quedarse (PASS)</string>
 </resources>
