@@ -1,5 +1,6 @@
 package com.partyhub.feature.elas
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,15 @@ class AsResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.tvWinner.text = getString(R.string.as_result_winner, args.winnerName)
+
+        binding.btnShare.setOnClickListener {
+            val text = getString(R.string.as_share_text, args.winnerName)
+            val intent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, text)
+            }
+            startActivity(Intent.createChooser(intent, null))
+        }
 
         binding.btnBackToHub.setOnClickListener {
             activity?.finish()

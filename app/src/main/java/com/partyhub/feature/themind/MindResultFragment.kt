@@ -1,5 +1,6 @@
 package com.partyhub.feature.themind
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,7 +38,15 @@ class MindResultFragment : Fragment() {
         // Mostrar nivel alcanzado
         binding.tvLevelReached.text = getString(R.string.mind_result_level, args.levelReached)
 
-        // Botón volver al Hub (termina la actividad para volver al HubActivity)
+        binding.btnShare.setOnClickListener {
+            val text = getString(R.string.mind_share_text, args.levelReached)
+            val intent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, text)
+            }
+            startActivity(Intent.createChooser(intent, null))
+        }
+
         binding.btnBackToHub.setOnClickListener {
             activity?.finish()
         }

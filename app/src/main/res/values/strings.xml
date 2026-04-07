@@ -32,7 +32,8 @@
     <string name="mind_result_game_over">DERROTA</string>
     <string name="mind_result_level">Habéis llegado al nivel %d</string>
     <string name="mind_btn_back_hub">Volver al Hub</string>
-    <string name="mind_share_text">¡Hemos llegado al nivel %1$d en The Mind de PartyHub! 🧠🎮</string>
+    <string name="mind_share_text">Hemos llegado al nivel %1$d en The Mind de PartyHub!</string>
+    <string name="mind_btn_share">Compartir resultado</string>
 
     <!-- El As Config -->
     <string name="as_config_title">El As - Ajustes</string>
@@ -41,7 +42,9 @@
     <string name="as_btn_stay">Quedarse (PASS)</string>
 
     <!-- El As Result -->
-    <string name="as_result_winner">¡%s gana!</string>
+    <string name="as_result_winner">%s gana!</string>
     <string name="as_result_subtitle">Último superviviente de la partida</string>
     <string name="as_btn_back_hub">Volver al Hub</string>
+    <string name="as_share_text">%1$s ha ganado en El As de PartyHub!</string>
+    <string name="as_btn_share">Compartir resultado</string>
 </resources>
