@@ -62,9 +62,10 @@ class AsGameFragment : Fragment() {
             binding.btnNextRound.isVisible = isRoundOver
 
             if (state.status == AsStatus.GAME_OVER) {
-                // Navegar a resultados (Diego lo terminará)
-                // val action = AsGameFragmentDirections.actionAsGameFragmentToAsResultFragment(...)
-                // findNavController().navigate(action)
+                val winner = state.players.firstOrNull { !it.isOut }?.player?.name ?: "Nadie"
+                val action = AsGameFragmentDirections
+                    .actionAsGameFragmentToAsResultFragment(winnerName = winner)
+                findNavController().navigate(action)
             }
         }
     }

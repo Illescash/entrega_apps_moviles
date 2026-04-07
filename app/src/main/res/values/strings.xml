@@ -39,4 +39,9 @@
     <string name="as_label_next_player">Siguiente Turno: %s</string>
     <string name="as_btn_swap">Intercambiar Carta</string>
     <string name="as_btn_stay">Quedarse (PASS)</string>
+
+    <!-- El As Result -->
+    <string name="as_result_winner">¡%s gana!</string>
+    <string name="as_result_subtitle">Último superviviente de la partida</string>
+    <string name="as_btn_back_hub">Volver al Hub</string>
 </resources>

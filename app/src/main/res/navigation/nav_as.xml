@@ -32,5 +32,9 @@
         android:id="@+id/asResultFragment"
         android:name="com.partyhub.feature.elas.AsResultFragment"
         android:label="AsResultFragment"
-        tools:layout="@layout/fragment_as_result" />
+        tools:layout="@layout/fragment_as_result">
+        <argument
+            android:name="winnerName"
+            app:argType="string" />
+    </fragment>
 </navigation>
