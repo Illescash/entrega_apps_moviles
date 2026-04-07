@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.partyhub.R
 import com.partyhub.databinding.FragmentAsResultBinding
+import timber.log.Timber
 
 class AsResultFragment : Fragment() {
 
@@ -27,6 +28,8 @@ class AsResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        Timber.d("El As: pantalla de resultados — ganador=${args.winnerName}")
 
         binding.tvWinner.text = getString(R.string.as_result_winner, args.winnerName)
 

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.partyhub.R
 import com.partyhub.databinding.FragmentMindResultBinding
+import timber.log.Timber
 
 class MindResultFragment : Fragment() {
 
@@ -28,7 +29,8 @@ class MindResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Mostrar el estado de victoria o derrota
+        Timber.d("The Mind: pantalla de resultados — victoria=${args.isVictory}, nivel=${args.levelReached}")
+
         binding.tvResultStatus.text = if (args.isVictory) {
             getString(R.string.mind_result_victory)
         } else {
