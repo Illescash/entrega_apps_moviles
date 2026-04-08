@@ -25,7 +25,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_normal"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/margin_small"
         android:text="@string/hub_subtitle"
         android:textColor="@color/gray_text"
         android:textSize="@dimen/text_subtitle"
@@ -81,9 +81,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="@dimen/margin_small"
                         android:text="@string/game_mind_desc"
-                        android:textColor="#E0E0E0"
+                        android:textColor="@color/text_light_gray"
                         android:textSize="@dimen/text_card_desc" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -118,9 +118,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="@dimen/margin_small"
                         android:text="@string/game_as_desc"
-                        android:textColor="#E0E0E0"
+                        android:textColor="@color/text_light_gray"
                         android:textSize="@dimen/text_card_desc" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

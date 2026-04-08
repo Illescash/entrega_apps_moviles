@@ -11,6 +11,20 @@
     
     <!-- PartyHub custom UI colors -->
     <color name="party_surface">#FF1E1E1E</color>
-    <color name="party_card_mind">#FF4A148C</color> <!-- Deep mysterious purple for The Mind -->
-    <color name="party_card_as">#FFC62828</color>   <!-- Intense red for El As -->
+    <color name="party_card_mind">#FF4A148C</color>
+    <color name="party_card_as">#FFC62828</color>
+
+    <!-- Text colors -->
+    <color name="text_light_gray">#FFE0E0E0</color>
+    <color name="text_secondary">#FFAAAAAA</color>
+    <color name="text_lives">#FFFF5252</color>
+    <color name="text_status_gold">#FFFFD700</color>
+
+    <!-- Surface / card -->
+    <color name="card_background">#FF2C2C2C</color>
+
+    <!-- Button colors -->
+    <color name="btn_primary">#FF3D5AFE</color>
+    <color name="btn_share">#FF00897B</color>
+    <color name="btn_as_accent">#FFFF9100</color>
 </resources>

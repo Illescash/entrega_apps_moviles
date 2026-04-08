@@ -5,8 +5,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#121212"
-        android:padding="24dp">
+        android:background="@color/black"
+        android:padding="@dimen/margin_large">
 
         <TextView
             android:id="@+id/tvTitle"
@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:text="@string/as_config_title"
             android:textColor="@color/white"
-            android:textSize="32sp"
+            android:textSize="@dimen/text_title_large"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,9 +24,9 @@
             android:id="@+id/tvPlayersLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="@dimen/margin_xxlarge"
             android:text="@string/mind_config_players"
-            android:textColor="#AAAAAA"
+            android:textColor="@color/text_secondary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
@@ -34,7 +34,7 @@
             android:id="@+id/rgPlayers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/margin_normal"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/tvPlayersLabel">
 
@@ -76,8 +76,8 @@
             android:id="@+id/btnStart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:backgroundTint="#FF9100"
+            android:layout_marginBottom="@dimen/margin_large"
+            android:backgroundTint="@color/btn_as_accent"
             android:text="@string/mind_start_button"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent" />

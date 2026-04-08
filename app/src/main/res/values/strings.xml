@@ -26,6 +26,7 @@
     <string name="mind_status_revealing">Nivel finalizado. ¡Comprobando desajustes!</string>
     <string name="mind_btn_next">Siguiente Nivel</string>
     <string name="mind_btn_resolve">Resolver Vidas</string>
+    <string name="mind_stack_title">Pila Central</string>
 
     <!-- The Mind Results -->
     <string name="mind_result_victory">¡VICTORIA!</string>

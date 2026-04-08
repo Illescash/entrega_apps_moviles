@@ -12,8 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#121212"
-        android:padding="16dp">
+        android:background="@color/black"
+        android:padding="@dimen/margin_normal">
 
         <!-- Header: Level and Lives -->
         <TextView
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="@{String.format(@string/mind_label_level, viewModel.gameState.level)}"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="@dimen/text_card_title"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -33,8 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{String.format(@string/mind_label_lives, viewModel.gameState.lives)}"
-            android:textColor="#FF5252"
-            android:textSize="18sp"
+            android:textColor="@color/text_lives"
+            android:textSize="@dimen/text_body"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Vidas: 3" />
@@ -44,23 +44,23 @@
             android:id="@+id/tvStackTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Pila Central"
-            android:textColor="#AAAAAA"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:text="@string/mind_stack_title"
+            android:textColor="@color/text_secondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvLevel" />
 
         <TextView
             android:id="@+id/tvCurrentCard"
-            android:layout_width="120dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="8dp"
-            android:background="#2C2C2C"
+            android:layout_width="@dimen/card_width_mind"
+            android:layout_height="@dimen/card_height_mind"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@color/card_background"
             android:gravity="center"
             android:text="@{viewModel.gameState.playedCards.empty ? `?` : String.valueOf(viewModel.gameState.playedCards[viewModel.gameState.playedCards.size() - 1].number)}"
             android:textColor="@color/white"
-            android:textSize="48sp"
+            android:textSize="@dimen/text_card_number"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,10 +72,10 @@
             android:id="@+id/tvStatus"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/margin_large"
             android:gravity="center"
             android:text="@string/mind_status_revealing"
-            android:textColor="#FFD700"
+            android:textColor="@color/text_status_gold"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,8 +86,8 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_normal"
             app:layout_constraintBottom_toTopOf="@id/btnNextLevel"
             app:layout_constraintTop_toBottomOf="@id/tvStatus">
 

@@ -2,26 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    android:background="#1E1E1E"
+    android:layout_marginBottom="@dimen/margin_medium"
+    android:background="@color/party_surface"
     android:orientation="vertical"
-    android:padding="12dp">
+    android:padding="@dimen/margin_medium">
 
     <TextView
         android:id="@+id/tvPlayerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jugador 1: Tu mano"
-        android:textColor="#AAAAAA"
-        android:textSize="14sp" />
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_card_desc" />
 
     <Button
         android:id="@+id/btnPlayCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:backgroundTint="#3D5AFE"
-        android:text="Jugar Carta (15)"
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:backgroundTint="@color/btn_primary"
         android:textColor="@color/white" />
 
 </LinearLayout>
