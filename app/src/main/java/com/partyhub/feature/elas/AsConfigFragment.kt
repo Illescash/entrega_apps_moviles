@@ -25,6 +25,11 @@ class AsConfigFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        savedInstanceState?.let { state ->
+            val playersId = state.getInt(KEY_PLAYERS, R.id.rbPlayers3)
+            binding.rgPlayers.check(playersId)
+        }
+
         binding.btnStart.setOnClickListener {
             val numPlayers = when (binding.rgPlayers.checkedRadioButtonId) {
                 R.id.rbPlayers3 -> 3
@@ -40,8 +45,19 @@ class AsConfigFragment : Fragment() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        _binding?.let { b ->
+            outState.putInt(KEY_PLAYERS, b.rgPlayers.checkedRadioButtonId)
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val KEY_PLAYERS = "as_config_players"
     }
 }
