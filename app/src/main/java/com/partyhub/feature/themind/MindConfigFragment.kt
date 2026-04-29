@@ -32,11 +32,15 @@ class MindConfigFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Restaurar estado si existe
         savedInstanceState?.let { state ->
+            val playerName = state.getString(KEY_PLAYER_NAME, "")
             val playersId = state.getInt(KEY_PLAYERS, R.id.rbPlayers2)
-            val difficultyId = state.getInt(KEY_DIFFICULTY, R.id.rbEasy)
+            val difficultyId = state.getInt(KEY_DIFFICULTY, R.id.btnNormal)
+            
+            binding.etPlayerName.setText(playerName)
             binding.rgPlayers.check(playersId)
-            binding.rgDifficulty.check(difficultyId)
+            binding.toggleDifficulty.check(difficultyId)
         }
 
         binding.btnStart.setOnClickListener {
@@ -47,12 +51,15 @@ class MindConfigFragment : Fragment() {
                 else -> 2
             }
 
-            val difficulty = when (binding.rgDifficulty.checkedRadioButtonId) {
-                R.id.rbEasy -> "EASY"
-                R.id.rbNormal -> "NORMAL"
-                R.id.rbHard -> "HARD"
+            val difficulty = when (binding.toggleDifficulty.checkedButtonId) {
+                R.id.btnEasy -> "EASY"
+                R.id.btnNormal -> "NORMAL"
+                R.id.btnHard -> "HARD"
                 else -> "NORMAL"
             }
+
+            // Aquí podríamos guardar el nombre en el ViewModel si fuera necesario
+            // viewModel.setPlayerName(binding.etPlayerName.text.toString())
 
             val action = MindConfigFragmentDirections
                 .actionMindConfigFragmentToMindGameFragment(numPlayers, difficulty)
@@ -63,8 +70,9 @@ class MindConfigFragment : Fragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         _binding?.let { b ->
+            outState.putString(KEY_PLAYER_NAME, b.etPlayerName.text.toString())
             outState.putInt(KEY_PLAYERS, b.rgPlayers.checkedRadioButtonId)
-            outState.putInt(KEY_DIFFICULTY, b.rgDifficulty.checkedRadioButtonId)
+            outState.putInt(KEY_DIFFICULTY, b.toggleDifficulty.checkedButtonId)
         }
     }
 
@@ -74,6 +82,7 @@ class MindConfigFragment : Fragment() {
     }
 
     companion object {
+        private const val KEY_PLAYER_NAME = "mind_config_player_name"
         private const val KEY_PLAYERS = "mind_config_players"
         private const val KEY_DIFFICULTY = "mind_config_difficulty"
     }

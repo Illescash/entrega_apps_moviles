@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.partyhub.R
 import com.partyhub.databinding.FragmentAsGameBinding
 import com.partyhub.feature.elas.engine.AsStatus
+import com.partyhub.core.model.SpanishCard
 
 class AsGameFragment : Fragment() {
 
@@ -23,6 +25,8 @@ class AsGameFragment : Fragment() {
         ViewModelProvider(this).get(AsViewModel::class.java)
     }
 
+    private lateinit var playerAdapter: AsPlayerAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +38,8 @@ class AsGameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupRecyclerView()
+
         if (viewModel.gameState.value == null) {
             viewModel.startGame(args.numPlayers)
         }
@@ -42,17 +48,24 @@ class AsGameFragment : Fragment() {
         setupClickListeners()
     }
 
+    private fun setupRecyclerView() {
+        playerAdapter = AsPlayerAdapter(emptyList(), -1)
+        binding.rvPlayers.adapter = playerAdapter
+    }
+
     private fun setupObservers() {
         viewModel.gameState.observe(viewLifecycleOwner) { state ->
-            val currentPlayer = state.players[state.currentPlayerIndex]
+            val currentPlayerIndex = state.currentPlayerIndex
+            val currentPlayer = state.players[currentPlayerIndex]
             
-            // UI Update
+            playerAdapter.updateData(state.players, currentPlayerIndex)
+            
             binding.tvCurrentPlayer.text = currentPlayer.player.name
             binding.tvLives.text = "Vidas: ${currentPlayer.lives}"
-            binding.tvCard.text = currentPlayer.hand?.number?.toString() ?: "?"
-            binding.tvSuit.text = currentPlayer.hand?.suit?.name ?: ""
 
-            // Status visibility
+            // Actualizar imagen de la carta
+            updateCardImage(currentPlayer.hand)
+
             val isPlaying = state.status == AsStatus.WAITING_ACTION
             val isRevealing = state.status == AsStatus.REVEALING
             val isRoundOver = state.status == AsStatus.ROUND_OVER
@@ -67,6 +80,31 @@ class AsGameFragment : Fragment() {
                     .actionAsGameFragmentToAsResultFragment(winnerName = winner)
                 findNavController().navigate(action)
             }
+        }
+    }
+
+    private fun updateCardImage(card: SpanishCard?) {
+        if (card == null) {
+            binding.ivCard.setImageResource(android.R.color.transparent)
+            return
+        }
+
+        // Mapear el palo a su nombre en minúsculas y singular (OROS -> oro)
+        val suitPrefix = when (card.suit) {
+            SpanishCard.Suit.OROS -> "oro"
+            SpanishCard.Suit.COPAS -> "copa"
+            SpanishCard.Suit.ESPADAS -> "espada"
+            SpanishCard.Suit.BASTOS -> "basto"
+        }
+
+        val drawableName = "${suitPrefix}_${card.number}"
+        val resId = resources.getIdentifier(drawableName, "drawable", requireContext().packageName)
+
+        if (resId != 0) {
+            binding.ivCard.setImageResource(resId)
+        } else {
+            // Fallback si no encuentra el drawable (ponemos un icono de ayuda)
+            binding.ivCard.setImageResource(android.R.drawable.ic_menu_help)
         }
     }
 

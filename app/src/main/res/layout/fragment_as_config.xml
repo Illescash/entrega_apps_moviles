@@ -24,11 +24,31 @@
             android:id="@+id/tvPlayersLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_xxlarge"
+            android:layout_marginTop="24dp"
             android:text="@string/mind_config_players"
             android:textColor="@color/text_secondary"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+            app:layout_constraintTop_toBottomOf="@id/tilPlayerName" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPlayerName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="Tu nombre / Alias"
+            android:textColorHint="@color/gray_text"
+            app:boxStrokeColor="@color/secondary"
+            app:hintTextColor="@color/secondary"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPlayerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
             android:id="@+id/rgPlayers"

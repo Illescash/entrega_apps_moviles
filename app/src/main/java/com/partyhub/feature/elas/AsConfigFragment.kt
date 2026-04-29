@@ -26,7 +26,9 @@ class AsConfigFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         savedInstanceState?.let { state ->
+            val playerName = state.getString(KEY_PLAYER_NAME, "")
             val playersId = state.getInt(KEY_PLAYERS, R.id.rbPlayers3)
+            binding.etPlayerName.setText(playerName)
             binding.rgPlayers.check(playersId)
         }
 
@@ -48,6 +50,7 @@ class AsConfigFragment : Fragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         _binding?.let { b ->
+            outState.putString(KEY_PLAYER_NAME, b.etPlayerName.text.toString())
             outState.putInt(KEY_PLAYERS, b.rgPlayers.checkedRadioButtonId)
         }
     }
@@ -58,6 +61,7 @@ class AsConfigFragment : Fragment() {
     }
 
     companion object {
+        private const val KEY_PLAYER_NAME = "as_config_player_name"
         private const val KEY_PLAYERS = "as_config_players"
     }
 }

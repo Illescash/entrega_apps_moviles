@@ -1,0 +1,304 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050a14"/>
+      <stop offset="50%" stop-color="#0a152b"/>
+      <stop offset="100%" stop-color="#020510"/>
+    </linearGradient>
+    <!-- Void gradient (for cracks in armor) -->
+    <linearGradient id="voidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#000020"/>
+      <stop offset="50%" stop-color="#000008"/>
+      <stop offset="100%" stop-color="#000030"/>
+    </linearGradient>
+    <filter id="neonGlowBlue">
+      <feGaussianBlur stdDeviation="4" result="blur1"/>
+      <feGaussianBlur stdDeviation="8" result="blur2"/>
+      <feMerge><feMergeNode in="blur2"/><feMergeNode in="blur1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="neonGlowCyan">
+      <feGaussianBlur stdDeviation="4" result="blur1"/>
+      <feGaussianBlur stdDeviation="8" result="blur2"/>
+      <feMerge><feMergeNode in="blur2"/><feMergeNode in="blur1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="neonGlowWhite">
+      <feGaussianBlur stdDeviation="3" result="blur1"/>
+      <feGaussianBlur stdDeviation="6" result="blur2"/>
+      <feMerge><feMergeNode in="blur2"/><feMergeNode in="blur1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="circuit" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 0 20 L 10 20 L 15 15 L 25 15 L 30 20 L 40 20 M 20 0 L 20 10 L 25 15 M 15 15 L 20 25 L 20 40" fill="none" stroke="#00ffff" stroke-width="0.5" stroke-opacity="0.15"/>
+    </pattern>
+    <!-- Stars pattern for void cracks -->
+    <pattern id="voidStars" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="#000010"/>
+      <circle cx="3" cy="5" r="0.5" fill="#fff" opacity="0.8"/>
+      <circle cx="12" cy="3" r="0.3" fill="#88ccff" opacity="0.6"/>
+      <circle cx="7" cy="14" r="0.4" fill="#fff" opacity="0.7"/>
+      <circle cx="16" cy="10" r="0.3" fill="#aaddff" opacity="0.5"/>
+      <circle cx="1" cy="18" r="0.5" fill="#fff" opacity="0.6"/>
+      <circle cx="18" cy="17" r="0.4" fill="#88ccff" opacity="0.7"/>
+      <circle cx="10" cy="8" r="0.6" fill="#fff" opacity="0.9"/>
+      <circle cx="5" cy="11" r="0.3" fill="#aaddff" opacity="0.5"/>
+      <circle cx="15" cy="15" r="0.3" fill="#fff" opacity="0.4"/>
+    </pattern>
+  </defs>
+
+  <rect width="200" height="300" fill="url(#bgGrad)" rx="12" stroke="#444" stroke-width="1"/>
+  <rect width="194" height="294" x="3" y="3" fill="url(#circuit)" rx="10"/>
+  <path d="M 12 12 L 40 12 M 160 12 L 188 12 M 188 12 L 188 40 M 188 260 L 188 288 M 188 288 L 160 288 M 40 288 L 12 288 M 12 288 L 12 260 M 12 40 L 12 12" fill="none" stroke="#00ffff" stroke-width="3" filter="url(#neonGlowCyan)"/>
+  <path d="M 60 12 L 140 12 M 60 288 L 140 288 M 188 80 L 188 220 M 12 80 L 12 220" fill="none" stroke="#0088ff" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.8"/>
+
+  <text x="22" y="44" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#fff" filter="url(#neonGlowCyan)">12</text>
+  <text x="22" y="44" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#00ffff">12</text>
+  <g transform="translate(178, 256) rotate(180)">
+    <text x="0" y="0" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#fff" filter="url(#neonGlowCyan)">12</text>
+    <text x="0" y="0" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#00ffff">12</text>
+  </g>
+
+  <!-- EL CABALLERO DEL VACIO -->
+  <g transform="translate(100, 158) scale(1.2)">
+
+    <!-- === REALITY DISTORTION FIELD === -->
+    <!-- Warped space around the figure -->
+    <ellipse cx="0" cy="0" rx="68" ry="85" fill="none" stroke="#00ffff" stroke-width="0.8" stroke-dasharray="2,6" opacity="0.12">
+      <animate attributeName="rx" values="65;72;65" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="ry" values="82;88;82" dur="5s" repeatCount="indefinite"/>
+    </ellipse>
+
+    <!-- Data stream cape (flowing behind, glitching) -->
+    <path d="M -55,-50 Q -20,0 -65,90" fill="none" stroke="#0088ff" stroke-width="1" stroke-dasharray="5,10" opacity="0.4"/>
+    <path d="M 55,-50 Q 20,0 65,90" fill="none" stroke="#0088ff" stroke-width="1" stroke-dasharray="5,10" opacity="0.4"/>
+
+    <!-- === MASSIVE ARMORED SHOULDERS === -->
+    <path d="M -60,8 L -36,-22 L 36,-22 L 60,8 L 50,16 L -50,16 Z" fill="#050a14" stroke="#00ffff" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M -60,8 L -36,-22 L 36,-22 L 60,8" fill="none" stroke="#00ffff" stroke-width="2.5" filter="url(#neonGlowCyan)"/>
+    <!-- Shoulder void cracks -->
+    <path d="M -50,0 L -45,-8 L -40,-2 L -44,5" fill="url(#voidStars)" stroke="#00ccff" stroke-width="0.8" opacity="0.9"/>
+    <path d="M 50,0 L 45,-8 L 40,-2 L 44,5" fill="url(#voidStars)" stroke="#00ccff" stroke-width="0.8" opacity="0.9"/>
+    <!-- Edge distortion light -->
+    <circle cx="-52" cy="2" r="2" fill="#fff" filter="url(#neonGlowWhite)" opacity="0.5">
+      <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="52" cy="2" r="2" fill="#fff" filter="url(#neonGlowWhite)" opacity="0.5">
+      <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- === CHEST / TORSO === -->
+    <path d="M -26,16 L 26,16 L 18,72 L 0,85 L -18,72 Z" fill="#050a14" stroke="#0088ff" stroke-width="1.5"/>
+    <!-- Armor plate lines -->
+    <line x1="-13" y1="26" x2="13" y2="26" stroke="#00ffff" stroke-width="1.5"/>
+    <line x1="-9" y1="36" x2="9" y2="36" stroke="#0088ff" stroke-width="1"/>
+
+    <!-- VOID CRACK across chest (the defining feature) -->
+    <path d="M -12,38 L -5,42 L 2,35 L 8,45 L 14,40" fill="url(#voidStars)" stroke="#00ccff" stroke-width="1" filter="url(#neonGlowCyan)"/>
+    <!-- Crack edge sparks -->
+    <circle cx="-5" cy="42" r="1" fill="#fff" filter="url(#neonGlowWhite)">
+      <animate attributeName="opacity" values="0;1;0" dur="0.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="8" cy="45" r="0.8" fill="#fff" filter="url(#neonGlowWhite)">
+      <animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- VOID CRACK on torso side -->
+    <path d="M -20,50 L -15,55 L -18,65" fill="url(#voidStars)" stroke="#00ccff" stroke-width="0.8" opacity="0.8"/>
+
+    <!-- === HEAD / VOID HELM === -->
+    <path d="M -14,-35 L 14,-35 L 11,-6 L 0,-1 L -11,-6 Z" fill="#050a14" stroke="#00ffff" stroke-width="1.5"/>
+    <!-- Visor - but one eye is void -->
+    <line x1="-10" y1="-20" x2="-2" y2="-17" stroke="#00ffff" stroke-width="2.5" filter="url(#neonGlowCyan)"/>
+    <!-- Right eye is a VOID CRACK instead -->
+    <path d="M 3,-22 L 8,-18 L 5,-14 L 10,-20" fill="url(#voidStars)" stroke="#00ccff" stroke-width="0.8"/>
+    <circle cx="6" cy="-18" r="1.5" fill="#fff" filter="url(#neonGlowWhite)" opacity="0.4">
+      <animate attributeName="opacity" values="0.2;0.6;0.2" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Mouth vents -->
+    <line x1="-4" y1="-8" x2="4" y2="-8" stroke="#fff" stroke-width="0.8" opacity="0.5"/>
+    <!-- === VOID CROWN (tenebrosa, floating above helm) === -->
+    <g>
+      <!-- Crown hover bob -->
+      <animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0" dur="4s" repeatCount="indefinite"/>
+
+      <!-- Crown frame (jagged, broken, multi-pointed) -->
+      <path d="M -24,-48 L -18,-38 L -14,-55 L -6,-40 L 0,-58 L 6,-40 L 14,-55 L 18,-38 L 24,-48" fill="none" stroke="#00ffff" stroke-width="2" filter="url(#neonGlowCyan)"/>
+      <!-- Crown base band -->
+      <path d="M -22,-42 L 22,-42" stroke="#0088ff" stroke-width="1.5"/>
+
+      <!-- Void-filled crown points (stars visible through the tips) -->
+      <path d="M -15,-52 L -12,-46 L -9,-52 Z" fill="url(#voidStars)" stroke="#00ccff" stroke-width="0.5" opacity="0.8"/>
+      <path d="M -2,-55 L 1,-46 L 4,-55 Z" fill="url(#voidStars)" stroke="#00ccff" stroke-width="0.5" opacity="0.9"/>
+      <path d="M 9,-52 L 12,-46 L 15,-52 Z" fill="url(#voidStars)" stroke="#00ccff" stroke-width="0.5" opacity="0.8"/>
+
+      <!-- Crown point jewels (unstable, flickering) -->
+      <circle cx="-24" cy="-48" r="1.5" fill="#fff" filter="url(#neonGlowWhite)">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="-14" cy="-55" r="2" fill="#fff" filter="url(#neonGlowCyan)">
+        <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="0" cy="-58" r="2.5" fill="#fff" filter="url(#neonGlowWhite)">
+        <animate attributeName="opacity" values="0.4;1;0.4" dur="1.2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="14" cy="-55" r="2" fill="#fff" filter="url(#neonGlowCyan)">
+        <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.8s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="24" cy="-48" r="1.5" fill="#fff" filter="url(#neonGlowWhite)">
+        <animate attributeName="opacity" values="0.5;0.9;0.5" dur="1.6s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Dark energy dripping from crown -->
+      <line x1="-16" y1="-42" x2="-16" y2="-34" stroke="#00ccff" stroke-width="1" stroke-linecap="round" opacity="0.5">
+        <animate attributeName="y2" values="-36;-30;-36" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;0.15;0.5" dur="3s" repeatCount="indefinite"/>
+      </line>
+      <circle cx="-16" cy="-30" r="1" fill="#00ccff" opacity="0.3">
+        <animate attributeName="cy" values="-32;-26;-32" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.3;0;0.3" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <line x1="2" y1="-42" x2="2" y2="-34" stroke="#00ccff" stroke-width="1.2" stroke-linecap="round" opacity="0.6">
+        <animate attributeName="y2" values="-36;-28;-36" dur="2.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.6;0.1;0.6" dur="2.5s" repeatCount="indefinite"/>
+      </line>
+      <circle cx="2" cy="-28" r="1.2" fill="#00ccff" opacity="0.4">
+        <animate attributeName="cy" values="-30;-24;-30" dur="2.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.4;0;0.4" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+      <line x1="14" y1="-42" x2="14" y2="-34" stroke="#00ccff" stroke-width="1" stroke-linecap="round" opacity="0.4">
+        <animate attributeName="y2" values="-37;-30;-37" dur="3.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.4;0.1;0.4" dur="3.5s" repeatCount="indefinite"/>
+      </line>
+    </g>
+
+    <!-- VOID CRACK splitting across helm -->
+    <path d="M -2,-38 L 1,-30 L -1,-22 L 2,-15" fill="url(#voidStars)" stroke="#00ccff" stroke-width="0.7" opacity="0.9"/>
+
+    <!-- === ARMS === -->
+    <!-- Left arm (at side, fist clenched, menacing) -->
+    <path d="M -36,-15 Q -50,5 -44,28" fill="none" stroke="#050a14" stroke-width="8" stroke-linecap="round"/>
+    <path d="M -36,-15 Q -50,5 -44,28" fill="none" stroke="#0088ff" stroke-width="2" stroke-linecap="round"/>
+    <!-- Void crack on left forearm -->
+    <path d="M -47,8 L -43,14 L -48,22" fill="url(#voidStars)" stroke="#00ccff" stroke-width="0.7" opacity="0.8"/>
+    <circle cx="-44" cy="14" r="0.8" fill="#fff" filter="url(#neonGlowWhite)" opacity="0.4">
+      <animate attributeName="opacity" values="0;0.6;0" dur="1.3s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Gauntlet (heavier) -->
+    <circle cx="-44" cy="30" r="5" fill="#050a14" stroke="#0088ff" stroke-width="1.5"/>
+    <circle cx="-44" cy="30" r="2" fill="#0088ff" opacity="0.3" filter="url(#neonGlowBlue)"/>
+
+    <!-- Right arm (reaching down to grip the sword in center) -->
+    <path d="M 36,-15 Q 30,5 12,20" fill="none" stroke="#050a14" stroke-width="8" stroke-linecap="round"/>
+    <path d="M 36,-15 Q 30,5 12,20" fill="none" stroke="#00ffff" stroke-width="2" stroke-linecap="round"/>
+    <!-- Elbow void crack -->
+    <path d="M 32,-2 L 28,4 L 33,8" fill="url(#voidStars)" stroke="#00ccff" stroke-width="0.5" opacity="0.6"/>
+
+    <!-- === THE VOID SWORD (plunged downward CENTER, being wrenched from reality) === -->
+    <g transform="translate(0, 28) rotate(180) scale(0.75)">
+      <!-- Light distortion field around blade -->
+      <polygon points="-10,5 10,5 6,-65 0,-82 -6,-65" fill="#00ccff" opacity="0.04" filter="url(#neonGlowCyan)">
+        <animate attributeName="opacity" values="0.02;0.07;0.02" dur="3s" repeatCount="indefinite"/>
+      </polygon>
+
+      <!-- Pommel (now at top, gripped by hand) -->
+      <polygon points="-4,27 4,27 5,32 0,35 -5,32" fill="#0a0a1e" stroke="#00ffff" stroke-width="0.8"/>
+      <circle cx="0" cy="30" r="1.5" fill="#00ffff" filter="url(#neonGlowCyan)"/>
+      <!-- Handle -->
+      <rect x="-3.5" y="5" width="7" height="22" fill="#050a14" stroke="#0088ff" stroke-width="1.2"/>
+      <line x1="-3.5" y1="10" x2="3.5" y2="8" stroke="#00ffff" stroke-width="0.6" opacity="0.7"/>
+      <line x1="-3.5" y1="16" x2="3.5" y2="14" stroke="#00ffff" stroke-width="0.6" opacity="0.7"/>
+      <line x1="-3.5" y1="22" x2="3.5" y2="20" stroke="#00ffff" stroke-width="0.6" opacity="0.7"/>
+      <!-- Guard -->
+      <polygon points="-12,5 12,5 10,0 -10,0" fill="#0d0d20" stroke="#00ffff" stroke-width="1.2" filter="url(#neonGlowCyan)"/>
+      <circle cx="-8" cy="2.5" r="1.5" fill="#00ffff"/>
+      <circle cx="8" cy="2.5" r="1.5" fill="#00ffff"/>
+
+      <!-- Blade outer -->
+      <polygon points="-6,0 6,0 3,-60 0,-75 -3,-60" fill="#050a14" stroke="#00ffff" stroke-width="1.5" filter="url(#neonGlowCyan)"/>
+      <!-- Blade VOID CORE -->
+      <polygon points="-3,0 3,0 1.5,-57 0,-68 -1.5,-57" fill="url(#voidStars)"/>
+      <!-- Edge light bending -->
+      <line x1="-5" y1="0" x2="-2" y2="-58" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+      <line x1="5" y1="0" x2="2" y2="-58" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+      <!-- Blade tip singularity -->
+      <circle cx="0" cy="-73" r="3" fill="#000010" stroke="#00ffff" stroke-width="1" filter="url(#neonGlowCyan)">
+        <animate attributeName="r" values="2;4;2" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="0" cy="-73" r="1" fill="#fff" filter="url(#neonGlowWhite)">
+        <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Reality crack lines emanating from blade -->
+      <line x1="-4" y1="-30" x2="-12" y2="-35" stroke="#00ccff" stroke-width="0.5" opacity="0.4"/>
+      <line x1="4" y1="-45" x2="11" y2="-48" stroke="#00ccff" stroke-width="0.5" opacity="0.4"/>
+      <line x1="-3" y1="-55" x2="-9" y2="-58" stroke="#00ccff" stroke-width="0.5" opacity="0.3"/>
+    </g>
+
+    <!-- Ground impact effect (where the blade pierces, centered) -->
+    <g transform="translate(0, 86)">
+      <!-- Crack lines radiating from impact point -->
+      <line x1="0" y1="0" x2="-12" y2="5" stroke="#00ccff" stroke-width="0.8" opacity="0.5"/>
+      <line x1="0" y1="0" x2="10" y2="6" stroke="#00ccff" stroke-width="0.8" opacity="0.4"/>
+      <line x1="0" y1="0" x2="-6" y2="8" stroke="#00ccff" stroke-width="0.6" opacity="0.3"/>
+      <line x1="0" y1="0" x2="14" y2="3" stroke="#00ccff" stroke-width="0.6" opacity="0.3"/>
+      <!-- Impact glow -->
+      <circle cx="0" cy="0" r="5" fill="#00ccff" opacity="0.1" filter="url(#neonGlowCyan)">
+        <animate attributeName="r" values="3;7;3" dur="2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.05;0.15;0.05" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <!-- Void particles rising from impact -->
+      <circle cx="-3" cy="0" r="0.8" fill="#fff" opacity="0.5">
+        <animate attributeName="cy" values="2;-12" dur="1.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;0" dur="1.8s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="4" cy="0" r="0.6" fill="#00ffff" opacity="0.4">
+        <animate attributeName="cy" values="3;-10" dur="2.2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.4;0" dur="2.2s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <!-- === FLOATING VOID FRAGMENTS (broken reality shards) === -->
+    <g opacity="0.7">
+      <!-- Large shard left -->
+      <polygon points="-58,38 -52,30 -48,40 -54,45" fill="url(#voidStars)" stroke="#00ccff" stroke-width="0.6">
+        <animateTransform attributeName="transform" type="translate" values="0,0; -3,-4; 0,0" dur="5s" repeatCount="indefinite"/>
+      </polygon>
+      <!-- Large shard upper right -->
+      <polygon points="52,-42 58,-48 62,-38 56,-34" fill="url(#voidStars)" stroke="#00ccff" stroke-width="0.6">
+        <animateTransform attributeName="transform" type="translate" values="0,0; 3,-2; 0,0" dur="4s" repeatCount="indefinite"/>
+      </polygon>
+      <!-- Medium shard upper left -->
+      <polygon points="-42,-56 -36,-62 -32,-54" fill="url(#voidStars)" stroke="#00ccff" stroke-width="0.5">
+        <animateTransform attributeName="transform" type="translate" values="0,0; -2,3; 0,0" dur="6s" repeatCount="indefinite"/>
+      </polygon>
+      <!-- Medium shard lower right -->
+      <polygon points="46,52 52,46 56,55" fill="url(#voidStars)" stroke="#00ccff" stroke-width="0.5">
+        <animateTransform attributeName="transform" type="translate" values="0,0; 2,2; 0,0" dur="4.5s" repeatCount="indefinite"/>
+      </polygon>
+      <!-- Small shards -->
+      <polygon points="-30,62 -26,58 -24,64" fill="url(#voidStars)" stroke="#00ccff" stroke-width="0.4">
+        <animateTransform attributeName="transform" type="translate" values="0,0; -1,2; 0,0" dur="5.5s" repeatCount="indefinite"/>
+      </polygon>
+      <polygon points="35,-60 39,-64 40,-58" fill="url(#voidStars)" stroke="#00ccff" stroke-width="0.4">
+        <animateTransform attributeName="transform" type="translate" values="0,0; 1,-2; 0,0" dur="7s" repeatCount="indefinite"/>
+      </polygon>
+    </g>
+
+    <!-- Ambient void energy crackling around figure -->
+    <g opacity="0.35">
+      <line x1="-55" y1="-20" x2="-62" y2="-25" stroke="#00ccff" stroke-width="0.8">
+        <animate attributeName="opacity" values="0;0.5;0" dur="1.5s" repeatCount="indefinite"/>
+      </line>
+      <line x1="58" y1="15" x2="64" y2="10" stroke="#00ccff" stroke-width="0.8">
+        <animate attributeName="opacity" values="0.4;0;0.4" dur="1.8s" repeatCount="indefinite"/>
+      </line>
+      <line x1="-48" y1="60" x2="-55" y2="65" stroke="#00ffff" stroke-width="0.6">
+        <animate attributeName="opacity" values="0;0.4;0" dur="2s" repeatCount="indefinite"/>
+      </line>
+      <line x1="42" y1="-55" x2="48" y2="-60" stroke="#00ffff" stroke-width="0.6">
+        <animate attributeName="opacity" values="0.3;0;0.3" dur="1.2s" repeatCount="indefinite"/>
+      </line>
+    </g>
+
+  </g>
+
+  <text x="100" y="280" font-family="'Courier New', monospace" font-size="8" fill="#00ffff" text-anchor="middle" letter-spacing="4" opacity="0.6">Peer2Play</text>
+</svg>

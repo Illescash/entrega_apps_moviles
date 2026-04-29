@@ -1,0 +1,104 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Gradient for Copas (Red/Orange) -->
+    <linearGradient id="bgGradCopa" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#140505"/>
+      <stop offset="50%" stop-color="#2b0a0a"/>
+      <stop offset="100%" stop-color="#100202"/>
+    </linearGradient>
+
+    <!-- Glowing Effects -->
+    <filter id="neonGlowRed">
+      <feGaussianBlur stdDeviation="3" result="blur1"/>
+      <feGaussianBlur stdDeviation="6" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="neonGlowOrange">
+      <feGaussianBlur stdDeviation="3" result="blur1"/>
+      <feGaussianBlur stdDeviation="6" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Circuit Pattern for Background -->
+    <pattern id="circuit" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 0 20 L 10 20 L 15 15 L 25 15 L 30 20 L 40 20 M 20 0 L 20 10 L 25 15 M 15 15 L 20 25 L 20 40" fill="none" stroke="#ff8800" stroke-width="0.5" stroke-opacity="0.15"/>
+      <circle cx="10" cy="20" r="1" fill="#ff8800" fill-opacity="0.3"/>
+      <circle cx="30" cy="20" r="1" fill="#ff8800" fill-opacity="0.3"/>
+    </pattern>
+
+    <!-- Reusable Cyber-Chalice -->
+    <g id="chaliceBase">
+       <!-- Base / Support Structure -->
+       <polygon points="-25,60 25,60 18,50 -18,50" fill="#1a0d0d" stroke="#ff0055" stroke-width="1.2"/>
+       <!-- Stem -->
+       <path d="M -7,20 L -4,50 L 4,50 L 7,20 Z" fill="#0d0505" stroke="#ff8800" stroke-width="1.2"/>
+       <line x1="0" y1="25" x2="0" y2="45" stroke="#ff0055" stroke-width="1.5" filter="url(#neonGlowRed)"/>
+       <!-- Bowl Housing -->
+       <path d="M -35,-15 Q -32,20 0,20 Q 32,20 35,-15 Z" fill="#1a0a0a" stroke="#ff0055" stroke-width="1.5" filter="url(#neonGlowRed)"/>
+       <!-- Inner Bowl -->
+       <path d="M -30,-18 Q -27,15 0,15 Q 27,15 30,-18 Z" fill="#2b0d0d" stroke="#ff8800" stroke-width="0.8" opacity="0.8"/>
+       <!-- Liquid -->
+       <path d="M -25,-14 Q -20,4 0,4 Q 20,4 25,-14 Z" fill="#ff4400" opacity="0.4" filter="url(#neonGlowOrange)"/>
+       <!-- Rim Glow -->
+       <ellipse cx="0" cy="-15" rx="30" ry="6" fill="none" stroke="#fff" stroke-width="1" filter="url(#neonGlowOrange)"/>
+    </g>
+
+    <!-- Floating Data Star -->
+    <g id="floatingStar">
+      <animateTransform attributeName="transform" type="translate" values="0,-2; 0,2; 0,-2" dur="3s" repeatCount="indefinite" additive="sum"/>
+      <circle r="12" fill="#ff0055" opacity="0.1" filter="url(#neonGlowRed)">
+        <animate attributeName="r" values="9;14;9" dur="1.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.1;0.3;0.1" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="17" fill="none" stroke="#ff8800" stroke-width="0.5" stroke-dasharray="4,10" opacity="0.5">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="8s" repeatCount="indefinite"/>
+      </circle>
+      <polygon points="0,-14 4,-4 14,0 4,4 0,14 -4,4 -14,0 -4,-4" fill="#fff" filter="drop-shadow(0 0 8px #fff)"/>
+      <circle r="4" fill="#fff" filter="url(#neonGlowOrange)">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="0.8s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </defs>
+
+  <!-- Card Body -->
+  <rect width="200" height="300" fill="url(#bgGradCopa)" rx="12" stroke="#444" stroke-width="1"/>
+  <rect width="194" height="294" x="3" y="3" fill="url(#circuit)" rx="10"/>
+
+  <!-- Cyberpunk Borders Copas -->
+  <path d="M 12 12 L 40 12 M 160 12 L 188 12 M 188 12 L 188 40 M 188 260 L 188 288 M 188 288 L 160 288 M 40 288 L 12 288 M 12 288 L 12 260 M 12 40 L 12 12" fill="none" stroke="#ff8800" stroke-width="3" filter="url(#neonGlowOrange)"/>
+  <path d="M 60 12 L 140 12 M 60 288 L 140 288 M 188 80 L 188 220 M 12 80 L 12 220" fill="none" stroke="#ff0055" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.8"/>
+
+  <!-- Top-left Number -->
+  <text x="22" y="44" font-family="'Courier New', monospace" font-weight="900" font-size="28" fill="#fff" filter="url(#neonGlowOrange)">2</text>
+  <text x="22" y="44" font-family="'Courier New', monospace" font-weight="900" font-size="28" fill="#ff8800">2</text>
+
+  <!-- Bottom-right Number -->
+  <g transform="translate(178, 256) rotate(180)">
+    <text x="0" y="0" font-family="'Courier New', monospace" font-weight="900" font-size="28" fill="#fff" filter="url(#neonGlowOrange)">2</text>
+    <text x="0" y="0" font-family="'Courier New', monospace" font-weight="900" font-size="28" fill="#ff8800">2</text>
+  </g>
+
+  <!-- Two Copas -->
+  <use href="#chaliceBase" x="100" y="90"/>
+  <use href="#chaliceBase" x="100" y="210"/>
+
+  <!-- Connecting Tech Line -->
+  <path d="M 100 130 L 100 170" fill="none" stroke="#ff0055" stroke-width="1" stroke-dasharray="4,2" opacity="0.6"/>
+  <circle cx="100" cy="150" r="3" fill="#ff8800" filter="url(#neonGlowOrange)"/>
+
+  <!-- Floating Stars (one per copa) -->
+  <g transform="translate(100, 52) scale(0.7)"><use href="#floatingStar"/></g>
+  <g transform="translate(100, 172) scale(0.7)"><use href="#floatingStar"/></g>
+
+  <!-- Holographic overlay text -->
+  <text x="100" y="280" font-family="'Courier New', monospace" font-size="8" fill="#ff8800" text-anchor="middle" letter-spacing="4" opacity="0.6">Peer2Play</text>
+</svg>

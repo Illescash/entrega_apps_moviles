@@ -19,4 +19,17 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray_text">#757575</color>
+
+    <!-- Colores para el juego El As y UI general -->
+    <color name="text_secondary">#BDBDBD</color>
+    <color name="btn_primary">#6200EE</color>
+    <color name="btn_as_accent">#EF5350</color>
+    <color name="text_lives">#FF5252</color>
+    <color name="card_background">#2C2C2C</color>
+
+    <!-- Colores faltantes -->
+    <color name="btn_share">#2196F3</color>
+    <color name="purple_500">#6200EE</color>
+    <color name="text_status_gold">#FFD700</color>
+    <color name="party_surface">#F5F5F5</color>
 </resources>

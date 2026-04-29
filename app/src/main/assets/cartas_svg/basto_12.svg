@@ -1,0 +1,221 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#05140a"/>
+      <stop offset="50%" stop-color="#0a2b12"/>
+      <stop offset="100%" stop-color="#021005"/>
+    </linearGradient>
+    <linearGradient id="thornGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ccff00"/>
+      <stop offset="50%" stop-color="#88cc00"/>
+      <stop offset="100%" stop-color="#00ff00"/>
+    </linearGradient>
+    <filter id="neonGlowGreen">
+      <feGaussianBlur stdDeviation="4" result="blur1"/>
+      <feGaussianBlur stdDeviation="8" result="blur2"/>
+      <feMerge><feMergeNode in="blur2"/><feMergeNode in="blur1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="neonGlowLime">
+      <feGaussianBlur stdDeviation="4" result="blur1"/>
+      <feGaussianBlur stdDeviation="8" result="blur2"/>
+      <feMerge><feMergeNode in="blur2"/><feMergeNode in="blur1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="circuit" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 0 20 L 10 20 L 15 15 L 25 15 L 30 20 L 40 20 M 20 0 L 20 10 L 25 15 M 15 15 L 20 25 L 20 40" fill="none" stroke="#ccff00" stroke-width="0.5" stroke-opacity="0.15"/>
+    </pattern>
+  </defs>
+
+  <rect width="200" height="300" fill="url(#bgGrad)" rx="12" stroke="#444" stroke-width="1"/>
+  <rect width="194" height="294" x="3" y="3" fill="url(#circuit)" rx="10"/>
+  <path d="M 12 12 L 40 12 M 160 12 L 188 12 M 188 12 L 188 40 M 188 260 L 188 288 M 188 288 L 160 288 M 40 288 L 12 288 M 12 288 L 12 260 M 12 40 L 12 12" fill="none" stroke="#ccff00" stroke-width="3" filter="url(#neonGlowLime)"/>
+  <path d="M 60 12 L 140 12 M 60 288 L 140 288 M 188 80 L 188 220 M 12 80 L 12 220" fill="none" stroke="#00ff00" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.8"/>
+
+  <text x="22" y="44" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#fff" filter="url(#neonGlowLime)">12</text>
+  <text x="22" y="44" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#ccff00">12</text>
+  <g transform="translate(178, 256) rotate(180)">
+    <text x="0" y="0" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#fff" filter="url(#neonGlowLime)">12</text>
+    <text x="0" y="0" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#ccff00">12</text>
+  </g>
+
+  <!-- THE WARLORD (Rey de Bastos) - Enthroned, massive, mace as scepter -->
+  <g transform="translate(100, 160) scale(1.2)">
+
+    <!-- === DATA STREAM CAPE === -->
+    <path d="M -60,-50 Q -22,0 -70,95" fill="none" stroke="#00ff00" stroke-width="1" stroke-dasharray="5,10" filter="url(#neonGlowGreen)" opacity="0.5"/>
+    <path d="M 60,-50 Q 22,0 70,95" fill="none" stroke="#00ff00" stroke-width="1" stroke-dasharray="5,10" filter="url(#neonGlowGreen)" opacity="0.5"/>
+    <path d="M -50,-15 Q 0,75 -50,105" fill="none" stroke="#ccff00" stroke-width="1.5" stroke-dasharray="10,5" filter="url(#neonGlowLime)" opacity="0.4"/>
+    <path d="M 50,-15 Q 0,75 50,105" fill="none" stroke="#ccff00" stroke-width="1.5" stroke-dasharray="10,5" filter="url(#neonGlowLime)" opacity="0.4"/>
+
+    <!-- === THRONE (made of broken maces/clubs) === -->
+    <!-- Throne back -->
+    <path d="M -42,-55 L -46,25 L 46,25 L 42,-55 Z" fill="#050f05" stroke="#00ff00" stroke-width="1" opacity="0.5"/>
+    <path d="M -38,-50 L -38,20 M 38,-50 L 38,20" stroke="#ccff00" stroke-width="0.5" stroke-dasharray="4,6" opacity="0.25"/>
+
+    <!-- Left throne armrest (broken mace shaft) -->
+    <g transform="translate(-50, 15)">
+      <rect x="-5" y="-35" width="10" height="42" fill="#0a1a0a" stroke="#00ff00" stroke-width="1.2"/>
+      <line x1="-5" y1="-25" x2="5" y2="-27" stroke="#ccff00" stroke-width="0.5" opacity="0.5"/>
+      <line x1="-5" y1="-15" x2="5" y2="-17" stroke="#ccff00" stroke-width="0.5" opacity="0.5"/>
+      <!-- Broken mace head on top -->
+      <polygon points="-8,-35 8,-35 6,-42 -6,-42" fill="#0a1a0a" stroke="#ccff00" stroke-width="1"/>
+      <circle cx="0" cy="-38" r="2" fill="#ccff00" filter="url(#neonGlowLime)" opacity="0.4"/>
+    </g>
+
+    <!-- Right throne armrest -->
+    <g transform="translate(50, 15)">
+      <rect x="-5" y="-35" width="10" height="42" fill="#0a1a0a" stroke="#00ff00" stroke-width="1.2"/>
+      <line x1="-5" y1="-25" x2="5" y2="-27" stroke="#ccff00" stroke-width="0.5" opacity="0.5"/>
+      <line x1="-5" y1="-15" x2="5" y2="-17" stroke="#ccff00" stroke-width="0.5" opacity="0.5"/>
+      <polygon points="-8,-35 8,-35 6,-42 -6,-42" fill="#0a1a0a" stroke="#ccff00" stroke-width="1"/>
+      <circle cx="0" cy="-38" r="2" fill="#ccff00" filter="url(#neonGlowLime)" opacity="0.4"/>
+    </g>
+
+    <!-- === MASSIVE ARMORED SHOULDERS === -->
+    <path d="M -60,8 L -36,-20 L 36,-20 L 60,8 L 50,16 L -50,16 Z" fill="#071407" stroke="#ccff00" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M -60,8 L -36,-20 L 36,-20 L 60,8" fill="none" stroke="#00ff00" stroke-width="3" filter="url(#neonGlowGreen)"/>
+    <!-- Shoulder spikes (brutal) -->
+    <path d="M -56,2 L -66,-8 L -58,-2" fill="#00ff00" opacity="0.6" filter="url(#neonGlowGreen)"/>
+    <path d="M -52,-8 L -64,-20 L -54,-12" fill="#ccff00" opacity="0.4" filter="url(#neonGlowLime)"/>
+    <path d="M 56,2 L 66,-8 L 58,-2" fill="#00ff00" opacity="0.6" filter="url(#neonGlowGreen)"/>
+    <path d="M 52,-8 L 64,-20 L 54,-12" fill="#ccff00" opacity="0.4" filter="url(#neonGlowLime)"/>
+    <!-- Shoulder nodes -->
+    <circle cx="-54" cy="2" r="3" fill="#ccff00" filter="url(#neonGlowLime)">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="54" cy="2" r="3" fill="#ccff00" filter="url(#neonGlowLime)">
+      <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- === CHEST / TORSO === -->
+    <path d="M -26,16 L 26,16 L 18,70 L 0,82 L -18,70 Z" fill="#071407" stroke="#00ff00" stroke-width="2"/>
+    <line x1="-13" y1="26" x2="13" y2="26" stroke="#ccff00" stroke-width="2"/>
+    <line x1="-9" y1="36" x2="9" y2="36" stroke="#00ff00" stroke-width="1.5"/>
+
+    <!-- === MACE-REACTOR in chest (matching As design) === -->
+    <g transform="translate(0, 55)">
+      <circle cx="0" cy="0" r="18" fill="none" stroke="#00ff00" stroke-width="2" filter="url(#neonGlowGreen)"/>
+      <!-- Mini mace head embedded -->
+      <polygon points="-10,-3 -7,-12 -3,-15 3,-15 7,-12 10,-3 7,4 -7,4" fill="#0a1a0a" stroke="#00ff00" stroke-width="1.2"/>
+      <polygon points="-7,-2 -5,-9 -2,-11 2,-11 5,-9 7,-2 5,2 -5,2" fill="#021005" stroke="#ccff00" stroke-width="0.8"/>
+      <!-- Core star -->
+      <polygon points="0,-8 2,-4 6,-2 2,0 0,4 -2,0 -6,-2 -2,-4" fill="#ccff00" filter="drop-shadow(0 0 4px #ccff00)"/>
+      <circle cx="0" cy="-2" r="2" fill="#fff" filter="url(#neonGlowLime)">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="0.8s" repeatCount="indefinite"/>
+      </circle>
+      <!-- Rotating ring -->
+      <circle cx="0" cy="0" r="14" fill="none" stroke="#ccff00" stroke-width="1" stroke-dasharray="4,8">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="8s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <!-- Cables feeding reactor -->
+    <path d="M -35,35 Q -20,45 -16,55" fill="none" stroke="#00ff00" stroke-width="1.5"/>
+    <path d="M 35,35 Q 20,45 16,55" fill="none" stroke="#ccff00" stroke-width="1.5"/>
+
+    <!-- === HEAD / WARLORD HELM === -->
+    <path d="M -14,-35 L 14,-35 L 11,-6 L 0,-1 L -11,-6 Z" fill="#071407" stroke="#00ff00" stroke-width="2" filter="drop-shadow(0 0 4px #00ff00)"/>
+    <!-- Eyes (menacing V) -->
+    <line x1="-10" y1="-20" x2="-2" y2="-16" stroke="#ccff00" stroke-width="2.5" filter="url(#neonGlowLime)"/>
+    <line x1="10" y1="-20" x2="2" y2="-16" stroke="#ccff00" stroke-width="2.5" filter="url(#neonGlowLime)"/>
+    <line x1="-8" y1="-20" x2="-2" y2="-17" stroke="#fff" stroke-width="1"/>
+    <line x1="8" y1="-20" x2="2" y2="-17" stroke="#fff" stroke-width="1"/>
+    <!-- Mouth vents -->
+    <line x1="-4" y1="-8" x2="4" y2="-8" stroke="#fff" stroke-width="1"/>
+    <line x1="-3" y1="-5" x2="3" y2="-5" stroke="#fff" stroke-width="0.8" opacity="0.6"/>
+
+    <!-- === THORN CROWN (brutal, spiked, floating) === -->
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0" dur="4s" repeatCount="indefinite"/>
+
+      <!-- Crown band (jagged, thorny) -->
+      <path d="M -25,-42 L -20,-38 L -15,-48 L -10,-38 L -5,-50 L 0,-38 L 5,-50 L 10,-38 L 15,-48 L 20,-38 L 25,-42" fill="none" stroke="url(#thornGrad)" stroke-width="2.5" filter="drop-shadow(0 0 5px #88cc00)"/>
+      <!-- Crown base -->
+      <line x1="-23" y1="-40" x2="23" y2="-40" stroke="#ccff00" stroke-width="2" filter="url(#neonGlowLime)"/>
+
+      <!-- Crown thorn tips (glowing) -->
+      <circle cx="-15" cy="-48" r="2" fill="#fff" filter="url(#neonGlowLime)">
+        <animate attributeName="opacity" values="0.4;0.9;0.4" dur="1.8s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="-5" cy="-50" r="2.5" fill="#fff" filter="url(#neonGlowGreen)">
+        <animate attributeName="opacity" values="0.8;0.3;0.8" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="5" cy="-50" r="2.5" fill="#fff" filter="url(#neonGlowLime)">
+        <animate attributeName="opacity" values="0.3;0.9;0.3" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="15" cy="-48" r="2" fill="#fff" filter="url(#neonGlowGreen)">
+        <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.6s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Toxic drip from crown -->
+      <line x1="-10" y1="-38" x2="-10" y2="-30" stroke="#00ff00" stroke-width="1" stroke-linecap="round" opacity="0.5">
+        <animate attributeName="y2" values="-32;-26;-32" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;0.1;0.5" dur="3s" repeatCount="indefinite"/>
+      </line>
+      <circle cx="-10" cy="-26" r="1" fill="#00ff00" opacity="0.3">
+        <animate attributeName="cy" values="-28;-22;-28" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.3;0;0.3" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <line x1="8" y1="-38" x2="8" y2="-30" stroke="#ccff00" stroke-width="1.2" stroke-linecap="round" opacity="0.6">
+        <animate attributeName="y2" values="-33;-25;-33" dur="2.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.6;0.1;0.6" dur="2.5s" repeatCount="indefinite"/>
+      </line>
+      <circle cx="8" cy="-25" r="1.2" fill="#ccff00" opacity="0.4">
+        <animate attributeName="cy" values="-27;-20;-27" dur="2.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.4;0;0.4" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <!-- === ARMS (resting on throne) === -->
+    <!-- Left arm -->
+    <path d="M -36,-12 Q -48,5 -46,18" fill="none" stroke="#071407" stroke-width="7" stroke-linecap="round"/>
+    <path d="M -36,-12 Q -48,5 -46,18" fill="none" stroke="#00ff00" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="-46" cy="20" r="4" fill="#071407" stroke="#00ff00" stroke-width="1.2"/>
+
+    <!-- Right arm -->
+    <path d="M 36,-12 Q 48,5 46,18" fill="none" stroke="#071407" stroke-width="7" stroke-linecap="round"/>
+    <path d="M 36,-12 Q 48,5 46,18" fill="none" stroke="#ccff00" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="46" cy="20" r="4" fill="#071407" stroke="#ccff00" stroke-width="1.2"/>
+
+    <!-- === THE ROYAL MACE (planted beside throne, scepter-style) === -->
+    <g transform="translate(-38, -10)">
+      <!-- Long handle going down -->
+      <rect x="-3" y="0" width="6" height="80" fill="#071407" stroke="#00ff00" stroke-width="1"/>
+      <line x1="0" y1="2" x2="0" y2="78" stroke="#ccff00" stroke-width="1" filter="url(#neonGlowLime)" opacity="0.4"/>
+      <line x1="-3" y1="20" x2="3" y2="18" stroke="#ccff00" stroke-width="0.5" opacity="0.5"/>
+      <line x1="-3" y1="40" x2="3" y2="38" stroke="#ccff00" stroke-width="0.5" opacity="0.5"/>
+      <line x1="-3" y1="60" x2="3" y2="58" stroke="#ccff00" stroke-width="0.5" opacity="0.5"/>
+      <!-- Coil rings -->
+      <ellipse cx="0" cy="15" rx="5" ry="2" fill="none" stroke="#ccff00" stroke-width="0.8"/>
+      <ellipse cx="0" cy="35" rx="5" ry="2" fill="none" stroke="#ccff00" stroke-width="0.8"/>
+      <!-- Guard -->
+      <polygon points="-8,0 8,0 6,-4 -6,-4" fill="#0d1a0d" stroke="#ccff00" stroke-width="1"/>
+
+      <!-- Mace head (full As design) -->
+      <polygon points="-14,-7 -10,-20 -4,-25 4,-25 10,-20 14,-7 10,3 -10,3" fill="#0a1a0a" stroke="#00ff00" stroke-width="1.5"/>
+      <polygon points="-10,-5 -7,-16 -3,-20 3,-20 7,-16 10,-5 7,1 -7,1" fill="#071407" stroke="#ccff00" stroke-width="0.8"/>
+      <!-- Vanes -->
+      <path d="M -14,-12 L -20,-14 L -18,-8 L -14,-5" fill="#0a1a0a" stroke="#00ff00" stroke-width="1"/>
+      <path d="M 14,-12 L 20,-14 L 18,-8 L 14,-5" fill="#0a1a0a" stroke="#00ff00" stroke-width="1"/>
+      <path d="M 0,-25 L -3,-32 L 3,-32 Z" fill="#0a1a0a" stroke="#ccff00" stroke-width="1"/>
+      <circle cx="-18" cy="-12" r="1.5" fill="#ccff00" filter="url(#neonGlowLime)" opacity="0.7"/>
+      <circle cx="18" cy="-12" r="1.5" fill="#ccff00" filter="url(#neonGlowLime)" opacity="0.7"/>
+      <circle cx="0" cy="-30" r="1.5" fill="#ccff00" filter="url(#neonGlowLime)" opacity="0.8"/>
+      <!-- Core -->
+      <circle cx="0" cy="-10" r="6" fill="#021005" stroke="#00ff00" stroke-width="1.2"/>
+      <polygon points="0,-15 1.5,-12 5,-10 1.5,-8 0,-5 -1.5,-8 -5,-10 -1.5,-12" fill="#ccff00" filter="drop-shadow(0 0 3px #ccff00)"/>
+      <circle cx="0" cy="-10" r="2" fill="#fff" filter="url(#neonGlowLime)">
+        <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="0" cy="-10" r="8" fill="none" stroke="#ccff00" stroke-width="0.8" stroke-dasharray="3,5">
+        <animateTransform attributeName="transform" type="rotate" from="0 0 -10" to="360 0 -10" dur="6s" repeatCount="indefinite"/>
+      </circle>
+      <!-- Electric arcs -->
+      <path d="M -14,-12 Q -22,-5 -26,-14" fill="none" stroke="#ccff00" stroke-width="1" filter="url(#neonGlowLime)" opacity="0.5">
+        <animate attributeName="d" values="M -14,-12 Q -22,-5 -26,-14;M -14,-12 Q -24,-18 -28,-10;M -14,-12 Q -22,-5 -26,-14" dur="0.4s" repeatCount="indefinite"/>
+      </path>
+    </g>
+
+  </g>
+
+  <text x="100" y="280" font-family="'Courier New', monospace" font-size="8" fill="#ccff00" text-anchor="middle" letter-spacing="4" opacity="0.6">Peer2Play</text>
+</svg>

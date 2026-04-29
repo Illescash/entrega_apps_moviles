@@ -1,0 +1,224 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Gradient for Copas (Red/Orange) -->
+    <linearGradient id="bgGradCopa" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#140505"/>
+      <stop offset="50%" stop-color="#2b0a0a"/>
+      <stop offset="100%" stop-color="#100202"/>
+    </linearGradient>
+
+    <!-- Glowing Effects -->
+    <filter id="neonGlowRed">
+      <feGaussianBlur stdDeviation="4" result="blur1"/>
+      <feGaussianBlur stdDeviation="8" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="neonGlowOrange">
+      <feGaussianBlur stdDeviation="4" result="blur1"/>
+      <feGaussianBlur stdDeviation="8" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Circuit Pattern for Background -->
+    <pattern id="circuit" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 0 20 L 10 20 L 15 15 L 25 15 L 30 20 L 40 20 M 20 0 L 20 10 L 25 15 M 15 15 L 20 25 L 20 40" fill="none" stroke="#ff8800" stroke-width="0.5" stroke-opacity="0.15"/>
+      <circle cx="10" cy="20" r="1" fill="#ff8800" fill-opacity="0.3"/>
+      <circle cx="30" cy="20" r="1" fill="#ff8800" fill-opacity="0.3"/>
+    </pattern>
+  </defs>
+
+  <!-- Card Body -->
+  <rect width="200" height="300" fill="url(#bgGradCopa)" rx="12" stroke="#444" stroke-width="1"/>
+  <rect width="194" height="294" x="3" y="3" fill="url(#circuit)" rx="10"/>
+
+  <!-- Cyberpunk Borders Copas -->
+  <path d="M 12 12 L 40 12 M 160 12 L 188 12 M 188 12 L 188 40 M 188 260 L 188 288 M 188 288 L 160 288 M 40 288 L 12 288 M 12 288 L 12 260 M 12 40 L 12 12" fill="none" stroke="#ff8800" stroke-width="3" filter="url(#neonGlowOrange)"/>
+  <path d="M 60 12 L 140 12 M 60 288 L 140 288 M 188 80 L 188 220 M 12 80 L 12 220" fill="none" stroke="#ff0055" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.8"/>
+
+  <!-- Top-left Number -->
+  <text x="22" y="44" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#fff" filter="url(#neonGlowOrange)">11</text>
+  <text x="22" y="44" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#ff8800">11</text>
+
+  <!-- Bottom-right Number -->
+  <g transform="translate(178, 256) rotate(180)">
+    <text x="0" y="0" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#fff" filter="url(#neonGlowOrange)">11</text>
+    <text x="0" y="0" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#ff8800">11</text>
+  </g>
+
+  <!-- THE CYBER-CAVALIER (Caballo de Copas) -->
+  <g transform="translate(100, 155)">
+
+    <!-- === SPEED TRAILS (behind everything) === -->
+    <!-- Horizontal motion lines -->
+    <g opacity="0.5">
+      <line x1="-90" y1="55" x2="-50" y2="55" stroke="#ff0055" stroke-width="1.5" filter="url(#neonGlowRed)">
+        <animate attributeName="x1" values="-90;-95;-90" dur="1.5s" repeatCount="indefinite"/>
+      </line>
+      <line x1="-85" y1="65" x2="-55" y2="65" stroke="#ff8800" stroke-width="1" opacity="0.6">
+        <animate attributeName="x1" values="-85;-92;-85" dur="2s" repeatCount="indefinite"/>
+      </line>
+      <line x1="-80" y1="45" x2="-60" y2="45" stroke="#ff0055" stroke-width="0.8" opacity="0.4">
+        <animate attributeName="x1" values="-80;-88;-80" dur="1.8s" repeatCount="indefinite"/>
+      </line>
+      <line x1="-75" y1="75" x2="-50" y2="75" stroke="#ff8800" stroke-width="0.8" opacity="0.3"/>
+    </g>
+
+    <!-- Engine exhaust glow -->
+    <ellipse cx="-48" cy="60" rx="18" ry="10" fill="#ff4400" opacity="0.15" filter="url(#neonGlowOrange)">
+      <animate attributeName="rx" values="15;22;15" dur="0.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.1;0.25;0.1" dur="0.8s" repeatCount="indefinite"/>
+    </ellipse>
+
+    <!-- === HOVERBIKE / CYBER-STEED === -->
+    <g transform="translate(0, 40)">
+      <!-- Hover glow underneath -->
+      <ellipse cx="5" cy="45" rx="50" ry="6" fill="#ff0055" opacity="0.15" filter="url(#neonGlowRed)">
+        <animate attributeName="ry" values="5;8;5" dur="2s" repeatCount="indefinite"/>
+      </ellipse>
+
+      <!-- Rear thruster housing -->
+      <path d="M -40,15 L -50,5 L -45,-5 L -30,0 Z" fill="#1a0808" stroke="#ff0055" stroke-width="1.5"/>
+      <path d="M -48,8 L -55,8" stroke="#ff8800" stroke-width="3" filter="url(#neonGlowOrange)" stroke-linecap="round">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="0.3s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- Main chassis -->
+      <path d="M -30,0 L -35,15 L -20,25 L 35,25 L 55,10 L 50,-5 L 35,-15 L -10,-15 L -30,0 Z" fill="#0d0505" stroke="#ff8800" stroke-width="2" stroke-linejoin="round"/>
+
+      <!-- Inner hull plating -->
+      <path d="M -20,0 L -25,15 L -10,20 L 30,20 L 45,8 L 40,-8 L 25,-10 L -5,-10 Z" fill="#1a0a0a" stroke="#ff0055" stroke-width="1"/>
+
+      <!-- Central energy conduit (spine of the bike) -->
+      <line x1="-20" y1="5" x2="40" y2="5" stroke="#ff0055" stroke-width="2" filter="url(#neonGlowRed)"/>
+      <line x1="-15" y1="5" x2="35" y2="5" stroke="#fff" stroke-width="0.5" opacity="0.6"/>
+
+      <!-- Bike node lights -->
+      <circle cx="-15" cy="5" r="2" fill="#ff8800" filter="url(#neonGlowOrange)"/>
+      <circle cx="10" cy="5" r="2" fill="#ff0055" filter="url(#neonGlowRed)"/>
+      <circle cx="35" cy="5" r="2" fill="#ff8800" filter="url(#neonGlowOrange)"/>
+
+      <!-- Front nose / headlight -->
+      <path d="M 50,-5 L 65,-2 L 60,8 L 50,10" fill="#0d0505" stroke="#ff8800" stroke-width="1.5"/>
+      <circle cx="63" cy="3" r="3" fill="#fff" filter="url(#neonGlowOrange)">
+        <animate attributeName="opacity" values="0.7;1;0.7" dur="1s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Rear fin / stabilizer -->
+      <path d="M -35,-5 L -45,-25 L -35,-20 L -25,-8" fill="#1a0808" stroke="#ff0055" stroke-width="1.5"/>
+      <line x1="-42" y1="-20" x2="-38" y2="-15" stroke="#ff8800" stroke-width="1" filter="url(#neonGlowOrange)"/>
+
+      <!-- Front energy wing / blade -->
+      <path d="M 30,-12 L 45,-30 L 50,-20 L 42,-10" fill="#1a0808" stroke="#ff8800" stroke-width="1.5"/>
+      <line x1="44" y1="-26" x2="47" y2="-18" stroke="#ff0055" stroke-width="1" filter="url(#neonGlowRed)"/>
+    </g>
+
+    <!-- === THE RIDER === -->
+    <g transform="translate(5, 0)">
+      <!-- Legs / seated on the bike -->
+      <path d="M -12,25 L -18,35 L -10,40" fill="none" stroke="#1a0808" stroke-width="6" stroke-linecap="round"/>
+      <path d="M -12,25 L -18,35 L -10,40" fill="none" stroke="#ff0055" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M 12,25 L 22,35 L 30,38" fill="none" stroke="#1a0808" stroke-width="6" stroke-linecap="round"/>
+      <path d="M 12,25 L 22,35 L 30,38" fill="none" stroke="#ff8800" stroke-width="1.5" stroke-linecap="round"/>
+
+      <!-- Torso / Chest armor (leaning forward, dynamic) -->
+      <polygon points="-15,25 -20,-5 -5,-20 10,-20 20,-5 15,25 0,30" fill="#0d0505" stroke="#ff8800" stroke-width="2"/>
+      <!-- Inner armor lines -->
+      <path d="M -10,-5 L 0,5 L 10,-5" fill="none" stroke="#ff0055" stroke-width="2" filter="url(#neonGlowRed)"/>
+      <line x1="0" y1="5" x2="0" y2="25" stroke="#ff0055" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+
+      <!-- Shoulder plates (angular, aerodynamic) -->
+      <path d="M -20,-5 L -35,-15 L -28,-25 L -5,-18" fill="#1a0808" stroke="#ff8800" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="M 20,-5 L 35,-15 L 28,-25 L 5,-18" fill="#1a0808" stroke="#ff0055" stroke-width="1.5" stroke-linejoin="round"/>
+      <!-- Shoulder glow nodes -->
+      <circle cx="-30" cy="-18" r="2" fill="#ff0055" filter="url(#neonGlowRed)"/>
+      <circle cx="30" cy="-18" r="2" fill="#ff8800" filter="url(#neonGlowOrange)"/>
+
+      <!-- Left arm (gripping handlebar) -->
+      <path d="M -20,-5 Q -30,10 -22,28" fill="none" stroke="#1a0808" stroke-width="6" stroke-linecap="round"/>
+      <path d="M -20,-5 Q -30,10 -22,28" fill="none" stroke="#ff0055" stroke-width="1.5" stroke-linecap="round"/>
+
+      <!-- Right arm (RAISED, holding chalice aloft!) -->
+      <path d="M 20,-5 Q 35,-30 30,-55" fill="none" stroke="#1a0808" stroke-width="6" stroke-linecap="round"/>
+      <path d="M 20,-5 Q 35,-30 30,-55" fill="none" stroke="#ff8800" stroke-width="2" stroke-linecap="round"/>
+
+      <!-- Helmet (Aerodynamic, visor slit) -->
+      <path d="M -12,-22 L -14,-38 L -8,-48 L 8,-48 L 14,-38 L 12,-22" fill="#0a0303" stroke="#ff8800" stroke-width="1.5"/>
+      <!-- Helmet crest / ridge -->
+      <path d="M 0,-48 L -2,-55 L 0,-60 L 2,-55 Z" fill="#ff0055" filter="url(#neonGlowRed)"/>
+      <!-- Visor -->
+      <line x1="-11" y1="-32" x2="11" y2="-32" stroke="#ff0055" stroke-width="3" filter="url(#neonGlowRed)"/>
+      <line x1="-9" y1="-32" x2="9" y2="-32" stroke="#fff" stroke-width="1.5"/>
+      <!-- Chin guard -->
+      <path d="M -8,-24 L 0,-20 L 8,-24" fill="none" stroke="#ff8800" stroke-width="1" opacity="0.6"/>
+
+      <!-- Scarf / data-stream cape flowing behind -->
+      <path d="M -12,-22 Q -30,-10 -45,5 Q -55,20 -50,40" fill="none" stroke="#ff0055" stroke-width="2.5" stroke-dasharray="8,4" filter="url(#neonGlowRed)" opacity="0.7"/>
+      <path d="M -10,-25 Q -25,-15 -40,0 Q -48,15 -42,35" fill="none" stroke="#ff8800" stroke-width="1.5" stroke-dasharray="6,6" opacity="0.5"/>
+    </g>
+
+    <!-- === THE CHALICE (held aloft by right hand) === -->
+    <g transform="translate(32, -65)">
+      <!-- Base -->
+      <polygon points="-12,28 12,28 8,22 -8,22" fill="#1a0d0d" stroke="#ff0055" stroke-width="1"/>
+      <!-- Stem -->
+      <path d="M -3,5 L -2,22 L 2,22 L 3,5 Z" fill="#0d0505" stroke="#ff8800" stroke-width="1"/>
+      <line x1="0" y1="8" x2="0" y2="18" stroke="#ff0055" stroke-width="1.5" filter="url(#neonGlowRed)"/>
+      <!-- Outer Bowl -->
+      <path d="M -20,-8 Q -18,5 0,5 Q 18,5 20,-8 Z" fill="#1a0a0a" stroke="#ff0055" stroke-width="1.5" filter="url(#neonGlowRed)"/>
+      <!-- Inner Bowl -->
+      <path d="M -16,-10 Q -14,2 0,2 Q 14,2 16,-10 Z" fill="#2b0d0d" stroke="#ff8800" stroke-width="0.8" opacity="0.8"/>
+      <!-- Liquid sloshing (dynamic!) -->
+      <path d="M -14,-8 Q -5,0 0,-2 Q 8,2 14,-8 Z" fill="#ff4400" opacity="0.5" filter="url(#neonGlowOrange)">
+        <animate attributeName="d" values="M -14,-8 Q -5,0 0,-2 Q 8,2 14,-8 Z;M -14,-6 Q -8,2 0,0 Q 5,-2 14,-6 Z;M -14,-8 Q -5,0 0,-2 Q 8,2 14,-8 Z" dur="1.5s" repeatCount="indefinite"/>
+      </path>
+      <!-- Rim Glow -->
+      <ellipse cx="0" cy="-10" rx="16" ry="3" fill="none" stroke="#fff" stroke-width="1" filter="url(#neonGlowOrange)"/>
+
+      <!-- Energy spilling / trailing from chalice (the speed trail!) -->
+      <path d="M -12,-6 Q -25,-2 -40,5 Q -55,15 -65,30" fill="none" stroke="#ff4400" stroke-width="2.5" opacity="0.5" filter="url(#neonGlowOrange)">
+        <animate attributeName="opacity" values="0.3;0.6;0.3" dur="1s" repeatCount="indefinite"/>
+      </path>
+      <path d="M -10,-4 Q -22,0 -35,8 Q -48,20 -58,35" fill="none" stroke="#ff0055" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4" filter="url(#neonGlowRed)">
+        <animate attributeName="stroke-dashoffset" from="0" to="-16" dur="0.6s" repeatCount="indefinite"/>
+      </path>
+      <!-- Droplets flying off -->
+      <circle cx="-30" cy="5" r="1.5" fill="#ff8800" opacity="0.6">
+        <animate attributeName="cx" values="-30;-40;-30" dur="1.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.6;0;0.6" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="-45" cy="18" r="1" fill="#ff0055" opacity="0.4">
+        <animate attributeName="cx" values="-45;-55;-45" dur="2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Floating star above the chalice -->
+      <g transform="translate(0, -20)">
+        <animateTransform attributeName="transform" type="translate" values="0,-22; 0,-18; 0,-22" dur="3s" repeatCount="indefinite"/>
+        <circle r="8" fill="#ff0055" opacity="0.1" filter="url(#neonGlowRed)">
+          <animate attributeName="r" values="6;10;6" dur="1.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.1;0.3;0.1" dur="1.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="13" fill="none" stroke="#ff8800" stroke-width="0.5" stroke-dasharray="3,8" opacity="0.5">
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="8s" repeatCount="indefinite"/>
+        </circle>
+        <polygon points="0,-10 3,-3 10,0 3,3 0,10 -3,3 -10,0 -3,-3" fill="#fff" filter="drop-shadow(0 0 6px #fff)"/>
+        <circle r="3" fill="#fff" filter="url(#neonGlowOrange)">
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="0.8s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+    </g>
+
+  </g>
+
+  <!-- Holographic overlay text -->
+  <text x="100" y="280" font-family="'Courier New', monospace" font-size="8" fill="#ff8800" text-anchor="middle" letter-spacing="4" opacity="0.6">Peer2Play</text>
+</svg>

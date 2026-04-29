@@ -1,0 +1,214 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Gradient for Copas (Red/Orange) -->
+    <linearGradient id="bgGradCopa" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#140505"/>
+      <stop offset="50%" stop-color="#2b0a0a"/>
+      <stop offset="100%" stop-color="#100202"/>
+    </linearGradient>
+
+    <!-- Glowing Effects -->
+    <filter id="neonGlowRed">
+      <feGaussianBlur stdDeviation="4" result="blur1"/>
+      <feGaussianBlur stdDeviation="8" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="neonGlowOrange">
+      <feGaussianBlur stdDeviation="4" result="blur1"/>
+      <feGaussianBlur stdDeviation="8" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Liquid Gradient (for crown drip & chalice) -->
+    <linearGradient id="liquidGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff8800"/>
+      <stop offset="50%" stop-color="#ff4400"/>
+      <stop offset="100%" stop-color="#ff0055"/>
+    </linearGradient>
+
+    <!-- Circuit Pattern for Background -->
+    <pattern id="circuit" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 0 20 L 10 20 L 15 15 L 25 15 L 30 20 L 40 20 M 20 0 L 20 10 L 25 15 M 15 15 L 20 25 L 20 40" fill="none" stroke="#ff8800" stroke-width="0.5" stroke-opacity="0.15"/>
+      <circle cx="10" cy="20" r="1" fill="#ff8800" fill-opacity="0.3"/>
+      <circle cx="30" cy="20" r="1" fill="#ff8800" fill-opacity="0.3"/>
+    </pattern>
+  </defs>
+
+  <!-- Card Body -->
+  <rect width="200" height="300" fill="url(#bgGradCopa)" rx="12" stroke="#444" stroke-width="1"/>
+  <rect width="194" height="294" x="3" y="3" fill="url(#circuit)" rx="10"/>
+
+  <!-- Cyberpunk Borders Copas -->
+  <path d="M 12 12 L 40 12 M 160 12 L 188 12 M 188 12 L 188 40 M 188 260 L 188 288 M 188 288 L 160 288 M 40 288 L 12 288 M 12 288 L 12 260 M 12 40 L 12 12" fill="none" stroke="#ff8800" stroke-width="3" filter="url(#neonGlowOrange)"/>
+  <path d="M 60 12 L 140 12 M 60 288 L 140 288 M 188 80 L 188 220 M 12 80 L 12 220" fill="none" stroke="#ff0055" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.8"/>
+
+  <!-- Top-left Number -->
+  <text x="22" y="44" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#fff" filter="url(#neonGlowOrange)">12</text>
+  <text x="22" y="44" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#ff8800">12</text>
+
+  <!-- Bottom-right Number -->
+  <g transform="translate(178, 256) rotate(180)">
+    <text x="0" y="0" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#fff" filter="url(#neonGlowOrange)">12</text>
+    <text x="0" y="0" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#ff8800">12</text>
+  </g>
+
+  <!-- THE CRIMSON SOVEREIGN (Rey de Copas) -->
+  <g transform="translate(100, 160) scale(1.2)">
+
+    <!-- === DATA STREAM CAPE (behind everything) === -->
+    <path d="M -65,-55 Q -25,0 -75,100" fill="none" stroke="#ff0055" stroke-width="1" stroke-dasharray="5,10" filter="url(#neonGlowRed)" opacity="0.6"/>
+    <path d="M 65,-55 Q 25,0 75,100" fill="none" stroke="#ff0055" stroke-width="1" stroke-dasharray="5,10" filter="url(#neonGlowRed)" opacity="0.6"/>
+    <path d="M -55,-15 Q 0,80 -55,110" fill="none" stroke="#ff8800" stroke-width="1.5" stroke-dasharray="10,5" filter="url(#neonGlowOrange)" opacity="0.5"/>
+    <path d="M 55,-15 Q 0,80 55,110" fill="none" stroke="#ff8800" stroke-width="1.5" stroke-dasharray="10,5" filter="url(#neonGlowOrange)" opacity="0.5"/>
+
+    <!-- === THRONE (Made of fused chalices) === -->
+    <!-- Left throne armrest (inverted chalice shape) -->
+    <g transform="translate(-55, 20)">
+      <path d="M -10,-40 L -15,0 L 15,0 L 10,-40" fill="#1a0808" stroke="#ff0055" stroke-width="1.5"/>
+      <path d="M -12,-45 Q 0,-55 12,-45" fill="none" stroke="#ff8800" stroke-width="1.5" filter="url(#neonGlowOrange)"/>
+      <ellipse cx="0" cy="-43" rx="12" ry="3" fill="none" stroke="#fff" stroke-width="0.8" opacity="0.5"/>
+      <!-- Liquid pooling in armrest cup -->
+      <path d="M -8,-42 Q 0,-38 8,-42 Z" fill="#ff4400" opacity="0.4" filter="url(#neonGlowOrange)"/>
+    </g>
+
+    <!-- Right throne armrest (inverted chalice shape) -->
+    <g transform="translate(55, 20)">
+      <path d="M -10,-40 L -15,0 L 15,0 L 10,-40" fill="#1a0808" stroke="#ff0055" stroke-width="1.5"/>
+      <path d="M -12,-45 Q 0,-55 12,-45" fill="none" stroke="#ff8800" stroke-width="1.5" filter="url(#neonGlowOrange)"/>
+      <ellipse cx="0" cy="-43" rx="12" ry="3" fill="none" stroke="#fff" stroke-width="0.8" opacity="0.5"/>
+      <path d="M -8,-42 Q 0,-38 8,-42 Z" fill="#ff4400" opacity="0.4" filter="url(#neonGlowOrange)"/>
+    </g>
+
+    <!-- Throne back (tall, behind shoulders) -->
+    <path d="M -45,-60 L -50,30 L 50,30 L 45,-60 Z" fill="#0a0303" stroke="#ff0055" stroke-width="1" opacity="0.5"/>
+    <path d="M -40,-55 L -40,25 M 40,-55 L 40,25" stroke="#ff8800" stroke-width="0.5" stroke-dasharray="4,6" opacity="0.3"/>
+
+    <!-- === MASSIVE ARMORED SHOULDERS === -->
+    <path d="M -62,10 L -38,-22 L 38,-22 L 62,10 L 52,18 L -52,18 Z" fill="#0d0505" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M -62,10 L -38,-22 L 38,-22 L 62,10" fill="none" stroke="#ff0055" stroke-width="3" filter="url(#neonGlowRed)"/>
+    <!-- Shoulder spikes / ornaments -->
+    <path d="M -58,5 L -68,-5 L -60,-2" fill="#ff0055" filter="url(#neonGlowRed)" opacity="0.8"/>
+    <path d="M 58,5 L 68,-5 L 60,-2" fill="#ff0055" filter="url(#neonGlowRed)" opacity="0.8"/>
+    <!-- Shoulder node lights -->
+    <circle cx="-55" cy="5" r="3" fill="#ff8800" filter="url(#neonGlowOrange)">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="55" cy="5" r="3" fill="#ff8800" filter="url(#neonGlowOrange)">
+      <animate attributeName="opacity" values="1;0.6;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- === CHEST / TORSO PLATES === -->
+    <path d="M -28,18 L 28,18 L 18,75 L 0,90 L -18,75 Z" fill="#110505" stroke="#ff8800" stroke-width="2"/>
+    <!-- Armor detail lines -->
+    <line x1="-14" y1="28" x2="14" y2="28" stroke="#ff0055" stroke-width="2"/>
+    <line x1="-10" y1="38" x2="10" y2="38" stroke="#ff8800" stroke-width="1.5"/>
+
+    <!-- === THE CHALICE (Embedded in chest, like Arc Reactor) === -->
+    <g transform="translate(0, 58)">
+      <!-- Outer mounting ring -->
+      <circle cx="0" cy="0" r="24" fill="none" stroke="#ff0055" stroke-width="2" filter="url(#neonGlowRed)"/>
+      <!-- Chalice bowl shape embedded -->
+      <path d="M -18,-8 Q -15,8 0,10 Q 15,8 18,-8 Z" fill="#1a0a0a" stroke="#ff0055" stroke-width="1.5"/>
+      <path d="M -14,-10 Q -12,5 0,7 Q 12,5 14,-10 Z" fill="#2b0d0d" stroke="#ff8800" stroke-width="0.8"/>
+      <!-- Liquid core -->
+      <path d="M -12,-6 Q -8,2 0,3 Q 8,2 12,-6 Z" fill="#ff4400" opacity="0.6" filter="url(#neonGlowOrange)">
+        <animate attributeName="opacity" values="0.4;0.8;0.4" dur="1.5s" repeatCount="indefinite"/>
+      </path>
+      <!-- Rim glow -->
+      <ellipse cx="0" cy="-9" rx="15" ry="3" fill="none" stroke="#fff" stroke-width="1.2" filter="url(#neonGlowOrange)"/>
+      <!-- Inner star core -->
+      <polygon points="0,-5 2,-1.5 5,0 2,1.5 0,5 -2,1.5 -5,0 -2,-1.5" fill="#fff" filter="drop-shadow(0 0 5px #fff)"/>
+      <circle cx="0" cy="0" r="2" fill="#fff" filter="url(#neonGlowOrange)">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="0.8s" repeatCount="indefinite"/>
+      </circle>
+      <!-- Energy ring rotating around chalice-reactor -->
+      <circle cx="0" cy="0" r="20" fill="none" stroke="#ff8800" stroke-width="1" stroke-dasharray="4,8">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="8s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <!-- Cables feeding into chest reactor -->
+    <path d="M -38,38 Q -22,48 -20,58" fill="none" stroke="#ff0055" stroke-width="2"/>
+    <path d="M 38,38 Q 22,48 20,58" fill="none" stroke="#ff8800" stroke-width="2"/>
+
+    <!-- === HEAD / CYBORG SKULL === -->
+    <path d="M -14,-38 L 14,-38 L 11,-8 L 0,-3 L -11,-8 Z" fill="#050202" stroke="#ff8800" stroke-width="1.5" filter="drop-shadow(0 0 4px #ff8800)"/>
+    <!-- Cyber Eyes (menacing V-shape) -->
+    <line x1="-10" y1="-22" x2="-2" y2="-18" stroke="#ff0055" stroke-width="2.5" filter="url(#neonGlowRed)"/>
+    <line x1="10" y1="-22" x2="2" y2="-18" stroke="#ff0055" stroke-width="2.5" filter="url(#neonGlowRed)"/>
+    <!-- Mouth vents -->
+    <line x1="-4" y1="-10" x2="4" y2="-10" stroke="#fff" stroke-width="1"/>
+    <line x1="-3" y1="-7" x2="3" y2="-7" stroke="#fff" stroke-width="0.8" opacity="0.6"/>
+    <!-- Jaw armor -->
+    <path d="M -10,-12 L -14,-5 L 0,2 L 14,-5 L 10,-12" fill="none" stroke="#ff8800" stroke-width="0.8" opacity="0.5"/>
+
+    <!-- === THE CROWN (Dripping liquid energy) === -->
+    <g>
+      <!-- Crown frame (grand, multi-pointed) -->
+      <path d="M -28,-58 L -22,-42 L -12,-62 L 0,-45 L 12,-62 L 22,-42 L 28,-58 Z" fill="none" stroke="url(#liquidGrad)" stroke-width="2.5" filter="drop-shadow(0 0 6px #ff4400)"/>
+      <!-- Crown base band -->
+      <path d="M -26,-45 L 26,-45" stroke="#ff8800" stroke-width="2" filter="url(#neonGlowOrange)"/>
+      <!-- Crown jewel nodes -->
+      <circle cx="-28" cy="-58" r="2.5" fill="#fff" filter="url(#neonGlowOrange)"/>
+      <circle cx="-12" cy="-62" r="3" fill="#fff" filter="url(#neonGlowRed)"/>
+      <circle cx="0" cy="-45" r="2" fill="#ff8800" filter="url(#neonGlowOrange)"/>
+      <circle cx="12" cy="-62" r="3" fill="#fff" filter="url(#neonGlowRed)"/>
+      <circle cx="28" cy="-58" r="2.5" fill="#fff" filter="url(#neonGlowOrange)"/>
+
+      <!-- LIQUID DRIPPING from crown -->
+      <!-- Left drip -->
+      <line x1="-20" y1="-42" x2="-20" y2="-32" stroke="url(#liquidGrad)" stroke-width="1.5" stroke-linecap="round">
+        <animate attributeName="y2" values="-35;-28;-35" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.8;0.3;0.8" dur="3s" repeatCount="indefinite"/>
+      </line>
+      <circle cx="-20" cy="-28" r="1.2" fill="#ff4400" opacity="0.6">
+        <animate attributeName="cy" values="-30;-24;-30" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.6;0;0.6" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <!-- Center drip -->
+      <line x1="0" y1="-38" x2="0" y2="-30" stroke="url(#liquidGrad)" stroke-width="2" stroke-linecap="round">
+        <animate attributeName="y2" values="-32;-25;-32" dur="2.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2.5s" repeatCount="indefinite"/>
+      </line>
+      <circle cx="0" cy="-25" r="1.5" fill="#ff4400" opacity="0.7">
+        <animate attributeName="cy" values="-27;-20;-27" dur="2.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.7;0;0.7" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+      <!-- Right drip -->
+      <line x1="18" y1="-42" x2="18" y2="-33" stroke="url(#liquidGrad)" stroke-width="1.5" stroke-linecap="round">
+        <animate attributeName="y2" values="-36;-28;-36" dur="3.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.7;0.2;0.7" dur="3.5s" repeatCount="indefinite"/>
+      </line>
+      <circle cx="18" cy="-28" r="1" fill="#ff4400" opacity="0.5">
+        <animate attributeName="cy" values="-30;-23;-30" dur="3.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;0;0.5" dur="3.5s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <!-- === ARMS (resting on throne armrests) === -->
+    <!-- Left arm -->
+    <path d="M -38,-15 Q -50,5 -48,20" fill="none" stroke="#0d0505" stroke-width="7" stroke-linecap="round"/>
+    <path d="M -38,-15 Q -50,5 -48,20" fill="none" stroke="#ff0055" stroke-width="2" stroke-linecap="round"/>
+    <!-- Left fist / gauntlet -->
+    <circle cx="-48" cy="22" r="4" fill="#0d0505" stroke="#ff0055" stroke-width="1.5"/>
+
+    <!-- Right arm -->
+    <path d="M 38,-15 Q 50,5 48,20" fill="none" stroke="#0d0505" stroke-width="7" stroke-linecap="round"/>
+    <path d="M 38,-15 Q 50,5 48,20" fill="none" stroke="#ff8800" stroke-width="2" stroke-linecap="round"/>
+    <!-- Right fist / gauntlet -->
+    <circle cx="48" cy="22" r="4" fill="#0d0505" stroke="#ff8800" stroke-width="1.5"/>
+
+  </g>
+
+  <!-- Holographic overlay text -->
+  <text x="100" y="280" font-family="'Courier New', monospace" font-size="8" fill="#ff8800" text-anchor="middle" letter-spacing="4" opacity="0.6">Peer2Play</text>
+</svg>

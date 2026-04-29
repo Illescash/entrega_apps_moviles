@@ -19,4 +19,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray_text">#BDBDBD</color>
+
+    <!-- Colores faltantes (Modo Oscuro) -->
+    <color name="btn_share">#64B5F6</color>
+    <color name="purple_500">#BB86FC</color>
+    <color name="text_status_gold">#FFD700</color>
+    <color name="party_surface">#2C2C2C</color>
 </resources>

@@ -31,33 +31,51 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Vidas: 3" />
 
-        <!-- Card display -->
-        <TextView
-            android:id="@+id/tvCard"
-            android:layout_width="@dimen/card_width_as"
-            android:layout_height="@dimen/card_height_as"
-            android:layout_marginTop="@dimen/margin_huge"
-            android:background="@color/card_background"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_card_number"
-            android:textStyle="bold"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPlayers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/tvCurrentPlayer"
+            tools:listitem="@layout/list_item_as_player" />
+
+        <!-- Card display (NUEVA IMAGEN) -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="12dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvCurrentPlayer"
-            tools:text="12" />
+            app:layout_constraintTop_toBottomOf="@id/rvPlayers">
 
+            <ImageView
+                android:id="@+id/ivCard"
+                android:layout_width="180dp"
+                android:layout_height="270dp"
+                android:scaleType="fitCenter"
+                android:background="@color/card_background"
+                tools:src="@drawable/oro_1" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Hidden text info for internal state if needed, but not visible -->
+        <TextView
+            android:id="@+id/tvCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+            
         <TextView
             android:id="@+id/tvSuit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
-            android:textColor="@color/text_secondary"
-            android:textSize="@dimen/text_body"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvCard"
-            tools:text="OROS" />
+            android:visibility="gone" />
 
         <!-- Action buttons -->
         <LinearLayout

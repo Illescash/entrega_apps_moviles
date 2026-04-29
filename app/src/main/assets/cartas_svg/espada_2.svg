@@ -1,0 +1,74 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradEspada" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050a14"/>
+      <stop offset="50%" stop-color="#0a152b"/>
+      <stop offset="100%" stop-color="#020510"/>
+    </linearGradient>
+    <filter id="neonGlowBlue">
+      <feGaussianBlur stdDeviation="3" result="blur1"/>
+      <feGaussianBlur stdDeviation="6" result="blur2"/>
+      <feMerge><feMergeNode in="blur2"/><feMergeNode in="blur1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="neonGlowCyan">
+      <feGaussianBlur stdDeviation="3" result="blur1"/>
+      <feGaussianBlur stdDeviation="6" result="blur2"/>
+      <feMerge><feMergeNode in="blur2"/><feMergeNode in="blur1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="circuit" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 0 20 L 10 20 L 15 15 L 25 15 L 30 20 L 40 20 M 20 0 L 20 10 L 25 15 M 15 15 L 20 25 L 20 40" fill="none" stroke="#00ffff" stroke-width="0.5" stroke-opacity="0.15"/>
+      <circle cx="10" cy="20" r="1" fill="#00ffff" fill-opacity="0.3"/>
+      <circle cx="30" cy="20" r="1" fill="#00ffff" fill-opacity="0.3"/>
+    </pattern>
+
+    <g id="swordBase">
+      <!-- Pommel -->
+      <polygon points="-5,42 5,42 7,48 0,52 -7,48" fill="#0a0a1e" stroke="#00ffff" stroke-width="1"/>
+      <circle cx="0" cy="46" r="1.5" fill="#00ffff" filter="url(#neonGlowCyan)"/>
+      <!-- Handle -->
+      <rect x="-4" y="15" width="8" height="27" fill="#050a14" stroke="#0088ff" stroke-width="1.5"/>
+      <line x1="-4" y1="21" x2="4" y2="19" stroke="#00ffff" stroke-width="0.8" opacity="0.6"/>
+      <line x1="-4" y1="28" x2="4" y2="26" stroke="#00ffff" stroke-width="0.8" opacity="0.6"/>
+      <line x1="-4" y1="35" x2="4" y2="33" stroke="#00ffff" stroke-width="0.8" opacity="0.6"/>
+      <!-- Crossguard -->
+      <polygon points="-22,15 22,15 18,8 -18,8" fill="#0d0d20" stroke="#0088ff" stroke-width="1.5" filter="url(#neonGlowBlue)"/>
+      <circle cx="-16" cy="11" r="2" fill="#00ffff"/>
+      <circle cx="16" cy="11" r="2" fill="#00ffff"/>
+      <!-- Blade glow -->
+      <polygon points="-8,8 8,8 4,-50 0,-62 -4,-50" fill="#0088ff" opacity="0.2" filter="url(#neonGlowCyan)"/>
+      <!-- Blade body -->
+      <polygon points="-7,8 7,8 3.5,-48 0,-60 -3.5,-48" fill="#0a152b" stroke="#00ffff" stroke-width="1.5"/>
+      <!-- Blade core -->
+      <polygon points="-3,8 3,8 1.5,-45 0,-55 -1.5,-45" fill="#ccf0ff" opacity="0.8"/>
+      <line x1="0" y1="6" x2="0" y2="-52" stroke="#fff" stroke-width="0.8" opacity="0.4"/>
+    </g>
+  </defs>
+
+  <rect width="200" height="300" fill="url(#bgGradEspada)" rx="12" stroke="#444" stroke-width="1"/>
+  <rect width="194" height="294" x="3" y="3" fill="url(#circuit)" rx="10"/>
+  <path d="M 12 12 L 40 12 M 160 12 L 188 12 M 188 12 L 188 40 M 188 260 L 188 288 M 188 288 L 160 288 M 40 288 L 12 288 M 12 288 L 12 260 M 12 40 L 12 12" fill="none" stroke="#00ffff" stroke-width="3" filter="url(#neonGlowCyan)"/>
+  <path d="M 60 12 L 140 12 M 60 288 L 140 288 M 188 80 L 188 220 M 12 80 L 12 220" fill="none" stroke="#0088ff" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.8"/>
+
+  <text x="22" y="44" font-family="'Courier New', monospace" font-weight="900" font-size="28" fill="#fff" filter="url(#neonGlowCyan)">2</text>
+  <text x="22" y="44" font-family="'Courier New', monospace" font-weight="900" font-size="28" fill="#00ffff">2</text>
+  <g transform="translate(178, 256) rotate(180)">
+    <text x="0" y="0" font-family="'Courier New', monospace" font-weight="900" font-size="28" fill="#fff" filter="url(#neonGlowCyan)">2</text>
+    <text x="0" y="0" font-family="'Courier New', monospace" font-weight="900" font-size="28" fill="#00ffff">2</text>
+  </g>
+
+  <!-- Two Swords (crossed in X, scaled up) -->
+  <g transform="translate(100, 150) scale(1.4) rotate(-25) translate(-100, -150)">
+    <g><animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0" dur="3s" repeatCount="indefinite"/><use href="#swordBase" x="100" y="150"/></g>
+  </g>
+  <g transform="translate(100, 150) scale(1.4) rotate(25) translate(-100, -150)">
+    <g><animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0" dur="3.4s" repeatCount="indefinite"/><use href="#swordBase" x="100" y="150"/></g>
+  </g>
+
+  <!-- Clash energy at crossing point -->
+  <circle cx="100" cy="150" r="4" fill="#00ffff" filter="url(#neonGlowCyan)">
+    <animate attributeName="r" values="3;7;3" dur="1.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+
+  <text x="100" y="280" font-family="'Courier New', monospace" font-size="8" fill="#00ffff" text-anchor="middle" letter-spacing="4" opacity="0.6">Peer2Play</text>
+</svg>

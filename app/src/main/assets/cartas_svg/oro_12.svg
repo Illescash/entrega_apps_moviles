@@ -1,0 +1,112 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a14"/>
+      <stop offset="50%" stop-color="#12122b"/>
+      <stop offset="100%" stop-color="#050510"/>
+    </linearGradient>
+
+    <!-- Glowing Effects -->
+    <filter id="neonGlowCyan">
+      <feGaussianBlur stdDeviation="4" result="blur1"/>
+      <feGaussianBlur stdDeviation="8" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="neonGlowMagenta">
+      <feGaussianBlur stdDeviation="4" result="blur1"/>
+      <feGaussianBlur stdDeviation="8" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Coin Metallic Gradient -->
+    <linearGradient id="goldGradient" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#fffb00"/>
+      <stop offset="30%" stop-color="#ffcc00"/>
+      <stop offset="70%" stop-color="#ff9900"/>
+      <stop offset="100%" stop-color="#cc6600"/>
+    </linearGradient>
+
+    <!-- Circuit Pattern for Background -->
+    <pattern id="circuit" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 0 20 L 10 20 L 15 15 L 25 15 L 30 20 L 40 20 M 20 0 L 20 10 L 25 15 M 15 15 L 20 25 L 20 40" fill="none" stroke="#00ffff" stroke-width="0.5" stroke-opacity="0.15"/>
+    </pattern>
+
+    <g id="cyberCoinFull">
+      <circle cx="0" cy="0" r="26" fill="#1a1a1a" stroke="#333" stroke-width="3"/>
+      <circle cx="0" cy="0" r="23" fill="url(#goldGradient)" filter="drop-shadow(0 0 6px #ffcc00)"/>
+      <circle cx="0" cy="0" r="18" fill="none" stroke="#fff" stroke-width="1" stroke-opacity="0.3"/>
+      <polygon points="0,-10 3,-3 10,0 3,3 0,10 -3,3 -10,0 -3,-3" fill="#fff" filter="drop-shadow(0 0 3px #fff)"/>
+      <circle cx="0" cy="0" r="3.5" fill="#00ffff" filter="url(#neonGlowCyan)"/>
+      <circle cx="0" cy="0" r="35" fill="none" stroke="#00ffff" stroke-width="1.5" stroke-dasharray="4,8">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="8s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </defs>
+
+  <rect width="200" height="300" fill="url(#bgGrad)" rx="12" stroke="#444" stroke-width="1"/>
+  <rect width="194" height="294" x="3" y="3" fill="url(#circuit)" rx="10"/>
+
+  <path d="M 12 12 L 40 12 M 160 12 L 188 12 M 188 12 L 188 40 M 188 260 L 188 288 M 188 288 L 160 288 M 40 288 L 12 288 M 12 288 L 12 260 M 12 40 L 12 12" fill="none" stroke="#00ffff" stroke-width="3" filter="url(#neonGlowCyan)"/>
+  <path d="M 60 12 L 140 12 M 60 288 L 140 288 M 188 80 L 188 220 M 12 80 L 12 220" fill="none" stroke="#ff00ff" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.8"/>
+
+  <text x="22" y="44" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#fff" filter="url(#neonGlowMagenta)">12</text>
+  <text x="22" y="44" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#ff00ff">12</text>
+  <g transform="translate(178, 256) rotate(180)">
+    <text x="0" y="0" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#fff" filter="url(#neonGlowMagenta)">12</text>
+    <text x="0" y="0" font-family="'Courier New', monospace" font-weight="900" font-size="26" fill="#ff00ff">12</text>
+  </g>
+
+  <!-- REY (12): The Corpo-King / Code Overlord -->
+  <g transform="translate(100, 160) scale(1.25)">
+    <!-- Data Stream "Cape" / Throne Cables -->
+    <path d="M -70,-60 Q -30,0 -80,100" fill="none" stroke="#00ffff" stroke-width="1" stroke-dasharray="5,10" filter="url(#neonGlowCyan)"/>
+    <path d="M 70,-60 Q 30,0 80,100" fill="none" stroke="#00ffff" stroke-width="1" stroke-dasharray="5,10" filter="url(#neonGlowCyan)"/>
+    <path d="M -60,-20 Q 0,80 -60,110" fill="none" stroke="#ff00ff" stroke-width="1.5" stroke-dasharray="10,5" filter="url(#neonGlowMagenta)"/>
+    <path d="M 60,-20 Q 0,80 60,110" fill="none" stroke="#ff00ff" stroke-width="1.5" stroke-dasharray="10,5" filter="url(#neonGlowMagenta)"/>
+
+    <!-- Massive Armored Shoulders (Power Silhouette) -->
+    <path d="M -65,10 L -40,-25 L 40,-25 L 65,10 L 55,20 L -55,20 Z" fill="#0d0d1a" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M -65,10 L -40,-25 L 40,-25 L 65,10" fill="none" stroke="#ff00ff" stroke-width="3" filter="url(#neonGlowMagenta)"/>
+    
+    <!-- Chest / Torso plates -->
+    <path d="M -30,20 L 30,20 L 20,80 L 0,100 L -20,80 Z" fill="#111" stroke="#00ffff" stroke-width="2"/>
+    <line x1="-15" y1="30" x2="15" y2="30" stroke="#ff00ff" stroke-width="2"/>
+    <line x1="-10" y1="40" x2="10" y2="40" stroke="#00ffff" stroke-width="2"/>
+
+    <!-- Head / Cyborg Skull -->
+    <path d="M -15,-40 L 15,-40 L 12,-10 L 0,-5 L -12,-10 Z" fill="#050510" stroke="#00ffff" stroke-width="1.5" filter="drop-shadow(0 0 4px #00ffff)"/>
+    <!-- Cyber Eyes -->
+    <line x1="-10" y1="-25" x2="-2" y2="-22" stroke="#ff00ff" stroke-width="2" filter="url(#neonGlowMagenta)"/>
+    <line x1="10" y1="-25" x2="2" y2="-22" stroke="#ff00ff" stroke-width="2" filter="url(#neonGlowMagenta)"/>
+    <!-- Vents / Mouth guard -->
+    <line x1="-4" y1="-12" x2="4" y2="-12" stroke="#fff" stroke-width="1"/>
+    <line x1="-3" y1="-9" x2="3" y2="-9" stroke="#fff" stroke-width="1"/>
+
+    <!-- Neural Crown (Gold Hologram) -->
+    <path d="M -25,-60 L -18,-45 L 0,-65 L 18,-45 L 25,-60 Z" fill="none" stroke="url(#goldGradient)" stroke-width="2" filter="drop-shadow(0 0 5px #ffcc00)"/>
+    <circle cx="-25" cy="-60" r="2.5" fill="#fff" filter="url(#neonGlowCyan)"/>
+    <circle cx="0" cy="-65" r="3.5" fill="#fff" filter="url(#neonGlowMagenta)"/>
+    <circle cx="25" cy="-60" r="2.5" fill="#fff" filter="url(#neonGlowCyan)"/>
+
+    <!-- The Coin (Oro) embedded in chest/heart like an Arc Reactor -->
+    <g transform="translate(0, 65) scale(0.9)">
+       <use href="#cyberCoinFull"/>
+    </g>
+
+    <!-- Cables feeding into the core -->
+    <path d="M -40,40 Q -25,50 -25,65" fill="none" stroke="#ff00ff" stroke-width="2"/>
+    <path d="M 40,40 Q 25,50 25,65" fill="none" stroke="#00ffff" stroke-width="2"/>
+  </g>
+
+  <text x="100" y="280" font-family="'Courier New', monospace" font-size="8" fill="#00ffff" text-anchor="middle" letter-spacing="4" opacity="0.6">Peer2Play</text>
+</svg>

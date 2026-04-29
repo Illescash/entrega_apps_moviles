@@ -1,0 +1,60 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradEspada" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050a14"/>
+      <stop offset="50%" stop-color="#0a152b"/>
+      <stop offset="100%" stop-color="#020510"/>
+    </linearGradient>
+    <filter id="neonGlowBlue">
+      <feGaussianBlur stdDeviation="3" result="blur1"/>
+      <feGaussianBlur stdDeviation="6" result="blur2"/>
+      <feMerge><feMergeNode in="blur2"/><feMergeNode in="blur1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="neonGlowCyan">
+      <feGaussianBlur stdDeviation="3" result="blur1"/>
+      <feGaussianBlur stdDeviation="6" result="blur2"/>
+      <feMerge><feMergeNode in="blur2"/><feMergeNode in="blur1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="circuit" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 0 20 L 10 20 L 15 15 L 25 15 L 30 20 L 40 20 M 20 0 L 20 10 L 25 15 M 15 15 L 20 25 L 20 40" fill="none" stroke="#00ffff" stroke-width="0.5" stroke-opacity="0.15"/>
+      <circle cx="10" cy="20" r="1" fill="#00ffff" fill-opacity="0.3"/>
+      <circle cx="30" cy="20" r="1" fill="#00ffff" fill-opacity="0.3"/>
+    </pattern>
+
+    <g id="swordBase">
+      <polygon points="-3.5,30 3.5,30 5,34 0,37 -5,34" fill="#0a0a1e" stroke="#00ffff" stroke-width="0.8"/>
+      <circle cx="0" cy="33" r="1" fill="#00ffff" filter="url(#neonGlowCyan)"/>
+      <rect x="-2.5" y="10" width="5" height="20" fill="#050a14" stroke="#0088ff" stroke-width="0.8"/>
+      <line x1="-2.5" y1="15" x2="2.5" y2="13.5" stroke="#00ffff" stroke-width="0.5" opacity="0.6"/>
+      <line x1="-2.5" y1="21" x2="2.5" y2="19.5" stroke="#00ffff" stroke-width="0.5" opacity="0.6"/>
+      <line x1="-2.5" y1="27" x2="2.5" y2="25.5" stroke="#00ffff" stroke-width="0.5" opacity="0.6"/>
+      <polygon points="-14,10 14,10 11,5 -11,5" fill="#0d0d20" stroke="#0088ff" stroke-width="0.8" filter="url(#neonGlowBlue)"/>
+      <circle cx="-9" cy="7.5" r="1.2" fill="#00ffff"/>
+      <circle cx="9" cy="7.5" r="1.2" fill="#00ffff"/>
+      <polygon points="-5,5 5,5 2.5,-33 0,-40 -2.5,-33" fill="#0088ff" opacity="0.2" filter="url(#neonGlowCyan)"/>
+      <polygon points="-4.5,5 4.5,5 2.2,-31 0,-38 -2.2,-31" fill="#0a152b" stroke="#00ffff" stroke-width="0.8"/>
+      <polygon points="-1.8,5 1.8,5 0.9,-29 0,-35 -0.9,-29" fill="#ccf0ff" opacity="0.8"/>
+      <line x1="0" y1="3" x2="0" y2="-34" stroke="#fff" stroke-width="0.5" opacity="0.4"/>
+    </g>
+  </defs>
+
+  <rect width="200" height="300" fill="url(#bgGradEspada)" rx="12" stroke="#444" stroke-width="1"/>
+  <rect width="194" height="294" x="3" y="3" fill="url(#circuit)" rx="10"/>
+  <path d="M 12 12 L 40 12 M 160 12 L 188 12 M 188 12 L 188 40 M 188 260 L 188 288 M 188 288 L 160 288 M 40 288 L 12 288 M 12 288 L 12 260 M 12 40 L 12 12" fill="none" stroke="#00ffff" stroke-width="3" filter="url(#neonGlowCyan)"/>
+
+  <text x="22" y="44" font-family="'Courier New', monospace" font-weight="900" font-size="28" fill="#fff" filter="url(#neonGlowCyan)">5</text>
+  <text x="22" y="44" font-family="'Courier New', monospace" font-weight="900" font-size="28" fill="#00ffff">5</text>
+  <g transform="translate(178, 256) rotate(180)">
+    <text x="0" y="0" font-family="'Courier New', monospace" font-weight="900" font-size="28" fill="#fff" filter="url(#neonGlowCyan)">5</text>
+    <text x="0" y="0" font-family="'Courier New', monospace" font-weight="900" font-size="28" fill="#00ffff">5</text>
+  </g>
+
+  <!-- Five Swords (floating) -->
+  <g><animateTransform attributeName="transform" type="translate" values="0,0; 0,-3; 0,0" dur="3s" repeatCount="indefinite"/><use href="#swordBase" x="65" y="90"/></g>
+  <g><animateTransform attributeName="transform" type="translate" values="0,0; 0,-3; 0,0" dur="3.5s" repeatCount="indefinite"/><use href="#swordBase" x="135" y="90"/></g>
+  <g><animateTransform attributeName="transform" type="translate" values="0,0; 0,-3; 0,0" dur="3.2s" repeatCount="indefinite"/><use href="#swordBase" x="100" y="150"/></g>
+  <g><animateTransform attributeName="transform" type="translate" values="0,0; 0,-3; 0,0" dur="3.4s" repeatCount="indefinite"/><use href="#swordBase" x="65" y="210"/></g>
+  <g><animateTransform attributeName="transform" type="translate" values="0,0; 0,-3; 0,0" dur="3.7s" repeatCount="indefinite"/><use href="#swordBase" x="135" y="210"/></g>
+
+  <text x="100" y="280" font-family="'Courier New', monospace" font-size="8" fill="#00ffff" text-anchor="middle" letter-spacing="4" opacity="0.6">Peer2Play</text>
+</svg>

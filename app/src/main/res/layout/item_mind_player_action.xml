@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/margin_medium"
@@ -12,14 +14,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/text_secondary"
-        android:textSize="@dimen/text_card_desc" />
+        android:textSize="@dimen/text_card_desc"
+        tools:text="Jugador 1" />
 
-    <Button
-        android:id="@+id/btnPlayCard"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPlayerHand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_tiny"
-        android:backgroundTint="@color/btn_primary"
-        android:textColor="@color/white" />
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/list_item_mind_card" />
 
 </LinearLayout>

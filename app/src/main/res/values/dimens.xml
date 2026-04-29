@@ -31,4 +31,8 @@
     <dimen name="card_height_mind">160dp</dimen>
     <dimen name="card_width_as">150dp</dimen>
     <dimen name="card_height_as">220dp</dimen>
+
+    <!-- Stroke widths -->
+    <dimen name="stroke_width_active">2dp</dimen>
+    <dimen name="stroke_width_inactive">0dp</dimen>
 </resources>
