@@ -32,6 +32,17 @@ class HubFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        setupFab()
+    }
+
+    private fun setupFab() {
+        binding.fabLan.setOnClickListener {
+            com.google.android.material.snackbar.Snackbar.make(
+                binding.root,
+                "Próximamente: Modo LAN para jugar con amigos",
+                com.google.android.material.snackbar.Snackbar.LENGTH_LONG
+            ).show()
+        }
     }
 
     private fun setupRecyclerView() {

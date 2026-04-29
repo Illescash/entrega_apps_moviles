@@ -53,4 +53,15 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabLan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="Modo LAN"
+        android:src="@android:drawable/ic_menu_share"
+        app:backgroundTint="@color/party_card_as"
+        app:tint="@color/white" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
