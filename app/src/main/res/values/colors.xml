@@ -1,30 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF8C30F5</color> <!-- Vibrant Neon Purple -->
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>   <!-- Neon Teal Accent -->
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF121212</color>       <!-- True Dark Background -->
-    <color name="white">#FFFFFFFF</color>
-    <color name="gray_text">#FFBDBDBD</color>
+    <!-- Colores base Material (Modo Claro) -->
+    <color name="primary">#6200EE</color>
+    <color name="primary_variant">#3700B3</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="secondary">#03DAC6</color>
+    <color name="on_secondary">#000000</color>
+    <color name="background">#F5F5F5</color>
+    <color name="on_background">#000000</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="on_surface">#000000</color>
     
-    <!-- PartyHub custom UI colors -->
-    <color name="party_surface">#FF1E1E1E</color>
-    <color name="party_card_mind">#FF4A148C</color>
-    <color name="party_card_as">#FFC62828</color>
-
-    <!-- Text colors -->
-    <color name="text_light_gray">#FFE0E0E0</color>
-    <color name="text_secondary">#FFAAAAAA</color>
-    <color name="text_lives">#FFFF5252</color>
-    <color name="text_status_gold">#FFFFD700</color>
-
-    <!-- Surface / card -->
-    <color name="card_background">#FF2C2C2C</color>
-
-    <!-- Button colors -->
-    <color name="btn_primary">#FF3D5AFE</color>
-    <color name="btn_share">#FF00897B</color>
-    <color name="btn_as_accent">#FFFF9100</color>
+    <!-- Colores específicos de PartyHub -->
+    <color name="party_card_mind">#7E57C2</color>
+    <color name="party_card_as">#EF5350</color>
+    
+    <!-- Colores auxiliares -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray_text">#757575</color>
 </resources>
