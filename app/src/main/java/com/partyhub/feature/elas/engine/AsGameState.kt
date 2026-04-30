@@ -8,7 +8,9 @@ data class AsGameState(
     val deck: List<SpanishCard>,
     val currentPlayerIndex: Int,
     val status: AsStatus,
-    val lastAction: String? = null
+    val lastAction: String? = null,
+    val roundStarterIndex: Int = 0,
+    val turnsPlayedInRound: Int = 0
 )
 
 data class AsPlayer(

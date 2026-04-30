@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="@{String.format(@string/mind_label_level, viewModel.gameState.level)}"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_card_title"
+            android:textSize="@dimen/text_h3"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="@{String.format(@string/mind_label_lives, viewModel.gameState.lives)}"
             android:textColor="@color/text_lives"
-            android:textSize="@dimen/text_body"
+            android:textSize="@dimen/text_player_lives"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Vidas: 3" />

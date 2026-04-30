@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/asConfigFragment"
         android:name="com.partyhub.feature.elas.AsConfigFragment"
-        android:label="AsConfigFragment"
+        android:label="El As - Ajustes"
         tools:layout="@layout/fragment_as_config">
         <action
             android:id="@+id/action_asConfigFragment_to_asGameFragment"
@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/asGameFragment"
         android:name="com.partyhub.feature.elas.AsGameFragment"
-        android:label="AsGameFragment"
+        android:label="El As"
         tools:layout="@layout/fragment_as_game">
         <argument
             android:name="numPlayers"
@@ -31,7 +31,7 @@
     <fragment
         android:id="@+id/asResultFragment"
         android:name="com.partyhub.feature.elas.AsResultFragment"
-        android:label="AsResultFragment"
+        android:label="El As - Resultado"
         tools:layout="@layout/fragment_as_result">
         <argument
             android:name="winnerName"

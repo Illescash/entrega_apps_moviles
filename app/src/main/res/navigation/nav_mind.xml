@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/mindConfigFragment"
         android:name="com.partyhub.feature.themind.MindConfigFragment"
-        android:label="MindConfigFragment"
+        android:label="The Mind - Ajustes"
         tools:layout="@layout/fragment_mind_config">
         <action
             android:id="@+id/action_mindConfigFragment_to_mindGameFragment"
@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/mindGameFragment"
         android:name="com.partyhub.feature.themind.MindGameFragment"
-        android:label="MindGameFragment"
+        android:label="The Mind"
         tools:layout="@layout/fragment_mind_game">
         <argument
             android:name="numPlayers"
@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/mindResultFragment"
         android:name="com.partyhub.feature.themind.MindResultFragment"
-        android:label="MindResultFragment"
+        android:label="The Mind - Resultado"
         tools:layout="@layout/fragment_mind_result">
         <argument
             android:name="levelReached"

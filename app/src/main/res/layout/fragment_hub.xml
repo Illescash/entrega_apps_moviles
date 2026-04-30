@@ -13,31 +13,18 @@
 
         <!-- Eliminamos tvHubTitle porque ya aparece en la ActionBar morada -->
 
-        <TextView
-            android:id="@+id/tvHubSubtitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="96dp"
-            android:text="@string/hub_subtitle"
-            android:textColor="#CCCCCC"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvGames"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:clipToPadding="false"
             android:paddingBottom="80dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvHubSubtitle"
+            app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/list_item_game" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -49,7 +36,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="24dp"
         android:contentDescription="Modo LAN"
-        android:src="@android:drawable/ic_menu_share"
+        android:src="@drawable/ic_share"
         app:backgroundTint="@color/party_card_as"
         app:tint="@color/white" />
 

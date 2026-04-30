@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">12dp</dimen>
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="margin_large">24dp</dimen>
     <dimen name="margin_xlarge">32dp</dimen>
-    
-    <dimen name="text_title_large">32sp</dimen>
-    <dimen name="text_subtitle">16sp</dimen>
-    <dimen name="text_card_title">24sp</dimen>
-    <dimen name="text_card_desc">14sp</dimen>
-    
-    <dimen name="card_corner_radius">16dp</dimen>
-    <dimen name="card_elevation">8dp</dimen>
-    <dimen name="button_card_height">140dp</dimen>
-
-    <!-- Extra margins -->
-    <dimen name="margin_tiny">4dp</dimen>
-    <dimen name="margin_medium">12dp</dimen>
     <dimen name="margin_xxlarge">48dp</dimen>
-    <dimen name="margin_huge">64dp</dimen>
 
-    <!-- Extra text sizes -->
-    <dimen name="text_body">18sp</dimen>
-    <dimen name="text_body_large">20sp</dimen>
+    <!-- Typography -->
+    <dimen name="text_h1">48sp</dimen>
+    <dimen name="text_h2">36sp</dimen>
+    <dimen name="text_h3">28sp</dimen>
+    <dimen name="text_title_large">32sp</dimen>
+    <dimen name="text_title_medium">24sp</dimen>
+    <dimen name="text_title_small">20sp</dimen>
+    <dimen name="text_body_large">18sp</dimen>
+    <dimen name="text_body_medium">16sp</dimen>
+    <dimen name="text_body_small">14sp</dimen>
+    <dimen name="text_label_large">14sp</dimen>
+    <dimen name="text_label_medium">12sp</dimen>
+    
+    <!-- Specific Game Text Sizes -->
+    <dimen name="text_card_number">56sp</dimen>
     <dimen name="text_result">42sp</dimen>
-    <dimen name="text_card_number">48sp</dimen>
+    <dimen name="text_result_title">42sp</dimen>
+    <dimen name="text_player_name">26sp</dimen>
+    <dimen name="text_player_lives">20sp</dimen>
+    <dimen name="text_player_turn">16sp</dimen>
+    <dimen name="text_card_desc">14sp</dimen>
 
     <!-- Card dimensions -->
     <dimen name="card_width_mind">120dp</dimen>

@@ -15,28 +15,37 @@
             type="Boolean" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        app:cardBackgroundColor="@{isTurn ? @color/party_card_as : @color/party_surface}"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="2dp"
-        app:strokeColor="@color/white"
-        app:strokeWidth="@{(int)(isTurn ? @dimen/stroke_width_active : @dimen/stroke_width_inactive)}">
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@{isTurn ? @color/party_card_as : @color/party_surface}"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="@{(int)(isTurn ? @dimen/stroke_width_active : @dimen/stroke_width_inactive)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.85">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
 
             <TextView
                 android:id="@+id/tvPlayerName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{playerName}"
-                android:textAppearance="?attr/textAppearanceTitleMedium"
-                android:textColor="@color/white"
+                android:textSize="@dimen/text_player_name"
+                android:textColor="@{isTurn ? @color/white : @color/on_surface}"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/tvPlayerLives"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,8 +57,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text='@{"Vidas: " + lives}'
-                android:textAppearance="?attr/textAppearanceBodySmall"
-                android:textColor="@color/text_lives"
+                android:textSize="@dimen/text_player_lives"
+                android:textColor="@{isTurn ? @color/white : @color/text_lives}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Vidas: 3" />
@@ -58,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TU TURNO"
-                android:textAppearance="?attr/textAppearanceLabelSmall"
+                android:textSize="@dimen/text_player_turn"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:visibility="@{isTurn ? android.view.View.VISIBLE : android.view.View.GONE}"
@@ -67,4 +76,5 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

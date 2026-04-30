@@ -8,17 +8,6 @@
         android:background="@color/black"
         android:padding="@dimen/margin_large">
 
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/as_config_title"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_title_large"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvPlayersLabel"
@@ -40,7 +29,7 @@
             android:textColorHint="@color/gray_text"
             app:boxStrokeColor="@color/secondary"
             app:hintTextColor="@color/secondary"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle">
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPlayerName"

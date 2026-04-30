@@ -22,7 +22,7 @@ class AsGameEngine {
                 lives = 3
             )
         }
-        return AsGameState(players, deck, 0, AsStatus.WAITING_ACTION)
+        return AsGameState(players, deck, 0, AsStatus.WAITING_ACTION, roundStarterIndex = 0)
     }
 
     fun swap(state: AsGameState): AsGameState {
@@ -32,21 +32,29 @@ class AsGameEngine {
         
         val currHand = players[currIdx].hand ?: return state
         
+        val activePlayersCount = players.count { !it.isOut }
+        val isLastTurn = state.turnsPlayedInRound == activePlayersCount - 1
+        
         // El último jugador intercambia con la baraja.
-        if (currIdx == players.size - 1) {
+        if (isLastTurn) {
             val nextHand = if (deck.isNotEmpty()) deck.removeAt(0) else currHand
             players[currIdx] = players[currIdx].copy(hand = nextHand)
         } else {
-            // Un jugador normal intercambia con el siguiente.
-            val nextHand = players[currIdx + 1].hand ?: return state
+            // Un jugador normal intercambia con el siguiente activo.
+            var nextIdx = (currIdx + 1) % players.size
+            while (players[nextIdx].isOut) {
+                nextIdx = (nextIdx + 1) % players.size
+            }
+            
+            val nextHand = players[nextIdx].hand ?: return state
             
             // Un Rey (12) no deja pasar.
             if (nextHand.number == 12) {
-                return state.copy(lastAction = "¡${players[currIdx+1].player.name} no deja pasar!")
+                return state.copy(lastAction = "¡${players[nextIdx].player.name} no deja pasar!")
             }
 
             players[currIdx] = players[currIdx].copy(hand = nextHand)
-            players[currIdx + 1] = players[currIdx + 1].copy(hand = currHand)
+            players[nextIdx] = players[nextIdx].copy(hand = currHand)
         }
 
         return nextTurn(state.copy(players = players, deck = deck))
@@ -57,11 +65,19 @@ class AsGameEngine {
     }
 
     private fun nextTurn(state: AsGameState): AsGameState {
-        val nextIdx = state.currentPlayerIndex + 1
-        if (nextIdx >= state.players.size) {
-            return state.copy(status = AsStatus.REVEALING)
+        val activePlayersCount = state.players.count { !it.isOut }
+        val nextTurnsPlayed = state.turnsPlayedInRound + 1
+
+        if (nextTurnsPlayed >= activePlayersCount) {
+            return state.copy(status = AsStatus.REVEALING, turnsPlayedInRound = nextTurnsPlayed)
         }
-        return state.copy(currentPlayerIndex = nextIdx)
+
+        var nextIdx = (state.currentPlayerIndex + 1) % state.players.size
+        while (state.players[nextIdx].isOut) {
+            nextIdx = (nextIdx + 1) % state.players.size
+        }
+        
+        return state.copy(currentPlayerIndex = nextIdx, turnsPlayedInRound = nextTurnsPlayed)
     }
 
     fun resolveRound(state: AsGameState): AsGameState {
@@ -90,10 +106,20 @@ class AsGameEngine {
             if (it.isOut) it.copy(hand = null) 
             else it.copy(hand = deck.removeAt(0)) 
         }
+        val nextStarterIdx = (state.roundStarterIndex + 1) % state.players.size
+        
+        // Buscamos al siguiente jugador que no esté fuera, empezando por el siguiente titular
+        var actualStarter = nextStarterIdx
+        while (newPlayers[actualStarter].isOut) {
+            actualStarter = (actualStarter + 1) % newPlayers.size
+        }
+
         return state.copy(
             players = newPlayers,
             deck = deck,
-            currentPlayerIndex = newPlayers.indexOfFirst { !it.isOut },
+            currentPlayerIndex = actualStarter,
+            roundStarterIndex = nextStarterIdx,
+            turnsPlayedInRound = 0,
             status = AsStatus.WAITING_ACTION
         )
     }

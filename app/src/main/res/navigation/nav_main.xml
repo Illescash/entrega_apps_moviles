@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/hubFragment">
+
+    <fragment
+        android:id="@+id/hubFragment"
+        android:name="com.partyhub.feature.hub.HubFragment"
+        android:label="PartyHub"
+        tools:layout="@layout/fragment_hub" />
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.partyhub.feature.history.HistoryFragment"
+        android:label="Historial"
+        tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.partyhub.feature.settings.SettingsFragment"
+        android:label="Ajustes"
+        tools:layout="@layout/fragment_settings" />
+
+    <include app:graph="@navigation/nav_mind" />
+    <include app:graph="@navigation/nav_as" />
+
+</navigation>

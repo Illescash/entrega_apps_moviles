@@ -1,16 +1,14 @@
 package com.partyhub.feature.hub
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.partyhub.R
 import com.partyhub.core.model.GameInfo
 import com.partyhub.databinding.FragmentHubBinding
-import com.partyhub.feature.elas.ElAsActivity
-import com.partyhub.feature.themind.TheMindActivity
 
 /**
  * Pantalla principal que muestra la lista de juegos disponibles.
@@ -76,12 +74,10 @@ class HubFragment : Fragment() {
     }
 
     private fun navigateToGame(gameId: String) {
-        val intent = when (gameId) {
-            "the_mind" -> Intent(requireContext(), TheMindActivity::class.java)
-            "el_as" -> Intent(requireContext(), ElAsActivity::class.java)
-            else -> null
+        when (gameId) {
+            "the_mind" -> findNavController().navigate(R.id.nav_mind)
+            "el_as" -> findNavController().navigate(R.id.nav_as)
         }
-        intent?.let { startActivity(it) }
     }
 
     override fun onDestroyView() {

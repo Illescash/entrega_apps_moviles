@@ -59,9 +59,7 @@ class AsGameFragment : Fragment() {
             val currentPlayer = state.players[currentPlayerIndex]
             
             playerAdapter.updateData(state.players, currentPlayerIndex)
-            
-            binding.tvCurrentPlayer.text = currentPlayer.player.name
-            binding.tvLives.text = "Vidas: ${currentPlayer.lives}"
+            binding.rvPlayers.smoothScrollToPosition(currentPlayerIndex)
 
             // Actualizar imagen de la carta
             updateCardImage(currentPlayer.hand)
