@@ -18,21 +18,21 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
+
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         
-        // Los destinos de primer nivel no muestran el botón "atrás" en la Toolbar
+        // Destinos de primer nivel (no muestran el botón "atrás")
         val appBarConfiguration = AppBarConfiguration(
             setOf(R.id.hubFragment, R.id.historyFragment, R.id.settingsFragment)
         )
         
         toolbar.setupWithNavController(navController, appBarConfiguration)
-        
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottomNav.setupWithNavController(navController)
 
-        // Ocultar BottomNav cuando entramos en un juego para tener más espacio
+        // Ocultar BottomNav en juegos
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.hubFragment, R.id.historyFragment, R.id.settingsFragment -> {
