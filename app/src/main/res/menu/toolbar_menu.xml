@@ -7,6 +7,10 @@
         android:title="Compartir"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/action_delete_history"
+        android:title="Borrar Historial"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_logout"
         android:title="Cerrar Sesión"
         app:showAsAction="never" />

@@ -6,10 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.partyhub.PartyHubApp
 import com.partyhub.R
+import com.partyhub.database.MatchHistory
 import com.partyhub.databinding.FragmentAsResultBinding
+import com.partyhub.feature.history.HistoryViewModel
+import com.partyhub.feature.history.HistoryViewModelFactory
 import timber.log.Timber
 
 class AsResultFragment : Fragment() {
@@ -18,6 +23,11 @@ class AsResultFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val args: AsResultFragmentArgs by navArgs()
+
+    private val historyViewModel: HistoryViewModel by viewModels {
+        val app = requireActivity().application as PartyHubApp
+        HistoryViewModelFactory(app.database.matchDao())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +56,19 @@ class AsResultFragment : Fragment() {
         binding.btnBackToHub.setOnClickListener {
             findNavController().popBackStack(R.id.hubFragment, false)
         }
+
+        saveMatch()
+    }
+
+    private fun saveMatch() {
+        val match = MatchHistory(
+            gameName = "El As",
+            players = "Multijugador",
+            winner = args.winnerName,
+            durationMs = 0,
+            finishedAt = System.currentTimeMillis()
+        )
+        historyViewModel.insert(match)
     }
 
     override fun onDestroyView() {
