@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/settings_category_appearance">
+        <SwitchPreferenceCompat
+            app:key="dark_mode"
+            app:title="@string/pref_dark_mode_title"
+            app:summary="@string/pref_dark_mode_summary"
+            app:defaultValue="false" />
+
+        <ListPreference
+            app:key="app_theme"
+            app:title="@string/pref_theme_title"
+            app:summary="@string/pref_theme_summary"
+            app:entries="@array/theme_entries"
+            app:entryValues="@array/theme_values"
+            app:defaultValue="system" />
+            
+        <ListPreference
+            app:key="language"
+            app:title="@string/pref_language_title"
+            app:summary="@string/pref_language_summary"
+            app:entries="@array/language_entries"
+            app:entryValues="@array/language_values"
+            app:defaultValue="es" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/settings_category_game">
+        <SwitchPreferenceCompat
+            app:key="sound_enabled"
+            app:title="@string/pref_sound_title"
+            app:summary="@string/pref_sound_summary"
+            app:defaultValue="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/settings_category_user">
+        <EditTextPreference
+            app:key="player_alias"
+            app:title="@string/pref_player_alias_title"
+            app:summary="@string/pref_player_alias_summary"
+            app:dialogTitle="@string/pref_player_alias_title"
+            app:defaultValue="@string/pref_player_alias_default"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

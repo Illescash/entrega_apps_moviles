@@ -48,4 +48,27 @@
     <string name="as_btn_back_hub">Volver al Hub</string>
     <string name="as_share_text">%1$s ha ganado en El As de PartyHub!</string>
     <string name="as_btn_share">Compartir resultado</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_category_appearance">Apariencia</string>
+    <string name="settings_category_game">Juego</string>
+    <string name="settings_category_user">Usuario</string>
+    
+    <string name="pref_dark_mode_title">Modo Oscuro</string>
+    <string name="pref_dark_mode_summary">Forzar el tema oscuro en la aplicación</string>
+    
+    <string name="pref_theme_title">Tema de la App</string>
+    <string name="pref_theme_summary">Selecciona el esquema de colores</string>
+    
+    <string name="pref_sound_title">Efectos de Sonido</string>
+    <string name="pref_sound_summary">Activar sonidos durante las partidas</string>
+    
+    <string name="pref_language_title">Idioma</string>
+    <string name="pref_language_summary">Idioma de la interfaz</string>
+    
+    <string name="pref_player_alias_title">Alias del Jugador</string>
+    <string name="pref_player_alias_summary">Nombre que verán otros jugadores (LAN)</string>
+    <string name="pref_player_alias_default">Jugador Anónimo</string>
 </resources>
+

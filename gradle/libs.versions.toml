@@ -13,6 +13,8 @@ room = "2.6.1"
 firebaseBom = "33.1.0"
 googleServices = "4.4.2"
 coroutines = "1.8.1"
+preference = "1.2.1"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -24,7 +26,9 @@ androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navi
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
+androidx-preference-ktx = { group = "androidx.preference", name = "preference-ktx", version.ref = "preference" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+
 
 # Room
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }

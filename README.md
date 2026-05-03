@@ -28,6 +28,10 @@ Juego competitivo (3-6 jugadores) con baraja española. Intercambia cartas a cie
 - **Arquitectura**: MVVM (ViewModel + LiveData + GameEngine)
 - **Navegacion**: Jetpack Navigation Component con Safe Args
 - **Logging**: Timber
+- **Persistencia**:
+    - **SharedPreferences**: Se utiliza para datos ligeros de configuración (alias del jugador, tema oscuro, volumen). Su uso es ideal para pares clave-valor que afectan al comportamiento inmediato de la UI.
+    - **Room**: Se utiliza para el historial de partidas (datos estructurados). Permite realizar consultas complejas, ordenación y persistencia de objetos que requieren un esquema definido.
+
 
 ## Estructura del proyecto
 
