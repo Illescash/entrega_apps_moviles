@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "17110226867",
+    "project_id": "partyhub-6705e",
+    "storage_bucket": "partyhub-6705e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17110226867:android:9a95821c5353ddd5995dc6",
+        "android_client_info": {
+          "package_name": "com.partyhub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANDyi3J_c5ZjgMCohx4Vv3un0h_J9h5-Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

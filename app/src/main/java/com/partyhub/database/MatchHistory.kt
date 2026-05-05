@@ -14,9 +14,9 @@ import androidx.room.PrimaryKey
 data class MatchHistory(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    val gameName: String,
-    val players: String,
-    val winner: String,
-    val durationMs: Long,
+    val gameName: String = "",
+    val players: String = "",
+    val winner: String = "",
+    val durationMs: Long = 0,
     val finishedAt: Long = System.currentTimeMillis()
 )

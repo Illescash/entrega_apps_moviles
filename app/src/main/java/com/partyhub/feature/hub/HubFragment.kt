@@ -52,7 +52,8 @@ class HubFragment : Fragment() {
                         true
                     }
                     R.id.action_logout -> {
-                        com.google.android.material.snackbar.Snackbar.make(binding.root, "Cerrando sesión (Fase 4)", com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show()
+                        com.google.firebase.auth.FirebaseAuth.getInstance().signOut()
+                        findNavController().navigate(R.id.authFragment)
                         true
                     }
                     else -> false

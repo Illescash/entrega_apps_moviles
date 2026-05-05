@@ -12,27 +12,31 @@ import kotlinx.coroutines.launch
  * ViewModel para gestionar el historial de partidas.
  * Expone LiveData para la UI y métodos para insertar/borrar.
  */
-class HistoryViewModel(private val matchDao: MatchDao) : ViewModel() {
+class HistoryViewModel(private val repository: HistoryRepository) : ViewModel() {
 
-    val allMatches: LiveData<List<MatchHistory>> = matchDao.getAllMatches()
+    val allMatches: LiveData<List<MatchHistory>> = repository.allMatches
 
     fun insert(match: MatchHistory) = viewModelScope.launch {
-        matchDao.insert(match)
+        repository.saveMatch(match)
     }
 
     fun deleteAll() = viewModelScope.launch {
-        matchDao.deleteAllMatches()
+        repository.clearLocalHistory()
+    }
+
+    fun syncWithCloud() = viewModelScope.launch {
+        repository.syncFromFirestore()
     }
 }
 
 /**
- * Factory para instanciar el HistoryViewModel con su dependencia de MatchDao.
+ * Factory para instanciar el HistoryViewModel con su dependencia de HistoryRepository.
  */
-class HistoryViewModelFactory(private val matchDao: MatchDao) : ViewModelProvider.Factory {
+class HistoryViewModelFactory(private val repository: HistoryRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(HistoryViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return HistoryViewModel(matchDao) as T
+            return HistoryViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

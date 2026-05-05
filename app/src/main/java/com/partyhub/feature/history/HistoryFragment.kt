@@ -18,7 +18,7 @@ class HistoryFragment : Fragment() {
 
     private val viewModel: HistoryViewModel by viewModels {
         val app = requireActivity().application as PartyHubApp
-        HistoryViewModelFactory(app.database.matchDao())
+        HistoryViewModelFactory(HistoryRepository(app.database.matchDao()))
     }
 
     private val adapter = HistoryAdapter()
@@ -47,6 +47,8 @@ class HistoryFragment : Fragment() {
             }
         }
 
+        viewModel.syncWithCloud()
+
         setupMenu()
     }
 
@@ -68,6 +70,11 @@ class HistoryFragment : Fragment() {
                             putExtra(Intent.EXTRA_TEXT, "¡Echa un vistazo a PartyHub! La mejor app para jugar en local.")
                         }
                         startActivity(Intent.createChooser(intent, null))
+                        true
+                    }
+                    R.id.action_logout -> {
+                        com.google.firebase.auth.FirebaseAuth.getInstance().signOut()
+                        androidx.navigation.fragment.findNavController().navigate(R.id.authFragment)
                         true
                     }
                     else -> false

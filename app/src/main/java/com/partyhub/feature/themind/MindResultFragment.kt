@@ -26,7 +26,7 @@ class MindResultFragment : Fragment() {
 
     private val historyViewModel: HistoryViewModel by viewModels {
         val app = requireActivity().application as PartyHubApp
-        HistoryViewModelFactory(app.database.matchDao())
+        HistoryViewModelFactory(HistoryRepository(app.database.matchDao()))
     }
 
     override fun onCreateView(
