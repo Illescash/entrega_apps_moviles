@@ -7,6 +7,7 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.partyhub.PartyHubApp
 import com.partyhub.R
@@ -74,7 +75,7 @@ class HistoryFragment : Fragment() {
                     }
                     R.id.action_logout -> {
                         com.google.firebase.auth.FirebaseAuth.getInstance().signOut()
-                        androidx.navigation.fragment.findNavController().navigate(R.id.authFragment)
+                        findNavController().navigate(R.id.authFragment)
                         true
                     }
                     else -> false

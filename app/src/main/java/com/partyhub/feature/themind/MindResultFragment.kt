@@ -13,6 +13,7 @@ import com.partyhub.PartyHubApp
 import com.partyhub.R
 import com.partyhub.database.MatchHistory
 import com.partyhub.databinding.FragmentMindResultBinding
+import com.partyhub.feature.history.HistoryRepository
 import com.partyhub.feature.history.HistoryViewModel
 import com.partyhub.feature.history.HistoryViewModelFactory
 import timber.log.Timber
