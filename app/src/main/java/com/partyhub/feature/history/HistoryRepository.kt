@@ -57,10 +57,11 @@ class HistoryRepository(private val matchDao: MatchDao) {
 
             val remoteMatches = snapshot.toObjects(MatchHistory::class.java)
             
-            // Insertar los datos remotos en la base de datos local
+            // 1. Limpiar historial local para evitar duplicados en el volcado
+            matchDao.deleteAllMatches()
+
+            // 2. Insertar los datos remotos en la base de datos local
             for (match in remoteMatches) {
-                // Usamos id=0 para que Room genere un nuevo ID local o 
-                // podríamos mapear el ID de Firestore si quisiéramos evitar duplicados
                 matchDao.insert(match.copy(id = 0)) 
             }
         } catch (e: Exception) {

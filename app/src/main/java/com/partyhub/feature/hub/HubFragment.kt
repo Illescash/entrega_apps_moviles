@@ -46,7 +46,7 @@ class HubFragment : Fragment() {
                     R.id.action_share -> {
                         val intent = Intent(Intent.ACTION_SEND).apply {
                             type = "text/plain"
-                            putExtra(Intent.EXTRA_TEXT, "¡Echa un vistazo a PartyHub! La mejor app para jugar en local.")
+                            putExtra(Intent.EXTRA_TEXT, getString(R.string.history_share_text))
                         }
                         startActivity(Intent.createChooser(intent, null))
                         true
@@ -66,7 +66,7 @@ class HubFragment : Fragment() {
         binding.fabLan.setOnClickListener {
             com.google.android.material.snackbar.Snackbar.make(
                 binding.root,
-                "Próximamente: Modo LAN para jugar con amigos",
+                getString(R.string.hub_snackbar_lan),
                 com.google.android.material.snackbar.Snackbar.LENGTH_LONG
             ).show()
         }

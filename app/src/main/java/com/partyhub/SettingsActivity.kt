@@ -5,7 +5,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.preference.EditTextPreference
+import androidx.core.os.LocaleListCompat
+import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreferenceCompat
@@ -45,6 +46,18 @@ class SettingsActivity : AppCompatActivity() {
                 applyNightMode(isDarkMode)
                 true
             }
+
+            // Listener para cambio de idioma
+            findPreference<ListPreference>("language")?.setOnPreferenceChangeListener { _, newValue ->
+                val languageCode = newValue as String
+                applyLanguage(languageCode)
+                true
+            }
+        }
+
+        private fun applyLanguage(languageCode: String) {
+            val appLocale: LocaleListCompat = LocaleListCompat.forLanguageTags(languageCode)
+            AppCompatDelegate.setApplicationLocales(appLocale)
         }
 
         private fun applyNightMode(isDarkMode: Boolean) {
@@ -63,7 +76,8 @@ class SettingsActivity : AppCompatActivity() {
 
         fun getPlayerAlias(context: Context): String {
             val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-            return prefs.getString(PREF_PLAYER_ALIAS, "Jugador Anónimo") ?: "Jugador Anónimo"
+            val defaultAlias = context.getString(R.string.game_player_anonymous)
+            return prefs.getString(PREF_PLAYER_ALIAS, defaultAlias) ?: defaultAlias
         }
 
         fun isDarkModeEnabled(context: Context): Boolean {

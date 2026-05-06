@@ -63,8 +63,8 @@ class AsResultFragment : Fragment() {
 
     private fun saveMatch() {
         val match = MatchHistory(
-            gameName = "El As",
-            players = "Multijugador",
+            gameName = getString(R.string.game_as_title),
+            players = getString(R.string.game_result_multiplayer),
             winner = args.winnerName,
             durationMs = 0,
             finishedAt = System.currentTimeMillis()

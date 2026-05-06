@@ -89,6 +89,7 @@
 
     <!-- Navigation labels -->
     <string name="nav_label_login">Login</string>
+    <string name="nav_label_home">Inicio</string>
     <string name="nav_label_history">Historial</string>
     <string name="nav_label_settings">Ajustes</string>
     <string name="nav_label_as_config">El As - Ajustes</string>
@@ -116,7 +117,18 @@
     <!-- Game card players badge -->
     <string name="game_players_badge"> jugadores</string>
 
-    <!-- Settings placeholder -->
+    <!-- Strings adicionales para limpieza de Hardcoded/Spanglish -->
+    <string name="game_player_anonymous">Jugador Anónimo</string>
+    <string name="game_result_team">Equipo</string>
+    <string name="game_result_nobody">Nadie</string>
+    <string name="game_result_multiplayer">Multijugador</string>
+    <string name="auth_error_unknown_login">Error desconocido al iniciar sesión</string>
+    <string name="auth_error_unknown_register">Error desconocido al registrarse</string>
+    <string name="as_label_your_turn">TU TURNO</string>
     <string name="settings_placeholder">Próximamente: Ajustes y Preferencias</string>
+    <string name="hub_snackbar_lan">Próximamente: Modo LAN para jugar con amigos</string>
+    <string name="menu_share">Compartir</string>
+    <string name="menu_delete_history">Borrar Historial</string>
+    <string name="menu_logout">Cerrar Sesión</string>
 </resources>
 
