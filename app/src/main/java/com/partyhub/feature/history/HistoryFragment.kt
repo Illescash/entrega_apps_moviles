@@ -68,7 +68,7 @@ class HistoryFragment : Fragment() {
                     R.id.action_share -> {
                         val intent = Intent(Intent.ACTION_SEND).apply {
                             type = "text/plain"
-                            putExtra(Intent.EXTRA_TEXT, "¡Echa un vistazo a PartyHub! La mejor app para jugar en local.")
+                            putExtra(Intent.EXTRA_TEXT, getString(R.string.history_share_text))
                         }
                         startActivity(Intent.createChooser(intent, null))
                         true
@@ -86,10 +86,10 @@ class HistoryFragment : Fragment() {
 
     private fun showDeleteConfirmation() {
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("¿Borrar historial?")
-            .setMessage("Esta acción no se puede deshacer.")
-            .setNegativeButton("Cancelar", null)
-            .setPositiveButton("Borrar") { _, _ ->
+            .setTitle(getString(R.string.history_delete_title))
+            .setMessage(getString(R.string.history_delete_message))
+            .setNegativeButton(getString(R.string.history_delete_cancel), null)
+            .setPositiveButton(getString(R.string.history_delete_confirm)) { _, _ ->
                 viewModel.deleteAll()
             }
             .show()

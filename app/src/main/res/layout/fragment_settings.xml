@@ -16,7 +16,7 @@
             android:id="@+id/tvSettingsPlaceholder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Próximamente: Ajustes y Preferencias"
+            android:text="@string/settings_placeholder"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -70,5 +70,53 @@
     <string name="pref_player_alias_title">Alias del Jugador</string>
     <string name="pref_player_alias_summary">Nombre que verán otros jugadores (LAN)</string>
     <string name="pref_player_alias_default">Jugador Anónimo</string>
+
+    <!-- Auth -->
+    <string name="auth_title">PartyHub</string>
+    <string name="auth_hint_email">Email</string>
+    <string name="auth_hint_password">Contraseña</string>
+    <string name="auth_btn_login">Iniciar Sesión</string>
+    <string name="auth_btn_register">¿No tienes cuenta? Regístrate</string>
+    <string name="auth_error_email_empty">El email no puede estar vacío</string>
+    <string name="auth_error_password_short">La contraseña debe tener al menos 6 caracteres</string>
+
+    <!-- History -->
+    <string name="history_share_text">¡Echa un vistazo a PartyHub! La mejor app para jugar en local.</string>
+    <string name="history_delete_title">¿Borrar historial?</string>
+    <string name="history_delete_message">Esta acción no se puede deshacer.</string>
+    <string name="history_delete_cancel">Cancelar</string>
+    <string name="history_delete_confirm">Borrar</string>
+
+    <!-- Navigation labels -->
+    <string name="nav_label_login">Login</string>
+    <string name="nav_label_history">Historial</string>
+    <string name="nav_label_settings">Ajustes</string>
+    <string name="nav_label_as_config">El As - Ajustes</string>
+    <string name="nav_label_as_game">El As</string>
+    <string name="nav_label_as_result">El As - Resultado</string>
+    <string name="nav_label_mind_config">The Mind - Ajustes</string>
+    <string name="nav_label_mind_game">The Mind</string>
+    <string name="nav_label_mind_result">The Mind - Resultado</string>
+
+    <!-- Nav Header -->
+    <string name="nav_header_title">PartyHub</string>
+    <string name="nav_header_subtitle">Tu centro de juegos local</string>
+
+    <!-- Hub -->
+    <string name="fab_lan_description">Modo LAN</string>
+
+    <!-- Config screens - shared hint -->
+    <string name="hint_player_alias">Tu nombre / Alias</string>
+
+    <!-- History -->
+    <string name="history_empty">No hay partidas en el historial</string>
+    <string name="history_winner_prefix">Ganador: </string>
+    <string name="history_players_prefix">Jugadores: </string>
+
+    <!-- Game card players badge -->
+    <string name="game_players_badge"> jugadores</string>
+
+    <!-- Settings placeholder -->
+    <string name="settings_placeholder">Próximamente: Ajustes y Preferencias</string>
 </resources>
 

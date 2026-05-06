@@ -74,7 +74,7 @@
                 android:background="@drawable/bg_player_badge"
                 android:paddingHorizontal="14dp"
                 android:paddingVertical="6dp"
-                android:text='@{game.minPlayers + "-" + game.maxPlayers + " jugadores"}'
+                android:text='@{game.minPlayers + "-" + game.maxPlayers + @string/game_players_badge}'
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"

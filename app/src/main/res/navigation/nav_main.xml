@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/authFragment"
         android:name="com.partyhub.auth.AuthFragment"
-        android:label="Login"
+        android:label="@string/nav_label_login"
         tools:layout="@layout/fragment_auth">
         <action
             android:id="@+id/action_authFragment_to_hubFragment"
@@ -26,13 +26,13 @@
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.partyhub.feature.history.HistoryFragment"
-        android:label="Historial"
+        android:label="@string/nav_label_history"
         tools:layout="@layout/fragment_history" />
 
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.partyhub.feature.settings.SettingsFragment"
-        android:label="Ajustes"
+        android:label="@string/nav_label_settings"
         tools:layout="@layout/fragment_settings" />
 
     <include app:graph="@navigation/nav_mind" />

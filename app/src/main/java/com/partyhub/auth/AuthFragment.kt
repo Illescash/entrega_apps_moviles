@@ -86,11 +86,11 @@ class AuthFragment : Fragment() {
 
     private fun validateFields(email: String, password: String): Boolean {
         if (email.isEmpty()) {
-            binding.tilEmail.error = "El email no puede estar vacío"
+            binding.tilEmail.error = getString(R.string.auth_error_email_empty)
             return false
         }
         if (password.length < 6) {
-            binding.tilPassword.error = "La contraseña debe tener al menos 6 caracteres"
+            binding.tilPassword.error = getString(R.string.auth_error_password_short)
             return false
         }
         binding.tilEmail.error = null
