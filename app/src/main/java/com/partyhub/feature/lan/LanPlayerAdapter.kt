@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.partyhub.R
 
 /**
  * Adapter sencillo para mostrar la lista de jugadores conectados en la sala LAN.
@@ -12,20 +13,20 @@ class LanPlayerAdapter(
     private var players: List<String>
 ) : RecyclerView.Adapter<LanPlayerAdapter.PlayerViewHolder>() {
 
-    class PlayerViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
+    class PlayerViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
+        val tvEmoji: TextView = view.findViewById(R.id.tvPlayerEmoji)
+        val tvName: TextView = view.findViewById(R.id.tvPlayerName)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
-        val textView = LayoutInflater.from(parent.context)
-            .inflate(android.R.layout.simple_list_item_1, parent, false) as TextView
-        textView.setTextColor(android.graphics.Color.WHITE)
-        textView.textSize = 18f
-        textView.setPadding(32, 24, 32, 24)
-        return PlayerViewHolder(textView)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.list_item_lan_player, parent, false)
+        return PlayerViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: PlayerViewHolder, position: Int) {
-        val emoji = if (position == 0) "👑 " else "👤 "
-        holder.textView.text = "$emoji${players[position]}"
+        holder.tvEmoji.text = if (position == 0) "👑" else "👤"
+        holder.tvName.text = players[position]
     }
 
     override fun getItemCount(): Int = players.size

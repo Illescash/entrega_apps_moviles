@@ -42,19 +42,21 @@ class AuthFragment : Fragment() {
 
     private fun setupListeners() {
         binding.btnLogin.setOnClickListener {
+            val alias = binding.etAlias.text.toString()
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
 
-            if (validateFields(email, password)) {
+            if (validateFields(alias, email, password)) {
                 viewModel.signIn(email, password)
             }
         }
 
         binding.btnRegister.setOnClickListener {
+            val alias = binding.etAlias.text.toString()
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
 
-            if (validateFields(email, password)) {
+            if (validateFields(alias, email, password)) {
                 viewModel.signUp(email, password)
             }
         }
@@ -64,6 +66,12 @@ class AuthFragment : Fragment() {
         // Observar el usuario para navegar al Hub cuando se loguee
         viewModel.user.observe(viewLifecycleOwner) { user ->
             if (user != null) {
+                val alias = binding.etAlias.text.toString()
+                // Guardar el alias en SharedPreferences de forma segura
+                context?.let { ctx ->
+                    val aliasToSave = if (alias.isNotEmpty()) alias else (user.email?.substringBefore("@") ?: "Jugador")
+                    com.partyhub.feature.settings.SettingsFragment.setPlayerAlias(ctx, aliasToSave)
+                }
                 findNavController().navigate(R.id.action_authFragment_to_hubFragment)
             }
         }
@@ -84,7 +92,11 @@ class AuthFragment : Fragment() {
         }
     }
 
-    private fun validateFields(email: String, password: String): Boolean {
+    private fun validateFields(alias: String, email: String, password: String): Boolean {
+        if (alias.isEmpty()) {
+            binding.tilAlias.error = "Por favor, introduce un alias"
+            return false
+        }
         if (email.isEmpty()) {
             binding.tilEmail.error = getString(R.string.auth_error_email_empty)
             return false
@@ -93,6 +105,7 @@ class AuthFragment : Fragment() {
             binding.tilPassword.error = getString(R.string.auth_error_password_short)
             return false
         }
+        binding.tilAlias.error = null
         binding.tilEmail.error = null
         binding.tilPassword.error = null
         return true

@@ -15,6 +15,8 @@ import com.partyhub.databinding.FragmentAsGameBinding
 import com.partyhub.feature.elas.engine.AsStatus
 import com.partyhub.feature.lan.LanLobbyViewModel
 import com.partyhub.core.model.SpanishCard
+import com.partyhub.core.Event
+import com.google.android.material.snackbar.Snackbar
 
 class AsGameFragment : Fragment() {
 
@@ -150,7 +152,7 @@ class AsGameFragment : Fragment() {
         if (isLanMode) {
             viewModel.errorEvent.observe(viewLifecycleOwner) { event ->
                 event.getContentIfNotHandled()?.let { msg ->
-                    com.google.android.material.snackbar.Snackbar.make(binding.root, msg, com.google.android.material.snackbar.Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(binding.root, msg, Snackbar.LENGTH_LONG).show()
                     findNavController().popBackStack()
                 }
             }

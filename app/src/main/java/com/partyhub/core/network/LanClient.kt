@@ -38,7 +38,7 @@ class LanClient {
 
                 // Hilo de lectura
                 val reader = BufferedReader(InputStreamReader(socket!!.getInputStream()))
-                var line: String?
+                var line: String? = null
                 while (connected && reader.readLine().also { line = it } != null) {
                     line?.let { msg ->
                         Timber.d("LAN Client: recibido: $msg")

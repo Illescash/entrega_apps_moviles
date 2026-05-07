@@ -88,7 +88,7 @@ class LanServer(private val port: Int = TCP_PORT) {
         val thread = Thread {
             try {
                 val reader = BufferedReader(InputStreamReader(connection.socket.getInputStream()))
-                var line: String?
+                var line: String? = null
                 while (running && reader.readLine().also { line = it } != null) {
                     line?.let { msg ->
                         Timber.d("LAN Server: recibido de cliente ${connection.id}: $msg")

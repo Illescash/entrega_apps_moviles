@@ -17,6 +17,14 @@ class SettingsFragment : PreferenceFragmentCompat() {
             applyNightMode(isDarkMode)
             true
         }
+
+        // Listener para cambios de idioma
+        findPreference<androidx.preference.ListPreference>("language")?.setOnPreferenceChangeListener { _, newValue ->
+            val lang = newValue as String
+            com.partyhub.core.util.LocaleHelper.setLocale(requireContext(), lang)
+            requireActivity().recreate() // Recargar la actividad para aplicar el idioma
+            true
+        }
     }
 
     private fun applyNightMode(isDarkMode: Boolean) {
@@ -35,6 +43,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
         fun getPlayerAlias(context: android.content.Context): String {
             val prefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context)
             return prefs.getString(PREF_PLAYER_ALIAS, "Jugador Anónimo") ?: "Jugador Anónimo"
+        }
+
+        fun setPlayerAlias(context: android.content.Context, alias: String) {
+            val prefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context)
+            prefs.edit().putString(PREF_PLAYER_ALIAS, alias).apply()
         }
 
         fun isDarkModeEnabled(context: android.content.Context): Boolean {

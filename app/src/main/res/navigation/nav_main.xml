@@ -46,10 +46,29 @@
         tools:layout="@layout/fragment_lan_lobby">
         <action
             android:id="@+id/action_lanLobbyFragment_to_mindGameFragment"
-            app:destination="@id/nav_mind" />
+            app:destination="@id/mindGameFragment">
+            <argument
+                android:name="numPlayers"
+                app:argType="integer" />
+            <argument
+                android:name="difficulty"
+                app:argType="string" />
+            <argument
+                android:name="isLanMode"
+                app:argType="boolean"
+                android:defaultValue="false" />
+        </action>
         <action
             android:id="@+id/action_lanLobbyFragment_to_asGameFragment"
-            app:destination="@id/nav_as" />
+            app:destination="@id/asGameFragment">
+            <argument
+                android:name="numPlayers"
+                app:argType="integer" />
+            <argument
+                android:name="isLanMode"
+                app:argType="boolean"
+                android:defaultValue="false" />
+        </action>
     </fragment>
 
     <include app:graph="@navigation/nav_mind" />

@@ -17,6 +17,7 @@ import com.partyhub.core.model.SpanishCard
 import org.json.JSONArray
 import org.json.JSONObject
 import timber.log.Timber
+import com.partyhub.core.Event
 
 class AsViewModel : ViewModel() {
 
@@ -26,8 +27,8 @@ class AsViewModel : ViewModel() {
     private val _gameState = MutableLiveData<AsGameState>()
     val gameState: LiveData<AsGameState> get() = _gameState
 
-    private val _errorEvent = MutableLiveData<com.partyhub.core.Event<String>>()
-    val errorEvent: LiveData<com.partyhub.core.Event<String>> get() = _errorEvent
+    private val _errorEvent = MutableLiveData<Event<String>>()
+    val errorEvent: LiveData<Event<String>> get() = _errorEvent
 
     // Indica si es el turno del jugador local (LAN)
     private val _isMyTurn = MutableLiveData(false)
@@ -234,7 +235,7 @@ class AsViewModel : ViewModel() {
         }
         client?.onDisconnected = {
             mainHandler.post {
-                _errorEvent.value = com.partyhub.core.Event("El anfitrión se ha desconectado")
+                _errorEvent.value = Event("El anfitrión se ha desconectado")
             }
         }
     }

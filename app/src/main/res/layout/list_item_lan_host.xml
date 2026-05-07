@@ -4,23 +4,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="4dp"
-    app:cardBackgroundColor="@color/party_card_bg">
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/party_surface_variant"
+    app:strokeWidth="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp"
+        android:padding="20dp"
         android:gravity="center_vertical">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:src="@drawable/ic_share"
-            app:tint="@color/party_primary"
+            app:tint="@color/party_primary_light"
             android:contentDescription="@string/lan_host_icon_desc" />
 
         <LinearLayout
@@ -28,21 +29,23 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:layout_marginStart="12dp">
+            android:layout_marginStart="16dp">
 
             <TextView
                 android:id="@+id/tvHostName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textSize="22sp"
+                android:textStyle="bold"
                 android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/tvHostIp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceBodySmall"
-                android:textColor="@color/party_text_secondary" />
+                android:textSize="16sp"
+                android:textColor="@color/party_text_secondary"
+                android:layout_marginTop="2dp" />
 
         </LinearLayout>
 
@@ -51,9 +54,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lan_join_room"
-            style="?attr/materialButtonOutlinedStyle"
+            android:textStyle="bold"
+            app:cornerRadius="8dp"
             android:minWidth="0dp" />
 
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>
+

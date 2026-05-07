@@ -14,6 +14,7 @@ import com.partyhub.feature.themind.engine.MindStatus
 import com.partyhub.feature.themind.engine.PlayedCard
 import org.json.JSONObject
 import timber.log.Timber
+import com.partyhub.core.Event
 
 class MindViewModel : ViewModel() {
 
@@ -23,8 +24,8 @@ class MindViewModel : ViewModel() {
     private val _gameState = MutableLiveData<MindGameState>()
     val gameState: LiveData<MindGameState> get() = _gameState
 
-    private val _errorEvent = MutableLiveData<com.partyhub.core.Event<String>>()
-    val errorEvent: LiveData<com.partyhub.core.Event<String>> get() = _errorEvent
+    private val _errorEvent = MutableLiveData<Event<String>>()
+    val errorEvent: LiveData<Event<String>> get() = _errorEvent
 
     // Mano privada del jugador local (solo en modo LAN)
     private val _localHand = MutableLiveData<List<Int>>()
@@ -213,7 +214,7 @@ class MindViewModel : ViewModel() {
         }
         client?.onDisconnected = {
             mainHandler.post {
-                _errorEvent.value = com.partyhub.core.Event("El anfitrión se ha desconectado")
+                _errorEvent.value = Event("El anfitrión se ha desconectado")
             }
         }
     }

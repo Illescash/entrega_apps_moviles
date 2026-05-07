@@ -35,6 +35,9 @@
 
     <!-- LAN Mode colors -->
     <color name="party_primary">#6200EE</color>
+    <color name="party_primary_light">#9C4DFF</color>
     <color name="party_card_bg">#1E1E1E</color>
+    <color name="party_surface_variant">#2C2C2C</color>
     <color name="party_text_secondary">#BDBDBD</color>
+    <color name="party_divider">#33FFFFFF</color>
 </resources>

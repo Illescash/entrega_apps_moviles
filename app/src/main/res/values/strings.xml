@@ -97,6 +97,7 @@
     <string name="nav_label_mind_config">The Mind - Ajustes</string>
     <string name="nav_label_mind_game">The Mind</string>
     <string name="nav_label_mind_result">The Mind - Resultado</string>
+    <string name="nav_label_lan_lobby">Sala LAN</string>
 
     <!-- Nav Header -->
     <string name="nav_header_title">PartyHub</string>
@@ -139,6 +140,11 @@
     <string name="lan_connecting">Conectando…</string>
     <string name="lan_need_players">Se necesitan al menos 2 jugadores</string>
     <string name="lan_host_icon_desc">Icono de sala</string>
-    <string name="nav_label_lan_lobby">Modo LAN</string>
+    <string name="nav_label_hub">Inicio</string>
+    <string name="menu_action_share">Compartir</string>
+    <string name="menu_action_delete_history">Borrar Historial</string>
+    <string name="menu_action_logout">Cerrar Sesión</string>
+    <string name="history_team">Equipo</string>
+    <string name="history_nobody">Nadie</string>
+    <string name="history_multiplayer">Multijugador</string>
 </resources>
-

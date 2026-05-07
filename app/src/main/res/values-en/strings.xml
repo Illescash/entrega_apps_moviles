@@ -139,5 +139,11 @@
     <string name="lan_connecting">Connecting…</string>
     <string name="lan_need_players">At least 2 players are needed</string>
     <string name="lan_host_icon_desc">Room icon</string>
-    <string name="nav_label_lan_lobby">LAN Mode</string>
+    <string name="nav_label_hub">Home</string>
+    <string name="menu_action_share">Share</string>
+    <string name="menu_action_delete_history">Delete History</string>
+    <string name="menu_action_logout">Sign Out</string>
+    <string name="history_team">Team</string>
+    <string name="history_nobody">Nobody</string>
+    <string name="history_multiplayer">Multiplayer</string>
 </resources>
