@@ -42,8 +42,29 @@ class AsPlayerAdapter(
             binding.lives = state.lives
             binding.isTurn = isTurn
             
-            // Si el jugador está fuera, lo mostramos más tenue
-            binding.root.alpha = if (state.isOut) 0.5f else 1.0f
+            // Si el jugador está fuera, lo mostramos más tenue y sin carta
+            if (state.isOut) {
+                binding.root.alpha = 0.5f
+                binding.ivSmallCard.setImageResource(android.R.color.transparent)
+            } else {
+                binding.root.alpha = 1.0f
+                if (state.hand != null) {
+                    val suitPrefix = when (state.hand.suit) {
+                        com.partyhub.core.model.SpanishCard.Suit.OROS -> "oro"
+                        com.partyhub.core.model.SpanishCard.Suit.COPAS -> "copa"
+                        com.partyhub.core.model.SpanishCard.Suit.ESPADAS -> "espada"
+                        com.partyhub.core.model.SpanishCard.Suit.BASTOS -> "basto"
+                    }
+                    val resId = binding.root.context.resources.getIdentifier("${suitPrefix}_${state.hand.number}", "drawable", binding.root.context.packageName)
+                    if (resId != 0) {
+                        binding.ivSmallCard.setImageResource(resId)
+                    } else {
+                        binding.ivSmallCard.setImageResource(android.R.drawable.ic_menu_help)
+                    }
+                } else {
+                    binding.ivSmallCard.setImageResource(com.partyhub.R.drawable.ic_launcher_foreground)
+                }
+            }
             
             binding.executePendingBindings()
         }

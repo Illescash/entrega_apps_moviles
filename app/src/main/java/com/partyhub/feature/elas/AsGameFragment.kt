@@ -31,6 +31,9 @@ class AsGameFragment : Fragment() {
 
     private lateinit var playerAdapter: AsPlayerAdapter
     private var isLanMode = false
+    private var isCardHiddenLocal = true
+    private var isCardFlippedLan = false
+    private var lastPlayerIndex = -1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,19 +89,36 @@ class AsGameFragment : Fragment() {
             playerAdapter.updateData(state.players, currentPlayerIndex)
             binding.rvPlayers.smoothScrollToPosition(currentPlayerIndex)
 
+            // Ocultar la carta local al cambiar el turno si no estamos revelando
+            if (!isLanMode && currentPlayerIndex != lastPlayerIndex && state.status == AsStatus.WAITING_ACTION) {
+                isCardHiddenLocal = true
+            }
+            lastPlayerIndex = currentPlayerIndex
+
             // Actualizar imagen de la carta
             if (isLanMode) {
                 // En LAN, solo mostrar la carta del jugador actual o durante REVEALING
                 val localIdx = viewModel.getLocalPlayerId()
                 if (currentPlayerIndex == localIdx || state.status == AsStatus.REVEALING ||
                     state.status == AsStatus.ROUND_OVER || state.status == AsStatus.GAME_OVER) {
-                    updateCardImage(currentPlayer.hand)
+                    
+                    if (isCardFlippedLan && state.status == AsStatus.WAITING_ACTION) {
+                        binding.ivCard.setImageResource(R.drawable.ic_launcher_foreground)
+                    } else {
+                        updateCardImage(currentPlayer.hand)
+                    }
                 } else {
                     // Mostrar carta boca abajo (usamos un placeholder)
                     binding.ivCard.setImageResource(R.drawable.ic_launcher_foreground)
                 }
             } else {
-                updateCardImage(currentPlayer.hand)
+                if (isCardHiddenLocal && state.status == AsStatus.WAITING_ACTION) {
+                    binding.ivCard.setImageResource(R.drawable.ic_launcher_foreground)
+                    binding.btnShowCard.isVisible = true
+                } else {
+                    binding.btnShowCard.isVisible = false
+                    updateCardImage(currentPlayer.hand)
+                }
             }
 
             val isPlaying = state.status == AsStatus.WAITING_ACTION
@@ -113,7 +133,8 @@ class AsGameFragment : Fragment() {
                 binding.btnResolveRound.isVisible = isRevealing
                 binding.btnNextRound.isVisible = isRoundOver
             } else {
-                binding.llActions.isVisible = isPlaying
+                // En local, las acciones solo se muestran si la carta no está oculta
+                binding.llActions.isVisible = isPlaying && !isCardHiddenLocal
                 binding.btnResolveRound.isVisible = isRevealing
                 binding.btnNextRound.isVisible = isRoundOver
             }
@@ -166,6 +187,33 @@ class AsGameFragment : Fragment() {
         binding.btnSwap.setOnClickListener { viewModel.swap() }
         binding.btnResolveRound.setOnClickListener { viewModel.resolveRound() }
         binding.btnNextRound.setOnClickListener { viewModel.nextRound() }
+
+        binding.btnShowCard.setOnClickListener {
+            isCardHiddenLocal = false
+            // Forzar actualización del state para redibujar sin ocultar
+            viewModel.gameState.value?.let { state ->
+                binding.btnShowCard.isVisible = false
+                binding.llActions.isVisible = state.status == AsStatus.WAITING_ACTION
+                updateCardImage(state.players[state.currentPlayerIndex].hand)
+            }
+        }
+
+        binding.ivCard.setOnClickListener {
+            if (isLanMode) {
+                val state = viewModel.gameState.value ?: return@setOnClickListener
+                val currentPlayerIndex = state.currentPlayerIndex
+                val localIdx = viewModel.getLocalPlayerId()
+
+                if (currentPlayerIndex == localIdx && state.status == AsStatus.WAITING_ACTION) {
+                    isCardFlippedLan = !isCardFlippedLan
+                    if (isCardFlippedLan) {
+                        binding.ivCard.setImageResource(R.drawable.ic_launcher_foreground)
+                    } else {
+                        updateCardImage(state.players[currentPlayerIndex].hand)
+                    }
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
