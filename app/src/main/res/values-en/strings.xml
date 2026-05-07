@@ -119,15 +119,39 @@
 
     <!-- Additional strings for hardcoded/spanglish cleanup -->
     <string name="game_player_anonymous">Anonymous Player</string>
-    <string name="game_result_team">Team</string>
-    <string name="game_result_nobody">Nobody</string>
-    <string name="game_result_multiplayer">Multiplayer</string>
+
     <string name="auth_error_unknown_login">Unknown error during sign in</string>
     <string name="auth_error_unknown_register">Unknown error during registration</string>
     <string name="as_label_your_turn">YOUR TURN</string>
     <string name="settings_placeholder">Coming soon: Settings and Preferences</string>
-    <string name="hub_snackbar_lan">Coming soon: LAN Mode to play with friends</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_delete_history">Delete History</string>
-    <string name="menu_logout">Logout</string>
+
+
+    <!-- LAN Mode -->
+    <string name="lan_title">LAN Mode</string>
+    <string name="lan_create_room">Create room</string>
+    <string name="lan_join_room">Join</string>
+    <string name="lan_leave_room">Leave</string>
+    <string name="lan_waiting">Waiting for players…</string>
+    <string name="lan_start_game">Start game</string>
+    <string name="lan_select_game">Select a game</string>
+    <string name="lan_available_rooms">Available rooms</string>
+    <string name="lan_players_in_room">Players in room</string>
+    <string name="lan_room_of">%s\'s room</string>
+    <string name="lan_host_disconnected">Host disconnected</string>
+    <string name="lan_player_joined">%s joined</string>
+    <string name="lan_player_left">%s left</string>
+    <string name="lan_your_turn">It\'s your turn!</string>
+    <string name="lan_wait_turn">Waiting for your turn…</string>
+    <string name="lan_browsing">Searching for rooms on the network…</string>
+    <string name="lan_connecting">Connecting…</string>
+    <string name="lan_need_players">At least 2 players are needed</string>
+    <string name="lan_host_icon_desc">Room icon</string>
+    <string name="nav_label_hub">Home</string>
+    <string name="menu_action_share">Share</string>
+    <string name="menu_action_delete_history">Delete History</string>
+    <string name="menu_action_logout">Sign Out</string>
+    <string name="history_team">Team</string>
+    <string name="history_nobody">Nobody</string>
+    <string name="history_multiplayer">Multiplayer</string>
+
 </resources>

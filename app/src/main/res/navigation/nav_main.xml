@@ -21,7 +21,11 @@
         android:id="@+id/hubFragment"
         android:name="com.partyhub.feature.hub.HubFragment"
         android:label="PartyHub"
-        tools:layout="@layout/fragment_hub" />
+        tools:layout="@layout/fragment_hub">
+        <action
+            android:id="@+id/action_hubFragment_to_lanLobbyFragment"
+            app:destination="@id/lanLobbyFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/historyFragment"
@@ -34,6 +38,38 @@
         android:name="com.partyhub.feature.settings.SettingsFragment"
         android:label="@string/nav_label_settings"
         tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/lanLobbyFragment"
+        android:name="com.partyhub.feature.lan.LanLobbyFragment"
+        android:label="@string/nav_label_lan_lobby"
+        tools:layout="@layout/fragment_lan_lobby">
+        <action
+            android:id="@+id/action_lanLobbyFragment_to_mindGameFragment"
+            app:destination="@id/mindGameFragment">
+            <argument
+                android:name="numPlayers"
+                app:argType="integer" />
+            <argument
+                android:name="difficulty"
+                app:argType="string" />
+            <argument
+                android:name="isLanMode"
+                app:argType="boolean"
+                android:defaultValue="false" />
+        </action>
+        <action
+            android:id="@+id/action_lanLobbyFragment_to_asGameFragment"
+            app:destination="@id/asGameFragment">
+            <argument
+                android:name="numPlayers"
+                app:argType="integer" />
+            <argument
+                android:name="isLanMode"
+                app:argType="boolean"
+                android:defaultValue="false" />
+        </action>
+    </fragment>
 
     <include app:graph="@navigation/nav_mind" />
     <include app:graph="@navigation/nav_as" />

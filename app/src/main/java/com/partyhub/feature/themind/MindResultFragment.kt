@@ -69,10 +69,10 @@ class MindResultFragment : Fragment() {
     }
 
     private fun saveMatch() {
-        val winner = if (args.isVictory) getString(R.string.game_result_team) else getString(R.string.game_result_nobody)
+        val winner = if (args.isVictory) getString(R.string.history_team) else getString(R.string.history_nobody)
         val match = MatchHistory(
             gameName = getString(R.string.game_mind_title),
-            players = getString(R.string.game_result_multiplayer),
+            players = getString(R.string.history_multiplayer),
             winner = winner,
             durationMs = 0,
             finishedAt = System.currentTimeMillis()

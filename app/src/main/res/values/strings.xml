@@ -98,6 +98,7 @@
     <string name="nav_label_mind_config">The Mind - Ajustes</string>
     <string name="nav_label_mind_game">The Mind</string>
     <string name="nav_label_mind_result">The Mind - Resultado</string>
+    <string name="nav_label_lan_lobby">Sala LAN</string>
 
     <!-- Nav Header -->
     <string name="nav_header_title">PartyHub</string>
@@ -119,16 +120,36 @@
 
     <!-- Strings adicionales para limpieza de Hardcoded/Spanglish -->
     <string name="game_player_anonymous">Jugador Anónimo</string>
-    <string name="game_result_team">Equipo</string>
-    <string name="game_result_nobody">Nadie</string>
-    <string name="game_result_multiplayer">Multijugador</string>
     <string name="auth_error_unknown_login">Error desconocido al iniciar sesión</string>
     <string name="auth_error_unknown_register">Error desconocido al registrarse</string>
     <string name="as_label_your_turn">TU TURNO</string>
     <string name="settings_placeholder">Próximamente: Ajustes y Preferencias</string>
-    <string name="hub_snackbar_lan">Próximamente: Modo LAN para jugar con amigos</string>
-    <string name="menu_share">Compartir</string>
-    <string name="menu_delete_history">Borrar Historial</string>
-    <string name="menu_logout">Cerrar Sesión</string>
-</resources>
 
+    <!-- LAN Mode -->
+    <string name="lan_title">Modo LAN</string>
+    <string name="lan_create_room">Crear sala</string>
+    <string name="lan_join_room">Unirse</string>
+    <string name="lan_leave_room">Salir</string>
+    <string name="lan_waiting">Esperando jugadores…</string>
+    <string name="lan_start_game">Empezar partida</string>
+    <string name="lan_select_game">Selecciona un juego</string>
+    <string name="lan_available_rooms">Salas disponibles</string>
+    <string name="lan_players_in_room">Jugadores en la sala</string>
+    <string name="lan_room_of">Sala de %s</string>
+    <string name="lan_host_disconnected">El anfitrión se ha desconectado</string>
+    <string name="lan_player_joined">%s se ha unido</string>
+    <string name="lan_player_left">%s se ha ido</string>
+    <string name="lan_your_turn">¡Es tu turno!</string>
+    <string name="lan_wait_turn">Esperando tu turno…</string>
+    <string name="lan_browsing">Buscando salas en la red…</string>
+    <string name="lan_connecting">Conectando…</string>
+    <string name="lan_need_players">Se necesitan al menos 2 jugadores</string>
+    <string name="lan_host_icon_desc">Icono de sala</string>
+    <string name="nav_label_hub">Inicio</string>
+    <string name="menu_action_share">Compartir</string>
+    <string name="menu_action_delete_history">Borrar Historial</string>
+    <string name="menu_action_logout">Cerrar Sesión</string>
+    <string name="history_team">Equipo</string>
+    <string name="history_nobody">Nadie</string>
+    <string name="history_multiplayer">Multijugador</string>
+</resources>

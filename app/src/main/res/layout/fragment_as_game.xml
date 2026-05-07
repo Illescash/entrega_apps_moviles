@@ -43,6 +43,17 @@
                 tools:src="@drawable/oro_1" />
         </com.google.android.material.card.MaterialCardView>
 
+        <Button
+            android:id="@+id/btnShowCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MOSTRAR MI CARTA"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="@id/cardContainer"
+            app:layout_constraintBottom_toBottomOf="@id/cardContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <!-- Hidden text info for internal state if needed, but not visible -->
         <TextView
             android:id="@+id/tvCard"

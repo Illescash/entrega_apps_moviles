@@ -4,14 +4,14 @@
     <item
         android:id="@+id/action_share"
         android:icon="@android:drawable/ic_menu_share"
-        android:title="@string/menu_share"
+        android:title="@string/menu_action_share"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_delete_history"
-        android:title="@string/menu_delete_history"
+        android:title="@string/menu_action_delete_history"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_logout"
-        android:title="@string/menu_logout"
+        android:title="@string/menu_action_logout"
         app:showAsAction="never" />
 </menu>

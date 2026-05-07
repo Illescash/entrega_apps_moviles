@@ -23,6 +23,10 @@
         <argument
             android:name="numPlayers"
             app:argType="integer" />
+        <argument
+            android:name="isLanMode"
+            app:argType="boolean"
+            android:defaultValue="false" />
         <action
             android:id="@+id/action_asGameFragment_to_asResultFragment"
             app:destination="@id/asResultFragment" />

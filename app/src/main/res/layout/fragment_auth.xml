@@ -40,16 +40,38 @@
             app:layout_constraintTop_toBottomOf="@id/ivLogo" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilEmail"
+            android:id="@+id/tilAlias"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:hint="@string/auth_hint_email"
+            android:layout_marginTop="32dp"
+            android:hint="@string/pref_player_alias_title"
             android:textColorHint="@color/gray_text"
             app:boxStrokeColor="@color/primary"
             app:hintTextColor="@color/primary"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:startIconDrawable="@android:drawable/ic_menu_edit"
+            app:startIconTint="@color/gray_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAlias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEmail"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/auth_hint_email"
+            android:textColorHint="@color/gray_text"
+            app:boxStrokeColor="@color/primary"
+            app:hintTextColor="@color/primary"
+            app:layout_constraintTop_toBottomOf="@id/tilAlias"
             app:startIconDrawable="@android:drawable/ic_dialog_email"
             app:startIconTint="@color/gray_text">
 

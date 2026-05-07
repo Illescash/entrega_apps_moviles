@@ -57,12 +57,13 @@ class HistoryRepository(private val matchDao: MatchDao) {
 
             val remoteMatches = snapshot.toObjects(MatchHistory::class.java)
             
-            // 1. Limpiar historial local para evitar duplicados en el volcado
-            matchDao.deleteAllMatches()
-
-            // 2. Insertar los datos remotos en la base de datos local
-            for (match in remoteMatches) {
-                matchDao.insert(match.copy(id = 0)) 
+            if (remoteMatches.isNotEmpty()) {
+                // Para evitar duplicados en esta entrega, limpiamos lo local antes de volcar lo de la nube
+                matchDao.deleteAllMatches()
+                
+                for (match in remoteMatches) {
+                    matchDao.insert(match.copy(id = 0)) 
+                }
             }
         } catch (e: Exception) {
             e.printStackTrace()

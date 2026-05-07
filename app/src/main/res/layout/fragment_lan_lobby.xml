@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/black">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <!-- Header Icon -->
+        <ImageView
+            android:id="@+id/ivLanHeader"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_share"
+            app:tint="@color/party_primary_light"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/lan_title" />
+
+        <!-- Título principal -->
+        <TextView
+            android:id="@+id/tvLanTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/lan_title"
+            android:textSize="34sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/ivLanHeader"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+
+        <!-- Estado del lobby -->
+        <TextView
+            android:id="@+id/tvLobbyStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/lan_browsing"
+            android:textColor="@color/party_text_secondary"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/tvLanTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+        <!-- GRUPO: BUSCANDO SALAS -->
+        <LinearLayout
+            android:id="@+id/groupBrowsing"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/tvLobbyStatus"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCreateRoom"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:text="@string/lan_create_room"
+                android:textSize="22sp"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                app:cornerRadius="20dp"
+                android:layout_marginBottom="40dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lan_available_rooms"
+                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvHosts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="100dp"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/list_item_lan_host" />
+
+        </LinearLayout>
+
+        <!-- GRUPO: EN SALA -->
+        <LinearLayout
+            android:id="@+id/groupRoom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/tvLobbyStatus"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lan_select_game"
+                android:textSize="18sp"
+                android:textColor="@color/party_text_secondary"
+                android:layout_marginBottom="12dp"
+                android:textAlignment="center" />
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggleGame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                app:selectionRequired="true"
+                app:checkedButton="@id/btnGameMind"
+                android:layout_marginBottom="32dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnGameMind"
+                    android:layout_width="0dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:text="@string/game_mind_title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/toggle_text_selector"
+                    app:backgroundTint="@color/toggle_bg_selector"
+                    app:strokeColor="@color/party_divider"
+                    style="?attr/materialButtonOutlinedStyle" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnGameAs"
+                    android:layout_width="0dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:text="@string/game_as_title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/toggle_text_selector"
+                    app:backgroundTint="@color/toggle_bg_selector"
+                    app:strokeColor="@color/party_divider"
+                    style="?attr/materialButtonOutlinedStyle" />
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lan_players_in_room"
+                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/party_surface_variant"
+                app:strokeWidth="0dp"
+                android:layout_marginBottom="32dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPlayers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="120dp"
+                    android:padding="12dp"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnStartGame"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:text="@string/lan_start_game"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:cornerRadius="20dp"
+                android:layout_marginBottom="16dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLeaveRoom"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:text="@string/lan_leave_room"
+                android:textColor="@color/text_lives"
+                android:textSize="18sp"
+                style="?attr/materialButtonOutlinedStyle"
+                app:strokeColor="@color/text_lives"
+                app:cornerRadius="16dp" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
+

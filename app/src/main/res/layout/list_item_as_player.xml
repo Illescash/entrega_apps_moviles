@@ -39,16 +39,29 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp">
 
+            <ImageView
+                android:id="@+id/ivSmallCard"
+                android:layout_width="32dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="16dp"
+                android:scaleType="fitCenter"
+                android:background="@color/card_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:src="@drawable/ic_launcher_foreground" />
+
             <TextView
                 android:id="@+id/tvPlayerName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:text="@{playerName}"
                 android:textSize="@dimen/text_player_name"
                 android:textColor="@{isTurn ? @color/white : @color/on_surface}"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/tvPlayerLives"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivSmallCard"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Jugador 1" />
 
@@ -71,7 +84,7 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:visibility="@{isTurn ? android.view.View.VISIBLE : android.view.View.GONE}"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tvPlayerName"
                 app:layout_constraintTop_toBottomOf="@id/tvPlayerName" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
