@@ -64,11 +64,7 @@ class HubFragment : Fragment() {
 
     private fun setupFab() {
         binding.fabLan.setOnClickListener {
-            com.google.android.material.snackbar.Snackbar.make(
-                binding.root,
-                "Próximamente: Modo LAN para jugar con amigos",
-                com.google.android.material.snackbar.Snackbar.LENGTH_LONG
-            ).show()
+            findNavController().navigate(R.id.action_hubFragment_to_lanLobbyFragment)
         }
     }
 

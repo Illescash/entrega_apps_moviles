@@ -32,4 +32,9 @@
     <color name="purple_500">#6200EE</color>
     <color name="text_status_gold">#FFD700</color>
     <color name="party_surface">#F5F5F5</color>
+
+    <!-- LAN Mode colors -->
+    <color name="party_primary">#6200EE</color>
+    <color name="party_card_bg">#1E1E1E</color>
+    <color name="party_text_secondary">#BDBDBD</color>
 </resources>

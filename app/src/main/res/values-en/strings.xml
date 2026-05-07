@@ -118,4 +118,26 @@
 
     <!-- Settings placeholder -->
     <string name="settings_placeholder">Coming soon: Settings and Preferences</string>
+
+    <!-- LAN Mode -->
+    <string name="lan_title">LAN Mode</string>
+    <string name="lan_create_room">Create room</string>
+    <string name="lan_join_room">Join</string>
+    <string name="lan_leave_room">Leave</string>
+    <string name="lan_waiting">Waiting for players…</string>
+    <string name="lan_start_game">Start game</string>
+    <string name="lan_select_game">Select a game</string>
+    <string name="lan_available_rooms">Available rooms</string>
+    <string name="lan_players_in_room">Players in room</string>
+    <string name="lan_room_of">%s\'s room</string>
+    <string name="lan_host_disconnected">Host disconnected</string>
+    <string name="lan_player_joined">%s joined</string>
+    <string name="lan_player_left">%s left</string>
+    <string name="lan_your_turn">It\'s your turn!</string>
+    <string name="lan_wait_turn">Waiting for your turn…</string>
+    <string name="lan_browsing">Searching for rooms on the network…</string>
+    <string name="lan_connecting">Connecting…</string>
+    <string name="lan_need_players">At least 2 players are needed</string>
+    <string name="lan_host_icon_desc">Room icon</string>
+    <string name="nav_label_lan_lobby">LAN Mode</string>
 </resources>

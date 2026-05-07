@@ -26,6 +26,10 @@
         <argument
             android:name="difficulty"
             app:argType="string" />
+        <argument
+            android:name="isLanMode"
+            app:argType="boolean"
+            android:defaultValue="false" />
         <action
             android:id="@+id/action_mindGameFragment_to_mindResultFragment"
             app:destination="@id/mindResultFragment" />

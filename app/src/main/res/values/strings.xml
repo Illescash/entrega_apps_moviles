@@ -118,5 +118,27 @@
 
     <!-- Settings placeholder -->
     <string name="settings_placeholder">Próximamente: Ajustes y Preferencias</string>
+
+    <!-- LAN Mode -->
+    <string name="lan_title">Modo LAN</string>
+    <string name="lan_create_room">Crear sala</string>
+    <string name="lan_join_room">Unirse</string>
+    <string name="lan_leave_room">Salir</string>
+    <string name="lan_waiting">Esperando jugadores…</string>
+    <string name="lan_start_game">Empezar partida</string>
+    <string name="lan_select_game">Selecciona un juego</string>
+    <string name="lan_available_rooms">Salas disponibles</string>
+    <string name="lan_players_in_room">Jugadores en la sala</string>
+    <string name="lan_room_of">Sala de %s</string>
+    <string name="lan_host_disconnected">El anfitrión se ha desconectado</string>
+    <string name="lan_player_joined">%s se ha unido</string>
+    <string name="lan_player_left">%s se ha ido</string>
+    <string name="lan_your_turn">¡Es tu turno!</string>
+    <string name="lan_wait_turn">Esperando tu turno…</string>
+    <string name="lan_browsing">Buscando salas en la red…</string>
+    <string name="lan_connecting">Conectando…</string>
+    <string name="lan_need_players">Se necesitan al menos 2 jugadores</string>
+    <string name="lan_host_icon_desc">Icono de sala</string>
+    <string name="nav_label_lan_lobby">Modo LAN</string>
 </resources>
 
