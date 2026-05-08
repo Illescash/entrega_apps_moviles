@@ -60,6 +60,7 @@ class LanLobbyViewModel : ViewModel() {
         _connectedPlayers.value = listOf(playerName)
 
         // Iniciar servidor TCP
+        server?.stop()
         server = LanServer().apply {
             onClientConnected = { clientId ->
                 Timber.d("LAN Lobby: cliente $clientId conectado al servidor")
@@ -111,7 +112,7 @@ class LanLobbyViewModel : ViewModel() {
             game = game,
             playerCount = players.size,
             playerNames = players,
-            localPlayerId = 0,
+            localPlayerId = hostName,
             isHost = true
         )
     }
@@ -120,15 +121,62 @@ class LanLobbyViewModel : ViewModel() {
     // Acciones del Cliente
     // -------------------------------------------------------
 
+    private val knownHosts = mutableMapOf<String, HostInfo>()
+
     fun startBrowsing() {
         _lobbyStatus.value = LobbyStatus.BROWSING
-        val knownHosts = mutableMapOf<String, HostInfo>()
+        knownHosts.clear()
+        _availableHosts.value = emptyList()
 
         discovery.startListening { hostInfo ->
             mainHandler.post {
-                knownHosts[hostInfo.ip] = hostInfo
+                if (hostInfo.lastSeen == -1L) {
+                    knownHosts.remove(hostInfo.ip)
+                } else {
+                    knownHosts[hostInfo.ip] = hostInfo
+                }
                 _availableHosts.value = knownHosts.values.toList()
             }
+        }
+        
+        // Iniciar podadora de salas fantasma
+        startPruning()
+    }
+
+    fun stopBrowsing() {
+        discovery.stopListening()
+        stopPruning()
+    }
+
+    private fun startPruning() {
+        stopPruning()
+        mainHandler.postDelayed(pruneRunnable, 3000)
+    }
+
+    private fun stopPruning() {
+        mainHandler.removeCallbacks(pruneRunnable)
+    }
+
+    private val pruneRunnable: Runnable = object : Runnable {
+        override fun run() {
+            pruneStaleHosts()
+            mainHandler.postDelayed(this, 3000)
+        }
+    }
+
+    private fun pruneStaleHosts() {
+        val now = System.currentTimeMillis()
+        val beforeCount = knownHosts.size
+        val iterator = knownHosts.entries.iterator()
+        while (iterator.hasNext()) {
+            val entry = iterator.next()
+            if (now - entry.value.lastSeen > 4000) {
+                iterator.remove()
+            }
+        }
+        if (knownHosts.size != beforeCount) {
+            _availableHosts.value = knownHosts.values.toList()
+            Timber.d("LAN Lobby: salas fantasma eliminadas. Quedan: ${knownHosts.size}")
         }
     }
 
@@ -139,6 +187,7 @@ class LanLobbyViewModel : ViewModel() {
 
         discovery.stopListening()
 
+        client?.disconnect()
         client = LanClient().apply {
             onMessageReceived = { message ->
                 handleClientMessage(message)
@@ -149,14 +198,23 @@ class LanLobbyViewModel : ViewModel() {
                     _errorEvent.value = "Se ha perdido la conexión con el anfitrión"
                 }
             }
-            connect(hostInfo.ip, hostInfo.port)
+            
+            // Conexión en hilo de fondo
+            Thread {
+                try {
+                    connect(hostInfo.ip, hostInfo.port)
+                    // Una vez conectado, enviamos el JOIN
+                    send(NetworkMessage.createJoin(playerName))
+                    Timber.d("LAN Lobby: conexión establecida y mensaje JOIN enviado")
+                } catch (e: Exception) {
+                    Timber.e(e, "Error al conectar con el host")
+                    mainHandler.post {
+                        _lobbyStatus.value = LobbyStatus.BROWSING
+                        _errorEvent.value = "No se pudo conectar con la sala"
+                    }
+                }
+            }.start()
         }
-
-        // Enviar JOIN al conectar (pequeño delay para asegurar conexión)
-        Thread {
-            Thread.sleep(500)
-            client?.send(NetworkMessage.createJoin(playerName))
-        }.start()
     }
 
     // -------------------------------------------------------
@@ -215,14 +273,15 @@ class LanLobbyViewModel : ViewModel() {
                     val game = msg.getString("game")
                     val playerCount = msg.getInt("playerCount")
                     val players = _connectedPlayers.value ?: emptyList()
-                    val localIdx = players.indexOf(localPlayerName)
+                    
                     mainHandler.post {
-                        myPlayerId = if (localIdx >= 0) localIdx else 1
+                        // Usar el nombre como ID para que coincida con el motor del juego
+                        val localId = localPlayerName
                         _gameStartEvent.value = GameStartConfig(
                             game = game,
                             playerCount = playerCount,
                             playerNames = players,
-                            localPlayerId = myPlayerId,
+                            localPlayerId = localId,
                             isHost = false
                         )
                     }
@@ -237,6 +296,7 @@ class LanLobbyViewModel : ViewModel() {
         val players = _connectedPlayers.value ?: return
         val game = _selectedGame.value ?: "the_mind"
         val msg = NetworkMessage.createLobby(players, game, hostName)
+        Timber.d("LAN Lobby: haciendo broadcast del estado: $msg")
         server?.broadcast(msg)
     }
 
@@ -246,7 +306,7 @@ class LanLobbyViewModel : ViewModel() {
 
     fun getServer(): LanServer? = server
     fun getClient(): LanClient? = client
-    fun getLocalPlayerId(): Int = myPlayerId
+    fun getLocalPlayerId(): String = localPlayerName
     fun getLocalPlayerName(): String = localPlayerName
 
     fun consumeGameStartEvent() {
@@ -266,19 +326,24 @@ class LanLobbyViewModel : ViewModel() {
             server?.broadcast(NetworkMessage.createLeave(hostName))
             server?.stop()
             server = null
+            discovery.stopAnnouncing(hostName, LanServer.TCP_PORT)
         } else {
             client?.send(NetworkMessage.createLeave(localPlayerName))
             client?.disconnect()
             client = null
         }
-        discovery.stopAll()
-        _lobbyStatus.value = LobbyStatus.BROWSING
-        _connectedPlayers.value = emptyList()
+        discovery.stopListening()
+        stopPruning()
+        mainHandler.post {
+            _lobbyStatus.value = LobbyStatus.BROWSING
+            _connectedPlayers.value = emptyList()
+        }
     }
 
     override fun onCleared() {
         super.onCleared()
         discovery.stopAll()
+        stopPruning()
         server?.stop()
         client?.disconnect()
         Timber.d("LAN Lobby: ViewModel cleared, todos los recursos de red liberados")
@@ -295,6 +360,6 @@ data class GameStartConfig(
     val game: String,
     val playerCount: Int,
     val playerNames: List<String>,
-    val localPlayerId: Int,
+    val localPlayerId: String,
     val isHost: Boolean
 )

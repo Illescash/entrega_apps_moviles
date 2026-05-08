@@ -35,6 +35,7 @@ class DiscoveryService {
      * Debe llamarse desde un hilo de IO.
      */
     fun startAnnouncing(hostName: String, tcpPort: Int) {
+        if (announcing) stopAnnouncing()
         announcing = true
         val thread = Thread {
             try {
@@ -78,6 +79,7 @@ class DiscoveryService {
      * Llama al [onHostFound] cada vez que detecta un host (puede repetirse).
      */
     fun startListening(onHostFound: (HostInfo) -> Unit) {
+        if (listening) stopListening()
         listening = true
         val thread = Thread {
             try {
@@ -97,12 +99,20 @@ class DiscoveryService {
                         val json = JSONObject(message)
 
                         if (json.optString("app") == APP_IDENTIFIER) {
-                            val hostInfo = HostInfo(
-                                hostName = json.getString("host"),
-                                ip = packet.address.hostAddress ?: "unknown",
-                                port = json.getInt("port")
-                            )
-                            onHostFound(hostInfo)
+                            val addr = packet.address
+                            if (addr != null) {
+                                val hostName = json.getString("host")
+                                val ip = addr.hostAddress ?: "unknown"
+                                val port = json.getInt("port")
+                                val status = json.optString("status", "open")
+
+                                if (status == "closed") {
+                                    // Notificar que la sala se ha cerrado
+                                    onHostFound(HostInfo(hostName, ip, port, -1)) // lastSeen = -1 indica borrado
+                                } else {
+                                    onHostFound(HostInfo(hostName, ip, port, System.currentTimeMillis()))
+                                }
+                            }
                         }
                     } catch (e: java.net.SocketTimeoutException) {
                         // Timeout normal, seguimos escuchando
@@ -122,7 +132,27 @@ class DiscoveryService {
         thread.start()
     }
 
-    fun stopAnnouncing() {
+    fun stopAnnouncing(hostName: String? = null, tcpPort: Int = 0) {
+        if (announcing && hostName != null) {
+            // Enviar un último paquete indicando que la sala se cierra
+            Thread {
+                try {
+                    val socket = DatagramSocket()
+                    val message = JSONObject().apply {
+                        put("app", APP_IDENTIFIER)
+                        put("host", hostName)
+                        put("port", tcpPort)
+                        put("status", "closed")
+                    }.toString()
+                    val data = message.toByteArray()
+                    val packet = DatagramPacket(data, data.size, InetAddress.getByName("255.255.255.255"), DISCOVERY_PORT)
+                    socket.send(packet)
+                    socket.close()
+                } catch (e: Exception) {
+                    Timber.w(e, "Error enviando cierre de sala UDP")
+                }
+            }.start()
+        }
         announcing = false
         announceSocket?.close()
     }

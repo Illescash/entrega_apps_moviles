@@ -50,18 +50,18 @@ class AsGameEngine {
             
             // Un Rey (12) no deja pasar.
             if (nextHand.number == 12) {
-                return state.copy(lastAction = "¡${players[nextIdx].player.name} no deja pasar!")
+                return nextTurn(state.copy(lastAction = "¡${players[nextIdx].player.name} no deja pasar!"))
             }
 
             players[currIdx] = players[currIdx].copy(hand = nextHand)
             players[nextIdx] = players[nextIdx].copy(hand = currHand)
         }
 
-        return nextTurn(state.copy(players = players, deck = deck))
+        return nextTurn(state.copy(players = players, deck = deck, lastAction = null))
     }
 
     fun stay(state: AsGameState): AsGameState {
-        return nextTurn(state)
+        return nextTurn(state.copy(lastAction = null))
     }
 
     private fun nextTurn(state: AsGameState): AsGameState {
@@ -120,7 +120,8 @@ class AsGameEngine {
             currentPlayerIndex = actualStarter,
             roundStarterIndex = nextStarterIdx,
             turnsPlayedInRound = 0,
-            status = AsStatus.WAITING_ACTION
+            status = AsStatus.WAITING_ACTION,
+            lastAction = null
         )
     }
 }

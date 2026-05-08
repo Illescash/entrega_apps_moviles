@@ -18,6 +18,12 @@ import org.json.JSONArray
 import org.json.JSONObject
 import timber.log.Timber
 import com.partyhub.core.Event
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+
+import androidx.lifecycle.SavedStateHandle
 
 class AsViewModel : ViewModel() {
 
@@ -26,6 +32,10 @@ class AsViewModel : ViewModel() {
 
     private val _gameState = MutableLiveData<AsGameState>()
     val gameState: LiveData<AsGameState> get() = _gameState
+
+    private fun setGameState(state: AsGameState) {
+        _gameState.value = state
+    }
 
     private val _errorEvent = MutableLiveData<Event<String>>()
     val errorEvent: LiveData<Event<String>> get() = _errorEvent
@@ -39,7 +49,7 @@ class AsViewModel : ViewModel() {
     private var isHost = false
     private var server: LanServer? = null
     private var client: LanClient? = null
-    private var localPlayerId: Int = -1
+    private var localPlayerId: String = ""
 
     // -------------------------------------------------------
     // Modo local
@@ -47,7 +57,7 @@ class AsViewModel : ViewModel() {
 
     fun startGame(playerCount: Int) {
         Timber.d("El As: iniciando partida con $playerCount jugadores")
-        _gameState.value = engine.startNewGame(playerCount)
+        setGameState(engine.startNewGame(playerCount))
     }
 
     fun swap() {
@@ -60,7 +70,7 @@ class AsViewModel : ViewModel() {
         } else {
             val current = _gameState.value ?: return
             Timber.d("El As: jugador ${current.players[current.currentPlayerIndex].player.name} intercambia carta")
-            _gameState.value = engine.swap(current)
+            setGameState(engine.swap(current))
         }
     }
 
@@ -74,7 +84,7 @@ class AsViewModel : ViewModel() {
         } else {
             val current = _gameState.value ?: return
             Timber.d("El As: jugador ${current.players[current.currentPlayerIndex].player.name} se queda")
-            _gameState.value = engine.stay(current)
+            setGameState(engine.stay(current))
         }
     }
 
@@ -88,7 +98,7 @@ class AsViewModel : ViewModel() {
         } else {
             val current = _gameState.value ?: return
             Timber.d("El As: resolviendo ronda")
-            _gameState.value = engine.resolveRound(current)
+            setGameState(engine.resolveRound(current))
             if (_gameState.value?.status == AsStatus.GAME_OVER) {
                 val winner = _gameState.value?.players?.firstOrNull { !it.isOut }?.player?.name
                 Timber.d("El As: partida terminada, ganador: $winner")
@@ -106,7 +116,7 @@ class AsViewModel : ViewModel() {
         } else {
             val current = _gameState.value ?: return
             Timber.d("El As: iniciando nueva ronda")
-            _gameState.value = engine.nextRound(current)
+            setGameState(engine.nextRound(current))
         }
     }
 
@@ -117,7 +127,7 @@ class AsViewModel : ViewModel() {
     fun setupLanMode(
         lanServer: LanServer?,
         lanClient: LanClient?,
-        playerId: Int,
+        playerId: String,
         host: Boolean
     ) {
         isLanMode = true
@@ -135,19 +145,24 @@ class AsViewModel : ViewModel() {
 
     fun startLanGame(playerNames: List<String>) {
         if (!isHost) return
-        val state = engine.startNewGame(playerNames.size)
-        // Reemplazar nombres genéricos por los nombres reales
-        val namedPlayers = state.players.mapIndexed { index, asPlayer ->
-            val name = if (index < playerNames.size) playerNames[index] else asPlayer.player.name
-            asPlayer.copy(player = Player(index.toString(), name))
+        viewModelScope.launch(Dispatchers.Default) {
+            delay(1500)
+            val state = engine.startNewGame(playerNames.size)
+            // Reemplazar nombres genéricos por los nombres reales
+            val namedPlayers = state.players.mapIndexed { index, asPlayer ->
+                val name = if (index < playerNames.size) playerNames[index] else asPlayer.player.name
+                asPlayer.copy(player = Player(index.toString(), name))
+            }
+            val namedState = state.copy(players = namedPlayers)
+            mainHandler.post {
+                setGameState(namedState)
+                updateMyTurn(namedState)
+                broadcastAsGameState(namedState)
+            }
         }
-        val namedState = state.copy(players = namedPlayers)
-        _gameState.value = namedState
-        updateMyTurn(namedState)
-        broadcastAsGameState(namedState)
     }
 
-    fun getLocalPlayerId(): Int = localPlayerId
+    fun getLocalPlayerId(): String = localPlayerId
     fun isLanMode(): Boolean = isLanMode
 
     // -------------------------------------------------------
@@ -157,7 +172,7 @@ class AsViewModel : ViewModel() {
     private fun handleSwapOnHost() {
         val current = _gameState.value ?: return
         val newState = engine.swap(current)
-        _gameState.value = newState
+        setGameState(newState)
         updateMyTurn(newState)
         broadcastAsGameState(newState)
     }
@@ -165,7 +180,7 @@ class AsViewModel : ViewModel() {
     private fun handleStayOnHost() {
         val current = _gameState.value ?: return
         val newState = engine.stay(current)
-        _gameState.value = newState
+        setGameState(newState)
         updateMyTurn(newState)
         broadcastAsGameState(newState)
     }
@@ -173,7 +188,7 @@ class AsViewModel : ViewModel() {
     private fun handleResolveOnHost() {
         val current = _gameState.value ?: return
         val newState = engine.resolveRound(current)
-        _gameState.value = newState
+        setGameState(newState)
         updateMyTurn(newState)
         broadcastAsGameState(newState)
     }
@@ -181,7 +196,7 @@ class AsViewModel : ViewModel() {
     private fun handleNextRoundOnHost() {
         val current = _gameState.value ?: return
         val newState = engine.nextRound(current)
-        _gameState.value = newState
+        setGameState(newState)
         updateMyTurn(newState)
         broadcastAsGameState(newState)
     }
@@ -221,12 +236,9 @@ class AsViewModel : ViewModel() {
                     NetworkMessage.TYPE_GAME_STATE -> {
                         mainHandler.post {
                             val state = parseAsGameStateFromJson(msg)
-                            _gameState.value = state
+                            setGameState(state)
                             updateMyTurn(state)
                         }
-                    }
-                    NetworkMessage.TYPE_GAME_OVER -> {
-                        // El estado ya se actualiza via GAME_STATE
                     }
                 }
             } catch (e: Exception) {
@@ -246,58 +258,54 @@ class AsViewModel : ViewModel() {
 
     private fun updateMyTurn(state: AsGameState) {
         if (!isLanMode) return
-        _isMyTurn.value = state.currentPlayerIndex == localPlayerId &&
+        val myIndex = state.players.indexOfFirst { it.player.name == localPlayerId }
+        _isMyTurn.value = state.currentPlayerIndex == myIndex &&
                 state.status == AsStatus.WAITING_ACTION
     }
 
     private fun broadcastAsGameState(state: AsGameState) {
-        val playersJson = JSONArray()
-        state.players.forEach { asPlayer ->
-            playersJson.put(JSONObject().apply {
-                put("id", asPlayer.player.id)
-                put("name", asPlayer.player.name)
-                put("lives", asPlayer.lives)
-                put("isOut", asPlayer.isOut)
-                // Solo enviar la carta durante REVEALING o ROUND_OVER/GAME_OVER
-                if (state.status == AsStatus.REVEALING ||
-                    state.status == AsStatus.ROUND_OVER ||
-                    state.status == AsStatus.GAME_OVER
-                ) {
-                    if (asPlayer.hand != null) {
+        val clientIds = server?.getClientIds() ?: emptyList()
+        
+        // 1. Preparar la lista de jugadores (con cartas ocultas por defecto)
+        fun createPlayersJson(forPlayerIndex: Int): JSONArray {
+            val playersJson = JSONArray()
+            state.players.forEachIndexed { index, asPlayer ->
+                playersJson.put(JSONObject().apply {
+                    put("id", asPlayer.player.id)
+                    put("name", asPlayer.player.name)
+                    put("lives", asPlayer.lives)
+                    put("isOut", asPlayer.isOut)
+                    
+                    // Revelar carta si:
+                    // - Es la fase de REVELAR/FIN DE RONDA
+                    // - O es el jugador que está recibiendo el mensaje (su propia carta)
+                    val shouldReveal = state.status == AsStatus.REVEALING ||
+                                     state.status == AsStatus.ROUND_OVER ||
+                                     state.status == AsStatus.GAME_OVER ||
+                                     index == forPlayerIndex
+                    
+                    if (shouldReveal && asPlayer.hand != null) {
                         put("cardNumber", asPlayer.hand.number)
                         put("cardSuit", asPlayer.hand.suit.name)
                     }
-                } else {
-                    // En WAITING_ACTION solo el jugador actual puede ver su carta
-                    // No enviamos cartas de otros
-                }
-            })
-        }
-
-        val msg = NetworkMessage.createAsGameState(
-            playersJson,
-            state.currentPlayerIndex,
-            state.status.name,
-            state.lastAction
-        )
-        server?.broadcast(msg)
-
-        // Enviar carta privada a cada cliente (solo su propia carta)
-        val clientIds = server?.getClientIds() ?: return
-        clientIds.forEachIndexed { index, clientId ->
-            val playerIndex = index + 1
-            if (playerIndex < state.players.size) {
-                val player = state.players[playerIndex]
-                if (player.hand != null && !player.isOut) {
-                    val privateMsg = JSONObject().apply {
-                        put("type", "PRIVATE_CARD")
-                        put("cardNumber", player.hand.number)
-                        put("cardSuit", player.hand.suit.name)
-                    }.toString()
-                    server?.sendTo(clientId, privateMsg)
-                }
+                })
             }
+            return playersJson
         }
+
+        // 2. Enviar mensaje personalizado a cada cliente
+        clientIds.forEachIndexed { index, clientId ->
+            val playerIndex = index + 1 // El Host es 0, clientes empiezan en 1
+            val personalMsg = NetworkMessage.createAsGameState(
+                createPlayersJson(playerIndex),
+                state.currentPlayerIndex,
+                state.status.name,
+                state.lastAction
+            )
+            server?.sendTo(clientId, personalMsg.toString())
+        }
+
+        // 3. El Host ya tiene el estado completo localmente, no necesita mensaje
     }
 
     private fun parseAsGameStateFromJson(msg: JSONObject): AsGameState {

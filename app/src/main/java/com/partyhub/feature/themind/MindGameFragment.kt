@@ -18,6 +18,7 @@ import com.partyhub.feature.lan.LanLobbyViewModel
 import com.partyhub.feature.themind.engine.MindStatus
 import com.partyhub.core.Event
 import com.google.android.material.snackbar.Snackbar
+import timber.log.Timber
 
 class MindGameFragment : Fragment() {
 
@@ -88,24 +89,39 @@ class MindGameFragment : Fragment() {
 
     private fun setupObservers() {
         viewModel.gameState.observe(viewLifecycleOwner) { state ->
-            binding.tvStatus.isVisible = state.status == MindStatus.REVEALING
-            binding.btnResolve.isVisible = state.status == MindStatus.REVEALING
-            binding.btnNextLevel.isVisible = state.status == MindStatus.LEVEL_COMPLETE
+            if (state == null) return@observe
 
-            if (state.status == MindStatus.GAME_OVER || state.status == MindStatus.VICTORY) {
+            try {
+                // Actualización manual de textos para evitar crashes de DataBinding
+                binding.tvLevel.text = getString(R.string.mind_label_level, state.level)
+                binding.tvLives.text = getString(R.string.mind_label_lives, state.lives)
+                
+                val lastCard = state.playedCards.lastOrNull()
+                binding.tvCurrentCard.text = lastCard?.number?.toString() ?: "?"
+
+                binding.tvStatus.isVisible = state.status == MindStatus.REVEALING
+                binding.btnResolve.isVisible = state.status == MindStatus.REVEALING
+                binding.btnNextLevel.isVisible = state.status == MindStatus.LEVEL_COMPLETE
+
+                if (isLanMode) {
+                    updateLanPlayerActions()
+                } else {
+                    updatePlayerActions(state.players.map { it.id }, state.playerHands)
+                }
+            } catch (e: Exception) {
+                android.widget.Toast.makeText(context, "Error de UI: ${e.message}", android.widget.Toast.LENGTH_SHORT).show()
+                Timber.e(e, "Error al actualizar la UI de The Mind")
+            }
+        }
+
+        viewModel.navigateToResult.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let { result ->
                 val action = MindGameFragmentDirections
                     .actionMindGameFragmentToMindResultFragment(
-                        levelReached = state.level,
-                        isVictory = state.status == MindStatus.VICTORY
+                        levelReached = result.first,
+                        isVictory = result.second
                     )
                 findNavController().navigate(action)
-            }
-
-            if (isLanMode) {
-                // En modo LAN mostramos solo la mano local
-                updateLanPlayerActions()
-            } else {
-                updatePlayerActions(state.players.map { it.id }, state.playerHands)
             }
         }
 
@@ -141,7 +157,7 @@ class MindGameFragment : Fragment() {
         val hand = viewModel.localHand.value ?: return
         if (hand.isEmpty()) return
 
-        val playerId = viewModel.getLocalPlayerId().toString()
+        val playerId = viewModel.getLocalPlayerId()
 
         val playerView = layoutInflater.inflate(
             R.layout.item_mind_player_action,
@@ -178,7 +194,8 @@ class MindGameFragment : Fragment() {
                 val tvPlayerName = playerView.findViewById<TextView>(R.id.tvPlayerName)
                 val rvPlayerHand = playerView.findViewById<RecyclerView>(R.id.rvPlayerHand)
 
-                tvPlayerName.text = getString(R.string.mind_label_player_hand, playerId.toInt().plus(1))
+                val displayName = try { (playerId.toInt() + 1).toString() } catch (e: Exception) { playerId }
+                tvPlayerName.text = getString(R.string.mind_label_player_hand, displayName)
 
                 // Configuramos el RecyclerView de la mano
                 val adapter = MindCardAdapter(hand) {

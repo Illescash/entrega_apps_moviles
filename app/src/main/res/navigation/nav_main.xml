@@ -25,6 +25,18 @@
         <action
             android:id="@+id/action_hubFragment_to_lanLobbyFragment"
             app:destination="@id/lanLobbyFragment" />
+        <action
+            android:id="@+id/action_hubFragment_to_mindConfigFragment"
+            app:destination="@id/mindConfigFragment" />
+        <action
+            android:id="@+id/action_hubFragment_to_asConfigFragment"
+            app:destination="@id/asConfigFragment" />
+        <action
+            android:id="@+id/action_hubFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_hubFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
     <fragment
@@ -46,32 +58,109 @@
         tools:layout="@layout/fragment_lan_lobby">
         <action
             android:id="@+id/action_lanLobbyFragment_to_mindGameFragment"
-            app:destination="@id/mindGameFragment">
-            <argument
-                android:name="numPlayers"
-                app:argType="integer" />
-            <argument
-                android:name="difficulty"
-                app:argType="string" />
-            <argument
-                android:name="isLanMode"
-                app:argType="boolean"
-                android:defaultValue="false" />
-        </action>
+            app:destination="@id/mindGameFragment" />
         <action
             android:id="@+id/action_lanLobbyFragment_to_asGameFragment"
-            app:destination="@id/asGameFragment">
-            <argument
-                android:name="numPlayers"
-                app:argType="integer" />
-            <argument
-                android:name="isLanMode"
-                app:argType="boolean"
-                android:defaultValue="false" />
-        </action>
+            app:destination="@id/asGameFragment" />
     </fragment>
 
-    <include app:graph="@navigation/nav_mind" />
-    <include app:graph="@navigation/nav_as" />
+    <!-- The Mind Fragments -->
+    <fragment
+        android:id="@+id/mindConfigFragment"
+        android:name="com.partyhub.feature.themind.MindConfigFragment"
+        android:label="@string/nav_label_mind_config"
+        tools:layout="@layout/fragment_mind_config">
+        <action
+            android:id="@+id/action_mindConfigFragment_to_mindGameFragment"
+            app:destination="@id/mindGameFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mindGameFragment"
+        android:name="com.partyhub.feature.themind.MindGameFragment"
+        android:label="@string/nav_label_mind_game"
+        tools:layout="@layout/fragment_mind_game">
+        <argument
+            android:name="numPlayers"
+            app:argType="integer" />
+        <argument
+            android:name="difficulty"
+            app:argType="string"
+            android:defaultValue="NORMAL" />
+        <argument
+            android:name="isLanMode"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="isHost"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="localPlayerId"
+            app:argType="string"
+            android:defaultValue="" />
+        <action
+            android:id="@+id/action_mindGameFragment_to_mindResultFragment"
+            app:destination="@id/mindResultFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mindResultFragment"
+        android:name="com.partyhub.feature.themind.MindResultFragment"
+        android:label="@string/nav_label_mind_result"
+        tools:layout="@layout/fragment_mind_result">
+        <argument
+            android:name="levelReached"
+            app:argType="integer" />
+        <argument
+            android:name="isVictory"
+            app:argType="boolean" />
+    </fragment>
+
+    <!-- El As Fragments -->
+    <fragment
+        android:id="@+id/asConfigFragment"
+        android:name="com.partyhub.feature.elas.AsConfigFragment"
+        android:label="@string/nav_label_as_config"
+        tools:layout="@layout/fragment_as_config">
+        <action
+            android:id="@+id/action_asConfigFragment_to_asGameFragment"
+            app:destination="@id/asGameFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/asGameFragment"
+        android:name="com.partyhub.feature.elas.AsGameFragment"
+        android:label="@string/nav_label_as_game"
+        tools:layout="@layout/fragment_as_game">
+        <argument
+            android:name="numPlayers"
+            app:argType="integer" />
+        <argument
+            android:name="isLanMode"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="isHost"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="localPlayerId"
+            app:argType="string"
+            android:defaultValue="" />
+        <action
+            android:id="@+id/action_asGameFragment_to_asResultFragment"
+            app:destination="@id/asResultFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/asResultFragment"
+        android:name="com.partyhub.feature.elas.AsResultFragment"
+        android:label="@string/nav_label_as_result"
+        tools:layout="@layout/fragment_as_result">
+        <argument
+            android:name="winnerName"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

@@ -128,7 +128,10 @@ class LanLobbyFragment : Fragment() {
         }
     }
 
+    private var isStartingGame = false
+
     private fun navigateToGame(config: GameStartConfig) {
+        isStartingGame = true
         Timber.d("LAN: navegando al juego ${config.game} con ${config.playerCount} jugadores")
         when (config.game) {
             "the_mind" -> {
@@ -155,8 +158,18 @@ class LanLobbyFragment : Fragment() {
         return SettingsFragment.getPlayerAlias(requireContext())
     }
 
+    override fun onPause() {
+        super.onPause()
+        // Parar de buscar salas al salir de la pantalla
+        viewModel.stopBrowsing()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
+        // Solo limpiamos la sala si salimos de la pantalla SIN ir a un juego
+        if (!isStartingGame) {
+            viewModel.leaveRoom()
+        }
         _binding = null
     }
 }

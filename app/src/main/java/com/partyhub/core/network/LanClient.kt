@@ -28,47 +28,57 @@ class LanClient {
      * Conecta al Host. Debe llamarse desde un hilo de IO.
      */
     fun connect(ip: String, port: Int) {
-        val thread = Thread {
-            try {
-                socket = Socket(ip, port)
-                writer = PrintWriter(socket!!.getOutputStream(), true)
-                connected = true
+        disconnect()
+        try {
+            socket = Socket(ip, port)
+            writer = PrintWriter(socket!!.getOutputStream(), true)
+            connected = true
 
-                Timber.d("LAN Client: conectado a $ip:$port")
+            Timber.d("LAN Client: conectado a $ip:$port")
 
-                // Hilo de lectura
-                val reader = BufferedReader(InputStreamReader(socket!!.getInputStream()))
-                var line: String? = null
-                while (connected && reader.readLine().also { line = it } != null) {
-                    line?.let { msg ->
-                        Timber.d("LAN Client: recibido: $msg")
-                        onMessageReceived?.invoke(msg)
+            // Hilo de lectura (este sí debe ser separado para no bloquear)
+            val readerThread = Thread {
+                try {
+                    val reader = BufferedReader(InputStreamReader(socket!!.getInputStream()))
+                    var line: String? = null
+                    while (connected && reader.readLine().also { line = it } != null) {
+                        line?.let { msg ->
+                            Timber.d("LAN Client: recibido: $msg")
+                            onMessageReceived?.invoke(msg)
+                        }
                     }
+                } catch (e: Exception) {
+                    if (connected) Timber.w(e, "LAN Client: error en hilo de lectura")
+                } finally {
+                    connected = false
+                    onDisconnected?.invoke()
+                    Timber.d("LAN Client: desconectado")
                 }
-            } catch (e: Exception) {
-                if (connected) Timber.w(e, "LAN Client: error de conexión")
-            } finally {
-                connected = false
-                onDisconnected?.invoke()
-                Timber.d("LAN Client: desconectado")
             }
+            readerThread.isDaemon = true
+            readerThread.name = "LAN-Client-Reader"
+            readerThread.start()
+
+        } catch (e: Exception) {
+            connected = false
+            Timber.e(e, "LAN Client: error al establecer conexión inicial")
+            throw e // Re-lanzar para que el ViewModel sepa que falló
         }
-        thread.isDaemon = true
-        thread.name = "LAN-Client"
-        thread.start()
     }
 
     /**
      * Envía un mensaje al Host.
      */
     fun send(message: String) {
-        if (!connected) return
-        try {
-            writer?.println(message)
-        } catch (e: Exception) {
-            Timber.w(e, "LAN Client: error enviando mensaje")
-            disconnect()
-        }
+        Thread {
+            if (!connected) return@Thread
+            try {
+                writer?.println(message)
+            } catch (e: Exception) {
+                Timber.w(e, "LAN Client: error enviando mensaje")
+                disconnect()
+            }
+        }.start()
     }
 
     fun isConnected(): Boolean = connected

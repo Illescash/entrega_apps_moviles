@@ -69,15 +69,19 @@ class MindResultFragment : Fragment() {
     }
 
     private fun saveMatch() {
-        val winner = if (args.isVictory) getString(R.string.history_team) else getString(R.string.history_nobody)
-        val match = MatchHistory(
-            gameName = getString(R.string.game_mind_title),
-            players = getString(R.string.history_multiplayer),
-            winner = winner,
-            durationMs = 0,
-            finishedAt = System.currentTimeMillis()
-        )
-        historyViewModel.insert(match)
+        try {
+            val winner = if (args.isVictory) getString(R.string.history_team) else getString(R.string.history_nobody)
+            val match = MatchHistory(
+                gameName = getString(R.string.game_mind_title),
+                players = getString(R.string.history_multiplayer),
+                winner = winner,
+                durationMs = 0,
+                finishedAt = System.currentTimeMillis()
+            )
+            historyViewModel.insert(match)
+        } catch (e: Exception) {
+            Timber.e(e, "Error al guardar la partida en el historial")
+        }
     }
 
     override fun onDestroyView() {

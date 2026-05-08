@@ -49,7 +49,9 @@ class LanServer(private val port: Int = TCP_PORT) {
         running = true
         val thread = Thread {
             try {
-                serverSocket = ServerSocket(port)
+                serverSocket = ServerSocket(port).apply {
+                    reuseAddress = true
+                }
                 Timber.d("LAN Server: escuchando en puerto TCP $port")
 
                 while (running) {
@@ -89,15 +91,18 @@ class LanServer(private val port: Int = TCP_PORT) {
             try {
                 val reader = BufferedReader(InputStreamReader(connection.socket.getInputStream()))
                 var line: String? = null
-                while (running && reader.readLine().also { line = it } != null) {
-                    line?.let { msg ->
-                        Timber.d("LAN Server: recibido de cliente ${connection.id}: $msg")
-                        onMessageReceived?.invoke(connection.id, msg)
-                    }
+                while (running) {
+                    line = reader.readLine()
+                    if (line == null) break // Conexión cerrada por el cliente
+                    
+                    val msg = line!!
+                    Timber.d("LAN Server: recibido de cliente ${connection.id}: $msg")
+                    onMessageReceived?.invoke(connection.id, msg)
                 }
             } catch (e: Exception) {
-                if (running) Timber.w("LAN Server: cliente ${connection.id} desconectado")
+                if (running) Timber.e(e, "LAN Server: error leyendo del cliente ${connection.id}")
             } finally {
+                Timber.d("LAN Server: cerrando conexión con cliente ${connection.id}")
                 removeClient(connection)
             }
         }
@@ -110,27 +115,31 @@ class LanServer(private val port: Int = TCP_PORT) {
      * Envía un mensaje a todos los clientes conectados.
      */
     fun broadcast(message: String) {
-        clients.forEach { client ->
-            try {
-                client.writer.println(message)
-            } catch (e: Exception) {
-                Timber.w(e, "Error enviando a cliente ${client.id}")
-                removeClient(client)
+        Thread {
+            clients.forEach { client ->
+                try {
+                    client.writer.println(message)
+                } catch (e: Exception) {
+                    Timber.w(e, "Error enviando a cliente ${client.id}")
+                    removeClient(client)
+                }
             }
-        }
+        }.start()
     }
 
     /**
      * Envía un mensaje a un cliente específico.
      */
     fun sendTo(clientId: Int, message: String) {
-        val client = clients.find { it.id == clientId } ?: return
-        try {
-            client.writer.println(message)
-        } catch (e: Exception) {
-            Timber.w(e, "Error enviando a cliente $clientId")
-            removeClient(client)
-        }
+        Thread {
+            val client = clients.find { it.id == clientId } ?: return@Thread
+            try {
+                client.writer.println(message)
+            } catch (e: Exception) {
+                Timber.w(e, "Error enviando a cliente $clientId")
+                removeClient(client)
+            }
+        }.start()
     }
 
     /**
@@ -146,6 +155,11 @@ class LanServer(private val port: Int = TCP_PORT) {
 
     fun getClientIds(): List<Int> = clients.map { it.id }
 
+    /**
+     * Devuelve una lista de pares (ID de conexión, Nombre del jugador)
+     */
+    fun getConnectedClientsInfo(): List<Pair<Int, String>> = clients.map { it.id to it.playerName }
+
     private fun removeClient(connection: ClientConnection) {
         if (clients.remove(connection)) {
             val name = connection.playerName
@@ -159,12 +173,21 @@ class LanServer(private val port: Int = TCP_PORT) {
 
     fun stop() {
         running = false
+        try {
+            serverSocket?.close()
+        } catch (e: Exception) {
+            Timber.w(e, "Error cerrando server socket")
+        }
+        serverSocket = null
+        
         clients.forEach { client ->
-            try { client.socket.close() } catch (_: Exception) {}
+            try {
+                client.socket.close()
+            } catch (e: Exception) {
+                // Ya cerrado o error
+            }
         }
         clients.clear()
-        try { serverSocket?.close() } catch (_: Exception) {}
-        serverSocket = null
         Timber.d("LAN Server: detenido")
     }
 }

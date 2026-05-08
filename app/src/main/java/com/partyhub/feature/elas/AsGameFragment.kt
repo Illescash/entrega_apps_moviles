@@ -48,6 +48,12 @@ class AsGameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        savedInstanceState?.let {
+            isCardHiddenLocal = it.getBoolean("isCardHiddenLocal", true)
+            isCardFlippedLan = it.getBoolean("isCardFlippedLan", false)
+            lastPlayerIndex = it.getInt("lastPlayerIndex", -1)
+        }
+
         isLanMode = args.isLanMode
 
         setupRecyclerView()
@@ -62,6 +68,13 @@ class AsGameFragment : Fragment() {
 
         setupObservers()
         setupClickListeners()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean("isCardHiddenLocal", isCardHiddenLocal)
+        outState.putBoolean("isCardFlippedLan", isCardFlippedLan)
+        outState.putInt("lastPlayerIndex", lastPlayerIndex)
     }
 
     private fun setupLanMode() {
@@ -99,23 +112,16 @@ class AsGameFragment : Fragment() {
 
             // Actualizar imagen de la carta
             if (isLanMode) {
-                // En LAN, solo mostrar la carta del jugador actual o durante REVEALING
-                val localIdx = viewModel.getLocalPlayerId()
-                if (currentPlayerIndex == localIdx || state.status == AsStatus.REVEALING ||
-                    state.status == AsStatus.ROUND_OVER || state.status == AsStatus.GAME_OVER) {
-                    
-                    if (isCardFlippedLan && state.status == AsStatus.WAITING_ACTION) {
-                        binding.ivCard.setImageResource(R.drawable.ic_launcher_foreground)
-                    } else {
-                        updateCardImage(currentPlayer.hand)
-                    }
-                } else {
-                    // Mostrar carta boca abajo (usamos un placeholder)
-                    binding.ivCard.setImageResource(R.drawable.ic_launcher_foreground)
+                // En LAN, la carta central es SIEMPRE la del jugador local
+                val myName = viewModel.getLocalPlayerId()
+                val localPlayer = state.players.find { it.player.name == myName }
+                if (localPlayer != null) {
+                    updateCardImage(localPlayer.hand)
                 }
             } else {
+                // En modo LOCAL (un solo móvil), mostramos la carta del jugador actual
                 if (isCardHiddenLocal && state.status == AsStatus.WAITING_ACTION) {
-                    binding.ivCard.setImageResource(R.drawable.ic_launcher_foreground)
+                    binding.ivCard.setImageResource(R.drawable.ic_partyhub_logo)
                     binding.btnShowCard.isVisible = true
                 } else {
                     binding.btnShowCard.isVisible = false
@@ -129,9 +135,10 @@ class AsGameFragment : Fragment() {
 
             if (isLanMode) {
                 // En LAN, solo habilitar acciones si es tu turno
-                val isMyTurn = currentPlayerIndex == viewModel.getLocalPlayerId()
+                val myName = viewModel.getLocalPlayerId()
+                val myIndex = state.players.indexOfFirst { it.player.name == myName }
+                val isMyTurn = currentPlayerIndex == myIndex
                 binding.llActions.isVisible = isPlaying && isMyTurn
-                // Resolve y NextRound solo lo puede hacer el Host (o cualquiera, simplificado)
                 binding.btnResolveRound.isVisible = isRevealing
                 binding.btnNextRound.isVisible = isRoundOver
             } else {
@@ -139,6 +146,14 @@ class AsGameFragment : Fragment() {
                 binding.llActions.isVisible = isPlaying && !isCardHiddenLocal
                 binding.btnResolveRound.isVisible = isRevealing
                 binding.btnNextRound.isVisible = isRoundOver
+            }
+
+            // Mostrar última acción (mensaje de Rey, etc)
+            if (!state.lastAction.isNullOrEmpty()) {
+                binding.tvLastAction?.text = state.lastAction
+                binding.tvLastAction?.isVisible = true
+            } else {
+                binding.tvLastAction?.isVisible = false
             }
 
             if (state.status == AsStatus.GAME_OVER) {
@@ -185,10 +200,22 @@ class AsGameFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
-        binding.btnStay.setOnClickListener { viewModel.stay() }
-        binding.btnSwap.setOnClickListener { viewModel.swap() }
-        binding.btnResolveRound.setOnClickListener { viewModel.resolveRound() }
-        binding.btnNextRound.setOnClickListener { viewModel.nextRound() }
+        binding.btnStay.setOnClickListener {
+            binding.llActions.isVisible = false
+            viewModel.stay()
+        }
+        binding.btnSwap.setOnClickListener {
+            binding.llActions.isVisible = false
+            viewModel.swap()
+        }
+        binding.btnResolveRound.setOnClickListener {
+            binding.btnResolveRound.isVisible = false
+            viewModel.resolveRound()
+        }
+        binding.btnNextRound.setOnClickListener {
+            binding.btnNextRound.isVisible = false
+            viewModel.nextRound()
+        }
 
         binding.btnShowCard.setOnClickListener {
             isCardHiddenLocal = false
@@ -204,12 +231,11 @@ class AsGameFragment : Fragment() {
             if (isLanMode) {
                 val state = viewModel.gameState.value ?: return@setOnClickListener
                 val currentPlayerIndex = state.currentPlayerIndex
-                val localIdx = viewModel.getLocalPlayerId()
 
-                if (currentPlayerIndex == localIdx && state.status == AsStatus.WAITING_ACTION) {
+                if (viewModel.isMyTurn.value == true && state.status == AsStatus.WAITING_ACTION) {
                     isCardFlippedLan = !isCardFlippedLan
                     if (isCardFlippedLan) {
-                        binding.ivCard.setImageResource(R.drawable.ic_launcher_foreground)
+                        binding.ivCard.setImageResource(R.drawable.ic_partyhub_logo)
                     } else {
                         updateCardImage(state.players[currentPlayerIndex].hand)
                     }

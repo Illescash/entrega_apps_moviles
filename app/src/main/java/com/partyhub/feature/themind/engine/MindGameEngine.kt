@@ -5,8 +5,8 @@ import com.partyhub.core.model.Player
 class MindGameEngine {
 
     fun newGame(playerNames: List<String>, lives: Int = 3): MindGameState {
-        val players = playerNames.mapIndexed { index, name ->
-            Player(id = index.toString(), name = name)
+        val players = playerNames.map { name ->
+            Player(id = name, name = name)
         }
         val hands = dealCards(players, level = 1)
         val allCards = hands.values.flatten().sorted()
@@ -23,14 +23,13 @@ class MindGameEngine {
     }
 
     fun playCard(state: MindGameState, playerId: String): MindGameState {
-        require(state.status == MindStatus.PLAYING)
+        if (state.status != MindStatus.PLAYING) return state
 
-        val hand = state.playerHands[playerId]
-            ?: error("Jugador $playerId no encontrado")
-        require(hand.isNotEmpty()) { "El jugador $playerId no tiene cartas" }
+        val hand = state.playerHands[playerId] ?: return state
+        if (hand.isEmpty()) return state
 
-        val card = hand.min()
-        val lowestPending = state.pendingCards.first()
+        val card = hand.minOrNull() ?: return state
+        val lowestPending = state.pendingCards.firstOrNull() ?: return state
         val wasCorrect = card == lowestPending
 
         val newPlayedCards = state.playedCards + PlayedCard(
@@ -39,16 +38,13 @@ class MindGameEngine {
             wasCorrect = wasCorrect
         )
 
-        val newHands = state.playerHands.toMutableMap()
-        newHands[playerId] = hand - card
+        val newHands = state.playerHands.mapValues { (_, playerHand) ->
+            playerHand.filter { it > card }
+        }
 
         // Quitar la carta jugada de pendientes.
         // Si es incorrecta, tambien quitar todas las que eran menores (se pierden).
-        val newPending = if (wasCorrect) {
-            state.pendingCards - card
-        } else {
-            state.pendingCards.filter { it > card }
-        }
+        val newPending = state.pendingCards.filter { it > card }
 
         val allHandsEmpty = newHands.values.all { it.isEmpty() }
         val newStatus = if (allHandsEmpty) MindStatus.REVEALING else MindStatus.PLAYING
@@ -62,7 +58,7 @@ class MindGameEngine {
     }
 
     fun resolveLevel(state: MindGameState): MindGameState {
-        require(state.status == MindStatus.REVEALING)
+        if (state.status != MindStatus.REVEALING) return state
 
         val errors = state.playedCards.count { !it.wasCorrect }
         val newLives = state.lives - errors
@@ -80,7 +76,7 @@ class MindGameEngine {
     }
 
     fun startNextLevel(state: MindGameState): MindGameState {
-        require(state.status == MindStatus.LEVEL_COMPLETE)
+        if (state.status != MindStatus.LEVEL_COMPLETE) return state
 
         val nextLevel = state.level + 1
         val maxLevel = getMaxLevel(state.players.size)

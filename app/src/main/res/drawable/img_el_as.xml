@@ -1,0 +1,48 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    <!-- Fondo de carta redondeado -->
+    <path
+        android:pathData="M15,10h70a5,5 0,0 1,5 5v70a5,5 0,0 1,-5 5h-70a5,5 0,0 1,-5 -5v-70a5,5 0,0 1,5 -5z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="0"
+                android:startY="0"
+                android:endX="100"
+                android:endY="100"
+                android:type="linear">
+                <item android:offset="0" android:color="#2C2C2C"/>
+                <item android:offset="1" android:color="#1A1A1A"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- El As (Moneda de Oro) -->
+    <path
+        android:pathData="M50,50m-30,0a30,30 0,1 1,60 0a30,30 0,1 1,-60 0"
+        android:strokeWidth="2"
+        android:strokeColor="#FFD700">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="30"
+                android:startY="30"
+                android:endX="70"
+                android:endY="70"
+                android:type="linear">
+                <item android:offset="0" android:color="#FFFFE000"/>
+                <item android:offset="1" android:color="#FFFFAA00"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path
+        android:pathData="M50,50m-20,0a20,20 0,1 1,40 0a20,20 0,1 1,-40 0"
+        android:strokeWidth="1"
+        android:strokeColor="#B8860B"
+        android:fillColor="#00000000"/>
+    <!-- Brillo central -->
+    <path
+        android:pathData="M50,38l4,8l8,4l-8,4l-4,8l-4,-8l-8,-4l8,-4z"
+        android:fillColor="#FFFFFF"/>
+</vector>

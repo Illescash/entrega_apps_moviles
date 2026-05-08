@@ -15,11 +15,19 @@
         android:background="@color/black"
         android:padding="@dimen/margin_normal">
 
-        <!-- Header: Level and Lives -->
+        <!-- Columna Izquierda: Info y Carta -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
+
         <TextView
             android:id="@+id/tvLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{String.format(@string/mind_label_level, viewModel.gameState.level)}"
             android:textColor="@color/white"
             android:textSize="@dimen/text_h3"
             android:textStyle="bold"
@@ -31,62 +39,64 @@
             android:id="@+id/tvLives"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{String.format(@string/mind_label_lives, viewModel.gameState.lives)}"
             android:textColor="@color/text_lives"
             android:textSize="@dimen/text_player_lives"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvLevel"
             tools:text="Vidas: 3" />
 
-        <!-- Stack of played cards -->
         <TextView
             android:id="@+id/tvStackTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_xlarge"
+            android:layout_marginTop="@dimen/margin_normal"
             android:text="@string/mind_stack_title"
             android:textColor="@color/text_secondary"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvLevel" />
+            app:layout_constraintTop_toBottomOf="@id/tvLives" />
 
         <TextView
             android:id="@+id/tvCurrentCard"
-            android:layout_width="@dimen/card_width_mind"
-            android:layout_height="@dimen/card_height_mind"
-            android:layout_marginTop="@dimen/margin_small"
+            android:layout_width="100dp"
+            android:layout_height="140dp"
             android:background="@color/card_background"
             android:gravity="center"
+            android:text="@{viewModel.gameState.playedCards.empty ? `?` : String.valueOf(viewModel.gameState.playedCards[viewModel.gameState.playedCards.size() - 1].number)}"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_card_number"
+            android:textSize="48sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvStackTitle"
             tools:text="42" />
 
-        <!-- Game Info / Status Message -->
+        <!-- Info / Status Message -->
         <TextView
             android:id="@+id/tvStatus"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_large"
             android:gravity="center"
             android:text="@string/mind_status_revealing"
             android:textColor="@color/text_status_gold"
             android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvCurrentCard"
             tools:visibility="visible" />
 
-        <!-- Action Buttons for Players (Local Mode) -->
+        <!-- Columna Derecha: Acciones -->
         <ScrollView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/margin_large"
-            android:layout_marginBottom="@dimen/margin_normal"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_small"
             app:layout_constraintBottom_toTopOf="@id/btnNextLevel"
-            app:layout_constraintTop_toBottomOf="@id/tvStatus">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
                 android:id="@+id/playerActionsContainer"
@@ -95,23 +105,26 @@
                 android:orientation="vertical" />
         </ScrollView>
 
-        <!-- Level Transitions -->
         <Button
             android:id="@+id/btnResolve"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/mind_btn_resolve"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline"
             tools:visibility="visible" />
 
         <Button
             android:id="@+id/btnNextLevel"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/mind_btn_next"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline"
             tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

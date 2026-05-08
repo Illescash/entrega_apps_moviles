@@ -1,0 +1,29 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    <!-- Fondo hexagonal elegante -->
+    <path
+        android:pathData="M50,5L90,25L90,75L50,95L10,75L10,25Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="0"
+                android:startY="0"
+                android:endX="100"
+                android:endY="100"
+                android:type="linear">
+                <item android:offset="0" android:color="#6200EE"/>
+                <item android:offset="1" android:color="#BB86FC"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- Letra 'P' estilizada (de Party) -->
+    <path
+        android:pathData="M40,30h15c8,0 12,4 12,10s-4,10 -12,10h-15v20h-8v-40h23z"
+        android:fillColor="#FFFFFF"/>
+    <path
+        android:pathData="M40,38v10h15c3,0 5,-2 5,-5s-2,-5 -5,-5h-15z"
+        android:fillColor="#6200EE"/>
+</vector>

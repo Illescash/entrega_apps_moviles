@@ -1,0 +1,40 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    <!-- Fondo circular -->
+    <path
+        android:pathData="M50,50m-48,0a48,48 0,1 1,96 0a48,48 0,1 1,-96 0">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="0"
+                android:startY="0"
+                android:endX="100"
+                android:endY="100"
+                android:type="linear">
+                <item android:offset="0" android:color="#1A1A2E"/>
+                <item android:offset="1" android:color="#16213E"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- Ondas de energía -->
+    <path
+        android:pathData="M50,50m-35,0a35,35 0,1 1,70 0a35,35 0,1 1,-70 0"
+        android:strokeWidth="1.5"
+        android:strokeColor="#BB86FC"
+        android:fillColor="#00000000"/>
+    <path
+        android:pathData="M50,50m-25,0a25,25 0,1 1,50 0a25,25 0,1 1,-50 0"
+        android:strokeWidth="1"
+        android:strokeColor="#03DAC6"
+        android:fillColor="#00000000"/>
+    <!-- Icono central (Cerebro/Mente) -->
+    <path
+        android:pathData="M50,35c-8.3,0 -15,6.7 -15,15s6.7,15 15,15s15,-6.7 15,-15s-6.7,-15 -15,-15z"
+        android:fillColor="#BB86FC"/>
+    <path
+        android:pathData="M50,45c-2.8,0 -5,2.2 -5,5s2.2,5 5,5s5,-2.2 5,-5s-2.2,-5 -5,-5z"
+        android:fillColor="#03DAC6"/>
+</vector>

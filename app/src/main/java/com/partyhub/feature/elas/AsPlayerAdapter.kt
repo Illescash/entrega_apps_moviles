@@ -42,28 +42,33 @@ class AsPlayerAdapter(
             binding.lives = state.lives
             binding.isTurn = isTurn
             
-            // Si el jugador está fuera, lo mostramos más tenue y sin carta
-            if (state.isOut) {
-                binding.root.alpha = 0.5f
-                binding.ivSmallCard.setImageResource(android.R.color.transparent)
-            } else {
-                binding.root.alpha = 1.0f
+            // Gestionar la mini-carta del jugador
+            if (state.lives > 0) {
+                binding.ivPlayerCard?.visibility = android.view.View.VISIBLE
                 if (state.hand != null) {
-                    val suitPrefix = when (state.hand.suit) {
-                        com.partyhub.core.model.SpanishCard.Suit.OROS -> "oro"
-                        com.partyhub.core.model.SpanishCard.Suit.COPAS -> "copa"
-                        com.partyhub.core.model.SpanishCard.Suit.ESPADAS -> "espada"
-                        com.partyhub.core.model.SpanishCard.Suit.BASTOS -> "basto"
-                    }
-                    val resId = binding.root.context.resources.getIdentifier("${suitPrefix}_${state.hand.number}", "drawable", binding.root.context.packageName)
+                    // Si tenemos la info de la carta, la mostramos
+                    val context = binding.root.context
+                    val suitName = state.hand.suit.name.lowercase()
+                    val resName = "${suitName}_${state.hand.number}"
+                    val resId = context.resources.getIdentifier(resName, "drawable", context.packageName)
                     if (resId != 0) {
-                        binding.ivSmallCard.setImageResource(resId)
+                        binding.ivPlayerCard?.setImageResource(resId)
                     } else {
-                        binding.ivSmallCard.setImageResource(android.R.drawable.ic_menu_help)
+                        binding.ivPlayerCard?.setImageResource(com.partyhub.R.drawable.ic_partyhub_logo)
                     }
                 } else {
-                    binding.ivSmallCard.setImageResource(com.partyhub.R.drawable.ic_launcher_foreground)
+                    // Si no tenemos la info (es de otro jugador y no es fase de revelado), boca abajo
+                    binding.ivPlayerCard?.setImageResource(com.partyhub.R.drawable.ic_partyhub_logo)
                 }
+            } else {
+                binding.ivPlayerCard?.visibility = android.view.View.GONE
+            }
+
+            // Si el jugador está fuera, lo mostramos más tenue
+            if (state.isOut) {
+                binding.root.alpha = 0.5f
+            } else {
+                binding.root.alpha = 1.0f
             }
             
             binding.executePendingBindings()

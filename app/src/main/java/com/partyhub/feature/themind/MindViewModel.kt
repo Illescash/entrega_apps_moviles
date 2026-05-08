@@ -12,9 +12,15 @@ import com.partyhub.feature.themind.engine.MindGameEngine
 import com.partyhub.feature.themind.engine.MindGameState
 import com.partyhub.feature.themind.engine.MindStatus
 import com.partyhub.feature.themind.engine.PlayedCard
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.json.JSONObject
 import timber.log.Timber
 import com.partyhub.core.Event
+
+import androidx.lifecycle.SavedStateHandle
 
 class MindViewModel : ViewModel() {
 
@@ -24,19 +30,36 @@ class MindViewModel : ViewModel() {
     private val _gameState = MutableLiveData<MindGameState>()
     val gameState: LiveData<MindGameState> get() = _gameState
 
+    private val _localHand = MutableLiveData<List<Int>>()
+    val localHand: LiveData<List<Int>> get() = _localHand
+
     private val _errorEvent = MutableLiveData<Event<String>>()
     val errorEvent: LiveData<Event<String>> get() = _errorEvent
 
-    // Mano privada del jugador local (solo en modo LAN)
-    private val _localHand = MutableLiveData<List<Int>>()
-    val localHand: LiveData<List<Int>> get() = _localHand
+    private val _navigateToResult = MutableLiveData<Event<Pair<Int, Boolean>>>()
+    val navigateToResult: LiveData<Event<Pair<Int, Boolean>>> get() = _navigateToResult
+
+    private fun setGameState(state: MindGameState) {
+        _gameState.value = state
+        
+        // Si el juego ha terminado, lanzamos el evento de navegación UNA SOLA VEZ
+        if (state.status == MindStatus.GAME_OVER || state.status == MindStatus.VICTORY) {
+            _navigateToResult.value = Event(Pair(state.level, state.status == MindStatus.VICTORY))
+        }
+    }
+
+    private fun setLocalHand(hand: List<Int>) {
+        _localHand.value = hand
+    }
+
+
 
     // Modo LAN
     private var isLanMode = false
     private var isHost = false
     private var server: LanServer? = null
     private var client: LanClient? = null
-    private var localPlayerId: Int = -1
+    private var localPlayerId: String = ""
 
     // -------------------------------------------------------
     // Modo local (sin cambios respecto al original)
@@ -44,7 +67,7 @@ class MindViewModel : ViewModel() {
 
     fun startGame(playerNames: List<String>, lives: Int = 3) {
         Timber.d("The Mind: iniciando partida con ${playerNames.size} jugadores, $lives vidas")
-        _gameState.value = engine.newGame(playerNames, lives)
+        setGameState(engine.newGame(playerNames, lives))
     }
 
     fun playCard(playerId: String) {
@@ -58,7 +81,7 @@ class MindViewModel : ViewModel() {
         } else {
             val current = _gameState.value ?: return
             Timber.d("The Mind: jugador $playerId juega carta")
-            _gameState.value = engine.playCard(current, playerId)
+            setGameState(engine.playCard(current, playerId))
         }
     }
 
@@ -72,7 +95,7 @@ class MindViewModel : ViewModel() {
         } else {
             val current = _gameState.value ?: return
             Timber.d("The Mind: resolviendo nivel ${current.level}")
-            _gameState.value = engine.resolveLevel(current)
+            setGameState(engine.resolveLevel(current))
         }
     }
 
@@ -86,7 +109,7 @@ class MindViewModel : ViewModel() {
         } else {
             val current = _gameState.value ?: return
             Timber.d("The Mind: avanzando al nivel ${current.level + 1}")
-            _gameState.value = engine.startNextLevel(current)
+            setGameState(engine.startNextLevel(current))
         }
     }
 
@@ -97,7 +120,7 @@ class MindViewModel : ViewModel() {
     fun setupLanMode(
         lanServer: LanServer?,
         lanClient: LanClient?,
-        playerId: Int,
+        playerId: String,
         host: Boolean
     ) {
         isLanMode = true
@@ -115,13 +138,18 @@ class MindViewModel : ViewModel() {
 
     fun startLanGame(playerNames: List<String>, lives: Int = 3) {
         if (!isHost) return
-        val state = engine.newGame(playerNames, lives)
-        _gameState.value = state
-        broadcastGameState(state)
-        sendPrivateHands(state)
+        viewModelScope.launch(Dispatchers.Default) {
+            delay(1500)
+            val state = engine.newGame(playerNames, lives)
+            mainHandler.post {
+                setGameState(state)
+                broadcastGameState(state)
+                sendPrivateHands(state)
+            }
+        }
     }
 
-    fun getLocalPlayerId(): Int = localPlayerId
+    fun getLocalPlayerId(): String = localPlayerId
     fun isLanMode(): Boolean = isLanMode
 
     // -------------------------------------------------------
@@ -132,7 +160,7 @@ class MindViewModel : ViewModel() {
         val current = _gameState.value ?: return
         Timber.d("The Mind LAN Host: jugador $playerId juega carta")
         val newState = engine.playCard(current, playerId)
-        _gameState.value = newState
+        setGameState(newState)
         broadcastGameState(newState)
         sendPrivateHands(newState)
     }
@@ -141,7 +169,7 @@ class MindViewModel : ViewModel() {
         val current = _gameState.value ?: return
         Timber.d("The Mind LAN Host: resolviendo nivel")
         val newState = engine.resolveLevel(current)
-        _gameState.value = newState
+        setGameState(newState)
         broadcastGameState(newState)
     }
 
@@ -149,7 +177,7 @@ class MindViewModel : ViewModel() {
         val current = _gameState.value ?: return
         Timber.d("The Mind LAN Host: siguiente nivel")
         val newState = engine.startNextLevel(current)
-        _gameState.value = newState
+        setGameState(newState)
         broadcastGameState(newState)
         sendPrivateHands(newState)
     }
@@ -191,7 +219,7 @@ class MindViewModel : ViewModel() {
                     NetworkMessage.TYPE_GAME_STATE -> {
                         mainHandler.post {
                             val state = parseGameStateFromJson(msg)
-                            _gameState.value = state
+                            setGameState(state)
                         }
                     }
                     NetworkMessage.TYPE_PRIVATE_HAND -> {
@@ -201,7 +229,7 @@ class MindViewModel : ViewModel() {
                             cards.add(arr.getInt(i))
                         }
                         mainHandler.post {
-                            _localHand.value = cards
+                            setLocalHand(cards)
                         }
                     }
                     NetworkMessage.TYPE_GAME_OVER -> {
@@ -238,16 +266,17 @@ class MindViewModel : ViewModel() {
     }
 
     private fun sendPrivateHands(state: MindGameState) {
-        // El host (jugador 0) se manda a sí mismo su mano via LiveData
-        val hostHand = state.playerHands["0"] ?: emptyList()
-        _localHand.value = hostHand
+        // El host se manda a sí mismo su mano via LiveData (localPlayerId es su nombre)
+        val hostHand = state.playerHands[localPlayerId] ?: emptyList<Int>()
+        setLocalHand(hostHand)
+        Timber.d("The Mind Host: repartiendo mano a mi mismo ($localPlayerId): $hostHand")
 
         // A cada cliente le enviamos solo su mano
-        val clientIds = server?.getClientIds() ?: return
-        clientIds.forEachIndexed { index, clientId ->
-            val playerId = (index + 1).toString() // Los clientes son jugador 1, 2, 3...
-            val hand = state.playerHands[playerId] ?: emptyList()
-            server?.sendTo(clientId, NetworkMessage.createPrivateHand(hand))
+        val clientsInfo = server?.getConnectedClientsInfo() ?: return
+        clientsInfo.forEach { (connId, playerName) ->
+            val hand = state.playerHands[playerName] ?: emptyList<Int>()
+            Timber.d("The Mind Host: enviando mano a cliente $connId ($playerName): $hand")
+            server?.sendTo(connId, NetworkMessage.createPrivateHand(hand))
         }
     }
 

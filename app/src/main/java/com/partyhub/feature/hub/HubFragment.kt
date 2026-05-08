@@ -75,7 +75,7 @@ class HubFragment : Fragment() {
                 id = "the_mind",
                 name = getString(R.string.game_mind_title),
                 description = getString(R.string.game_mind_desc),
-                iconRes = R.drawable.ic_launcher_foreground, // Cambiar por icono real en Fase 6
+                iconRes = R.drawable.img_the_mind,
                 minPlayers = 2,
                 maxPlayers = 8
             ),
@@ -83,7 +83,7 @@ class HubFragment : Fragment() {
                 id = "el_as",
                 name = getString(R.string.game_as_title),
                 description = getString(R.string.game_as_desc),
-                iconRes = R.drawable.ic_launcher_foreground, // Cambiar por icono real en Fase 6
+                iconRes = R.drawable.img_el_as,
                 minPlayers = 3,
                 maxPlayers = 8
             )
@@ -100,8 +100,8 @@ class HubFragment : Fragment() {
 
     private fun navigateToGame(gameId: String) {
         when (gameId) {
-            "the_mind" -> findNavController().navigate(R.id.nav_mind)
-            "el_as" -> findNavController().navigate(R.id.nav_as)
+            "the_mind" -> findNavController().navigate(R.id.action_hubFragment_to_mindConfigFragment)
+            "el_as" -> findNavController().navigate(R.id.action_hubFragment_to_asConfigFragment)
         }
     }
 
